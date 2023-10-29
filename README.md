@@ -3,7 +3,7 @@
 
 # HASS.Agent Project
 
-This project is a fork of the original HASS.Agent created by [Sam](https://github.com/LAB02-Research).
+This project is a fork of the [original HASS.Agent](https://github.com/LAB02-Research/HASS.Agent) created by [Sam](https://github.com/LAB02-Research).
 
 The Purpose of this project is to provide updates/features/fixes until development on the original project resumes.
 
