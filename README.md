@@ -13,6 +13,8 @@ At first all PRs made by me will be merged, but in time, I'll approach authors o
 
 ## Installation
 
+**I do hope to improve this process in the future**
+
 The original HASS.Agent repository is not available as far as I'm informed.<br>
 There are two options to approach this:
 - creating a new installer
@@ -20,11 +22,17 @@ There are two options to approach this:
 
 Currently the recommended option is the "patch it over". HASS.Agent is capable of functioning without the installer but the installer takes care of some dependencies that might need to be installed manually otherwise.
 <br>
-1. Install HASS.Agent from the official release (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
-2. Close the HASS.Agent
-3. Download the release package from this repository
-4. Copy/Replace the downloaded files over the installed ones
-5. Launch HASS.Agent and verify that you're using the unofficial beta version by navigating to help window
+1. Download and install HASS.Agent from [the official release](https://github.com/LAB02-Research/HASS.Agent/releases) (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
+2. Download and install WindowsAppSDK available at https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads ([explanation why](https://github.com/LAB02-Research/HASS.Agent.Staging/pull/18))
+3. Make sure the HASS.Agent service is stopped
+<br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38590ab0-7d42-4790-9629-73596725d75e" height="350px" />
+4. Close/Exit out of the HASS.Agent
+<br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38939e3d-6dff-447c-a497-78def5fa41ff" height="350px" />
+6. Download the release package from this repository
+7. Copy/Replace the downloaded files over the installed ones (again, usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
+8. Launch HASS.Agent and verify that you're using the unofficial beta version by navigating to help window - "u" in the version postfix
+<img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/19edc4f6-e674-4238-8d11-d50c16feb8a9" height="350px" />
+<img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/05df8795-b8f6-4a9e-b666-a55b89196a3e" height="350px" />
 
 ----
 
