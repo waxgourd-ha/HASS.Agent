@@ -15,6 +15,8 @@ At first all PRs made by me will be merged, but in time, I'll approach authors o
 
 **I do hope to improve this process in the future**
 
+**Step 0:** I cannot stress this enough - ***backup the config folder of your current HASS.Agent installation before reading further***
+<br><br><br>
 The original HASS.Agent repository is not available as far as I'm informed.<br>
 There are two options to approach this:
 - creating a new installer
