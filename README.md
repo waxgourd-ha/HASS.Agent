@@ -15,8 +15,8 @@ At first all PRs made by me will be merged, but in time, I'll approach authors o
 
 "Project" differences from the base project:
 1. No separation between "HASS.Agent" and "HASS.Agent.Staging" - since I have no access to the original repositories, it'll be easier for me to maintain it this way
-2. No documentation available yet - best case screnatio the decriptions in the application should be sufficient but even so, I'd like to have unofficial documentation created at some point
-
+2. No documentation available yet - best case scenario the descriptions in the application should be sufficient but even so, I'd like to have unofficial documentation created at some point
+3. The update functionality present in UI does not work with the unofficial version, yet
 
 ----
 
