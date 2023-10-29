@@ -24,7 +24,7 @@ Currently the recommended option is the "patch it over". HASS.Agent is capable o
 2. Close the HASS.Agent
 3. Download the release package from this repository
 4. Copy/Replace the downloaded files over the installed ones
-5. Launch HASS.Agent and verify that you're using 
+5. Launch HASS.Agent and verify that you're using the unofficial beta version by navigating to help window
 
 ----
 
