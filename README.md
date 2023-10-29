@@ -5,11 +5,26 @@
 
 This project is a fork of the [original HASS.Agent](https://github.com/LAB02-Research/HASS.Agent) created by [Sam](https://github.com/LAB02-Research).
 
-The Purpose of this project is to provide updates/features/fixes until development on the original project resumes.
+The Purpose of this project is to provide updates/features/fixes until development on the original project resumes. For now, all released from this repository will be marked as beta.
 
 At first all PRs made by me will be merged, but in time, I'll approach authors of other PRs for permission to also include them in here.
 
 **NOTE**: I did my best to always maintain backward compatibility but this ***cannot be guaranteed***, please report any issues you may encounter.
+
+## Installation
+
+The original HASS.Agent repository is not available as far as I'm informed.<br>
+There are two options to approach this:
+- creating a new installer
+- going with "patch it over" approach
+
+Currently the recommended option is the "patch it over". HASS.Agent is capable of functioning without the installer but the installer takes care of some dependencies that might need to be installed manually otherwise.
+<br>
+1. Install HASS.Agent from the official release (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
+2. Close the HASS.Agent
+3. Download the release package from this repository
+4. Copy/Replace the downloaded files over the installed ones
+5. Launch HASS.Agent and verify that you're using 
 
 ----
 
