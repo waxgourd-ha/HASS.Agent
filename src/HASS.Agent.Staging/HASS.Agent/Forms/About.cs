@@ -90,5 +90,6 @@ namespace HASS.Agent.Forms
 			if (e.KeyCode != Keys.Escape) return;
 			Close();
 		}
+		private void label2_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/amadeo-alex/HASS.Agent");
 	}
 }

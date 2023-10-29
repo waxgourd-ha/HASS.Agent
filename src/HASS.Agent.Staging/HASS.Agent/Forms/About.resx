@@ -171,7 +171,7 @@
   <data name="PbPayPal.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJgAAAArCAYAAACEnEH6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAGdxJREFUeF7tXHd8FOUWHVoIIM+GIFIUCb1LCzUUqaKIYqGJhBYEIqE3CSAoRUUD
+        vwAADr8BOAVTJAAAGdxJREFUeF7tXHd8FOUWHVoIIM+GIFIUCb1LCzUUqaKIYqGJhBYEIqE3CSAoRUUD
         CgEURMpDlGIoCSQkpBdCQgIJIM2CKGBZ8NF37zv3zszu7GYWEgzY+OP+ZuZ8deY7c++532yiENEt26Vz
         mSVs36+22LInWawpPS3XY1tZrDHNLNbYZhZbbHMxq+FoNGA2O442Nnsbbv/Xx2zAHPeZe8xR9tfBdFyM
         55v4lMWWOdJCJ5dYrv4U+4jZ2ufWTMGb2eXjK9tcT3lpri2yxg5rWGmy7ixLtsiaZIv1hrUgPFgx3ICY
@@ -287,7 +287,7 @@
   <data name="PbKoFi.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAKsAAAArCAYAAAAHWHjBAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAEqlJREFUeF7tXQeUVdW5PoAUCyJRYGYoKqIxUSAKCiqhg9goKkVAAfVFH0+J0YSo
+        vAAADrwBlbxySQAAEqlJREFUeF7tXQeUVdW5PoAUCyJRYGYoKqIxUSAKCiqhg9goKkVAAfVFH0+J0YSo
         EVtQY3uBLMVIfJriC0YFKVKlM/QuUgeY3phyp3f48n37njNz5s65QIAB1/L8a33r3nvOPnv/e+/vL3uf
         c++1AJwWZqQUdX5yTyDQf/ORwJWrUgKXLUsOtFju44eOZkRzouPatMCwHZmBd2PzAquyS1p5cehk4Xnw
         RJiVVnjj4G2Zf4xYnrLe+joh1lqYgAu+SUKzZcmIWJ4MKuvDh0HTpcmovzgR1vx4NFiUuL9DdOqcF2Ny

@@ -64,6 +64,8 @@ namespace HASS.Agent.Forms
 			PbKoFi = new PictureBox();
 			PbGithubSponsor = new PictureBox();
 			PbBMAC = new PictureBox();
+			label1 = new Label();
+			label2 = new Label();
 			((System.ComponentModel.ISupportInitialize)PbHassLogo).BeginInit();
 			((System.ComponentModel.ISupportInitialize)PbHassAgentLogo).BeginInit();
 			((System.ComponentModel.ISupportInitialize)PbPayPal).BeginInit();
@@ -81,7 +83,7 @@ namespace HASS.Agent.Forms
 			BtnClose.Dock = DockStyle.Bottom;
 			BtnClose.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
 			BtnClose.ForeColor = Color.FromArgb(241, 241, 241);
-			BtnClose.Location = new Point(0, 666);
+			BtnClose.Location = new Point(0, 743);
 			BtnClose.Name = "BtnClose";
 			BtnClose.Size = new Size(747, 37);
 			BtnClose.Style.BackColor = Color.FromArgb(63, 63, 70);
@@ -130,7 +132,7 @@ namespace HASS.Agent.Forms
 			LblInfo3.AccessibleName = "Components info";
 			LblInfo3.AccessibleRole = AccessibleRole.StaticText;
 			LblInfo3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			LblInfo3.Location = new Point(176, 134);
+			LblInfo3.Location = new Point(176, 210);
 			LblInfo3.Name = "LblInfo3";
 			LblInfo3.Size = new Size(536, 38);
 			LblInfo3.TabIndex = 4;
@@ -144,7 +146,7 @@ namespace HASS.Agent.Forms
 			LblCoreAudio.AutoSize = true;
 			LblCoreAudio.Cursor = Cursors.Hand;
 			LblCoreAudio.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblCoreAudio.Location = new Point(176, 186);
+			LblCoreAudio.Location = new Point(176, 262);
 			LblCoreAudio.Name = "LblCoreAudio";
 			LblCoreAudio.Size = new Size(74, 19);
 			LblCoreAudio.TabIndex = 5;
@@ -159,7 +161,7 @@ namespace HASS.Agent.Forms
 			LblGrapevine.AutoSize = true;
 			LblGrapevine.Cursor = Cursors.Hand;
 			LblGrapevine.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblGrapevine.Location = new Point(294, 186);
+			LblGrapevine.Location = new Point(294, 262);
 			LblGrapevine.Name = "LblGrapevine";
 			LblGrapevine.Size = new Size(71, 19);
 			LblGrapevine.TabIndex = 6;
@@ -174,7 +176,7 @@ namespace HASS.Agent.Forms
 			LblHADotNet.AutoSize = true;
 			LblHADotNet.Cursor = Cursors.Hand;
 			LblHADotNet.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblHADotNet.Location = new Point(294, 336);
+			LblHADotNet.Location = new Point(294, 412);
 			LblHADotNet.Name = "LblHADotNet";
 			LblHADotNet.Size = new Size(73, 19);
 			LblHADotNet.TabIndex = 7;
@@ -189,7 +191,7 @@ namespace HASS.Agent.Forms
 			LblMicrosoftAppSDK.AutoSize = true;
 			LblMicrosoftAppSDK.Cursor = Cursors.Hand;
 			LblMicrosoftAppSDK.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblMicrosoftAppSDK.Location = new Point(455, 186);
+			LblMicrosoftAppSDK.Location = new Point(455, 262);
 			LblMicrosoftAppSDK.Name = "LblMicrosoftAppSDK";
 			LblMicrosoftAppSDK.Size = new Size(176, 19);
 			LblMicrosoftAppSDK.TabIndex = 10;
@@ -204,7 +206,7 @@ namespace HASS.Agent.Forms
 			LblLibreHardwareMonitor.AutoSize = true;
 			LblLibreHardwareMonitor.Cursor = Cursors.Hand;
 			LblLibreHardwareMonitor.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblLibreHardwareMonitor.Location = new Point(294, 216);
+			LblLibreHardwareMonitor.Location = new Point(294, 292);
 			LblLibreHardwareMonitor.Name = "LblLibreHardwareMonitor";
 			LblLibreHardwareMonitor.Size = new Size(148, 19);
 			LblLibreHardwareMonitor.TabIndex = 9;
@@ -219,7 +221,7 @@ namespace HASS.Agent.Forms
 			LblHotkeyListener.AutoSize = true;
 			LblHotkeyListener.Cursor = Cursors.Hand;
 			LblHotkeyListener.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblHotkeyListener.Location = new Point(176, 216);
+			LblHotkeyListener.Location = new Point(176, 292);
 			LblHotkeyListener.Name = "LblHotkeyListener";
 			LblHotkeyListener.Size = new Size(101, 19);
 			LblHotkeyListener.TabIndex = 8;
@@ -234,7 +236,7 @@ namespace HASS.Agent.Forms
 			LblSerilog.AutoSize = true;
 			LblSerilog.Cursor = Cursors.Hand;
 			LblSerilog.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblSerilog.Location = new Point(294, 276);
+			LblSerilog.Location = new Point(294, 352);
 			LblSerilog.Name = "LblSerilog";
 			LblSerilog.Size = new Size(50, 19);
 			LblSerilog.TabIndex = 13;
@@ -249,7 +251,7 @@ namespace HASS.Agent.Forms
 			LblNewtonsoftJson.AutoSize = true;
 			LblNewtonsoftJson.Cursor = Cursors.Hand;
 			LblNewtonsoftJson.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblNewtonsoftJson.Location = new Point(294, 246);
+			LblNewtonsoftJson.Location = new Point(294, 322);
 			LblNewtonsoftJson.Name = "LblNewtonsoftJson";
 			LblNewtonsoftJson.Size = new Size(110, 19);
 			LblNewtonsoftJson.TabIndex = 12;
@@ -264,7 +266,7 @@ namespace HASS.Agent.Forms
 			LblMQTTnet.AutoSize = true;
 			LblMQTTnet.Cursor = Cursors.Hand;
 			LblMQTTnet.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblMQTTnet.Location = new Point(176, 246);
+			LblMQTTnet.Location = new Point(176, 322);
 			LblMQTTnet.Name = "LblMQTTnet";
 			LblMQTTnet.Size = new Size(65, 19);
 			LblMQTTnet.TabIndex = 11;
@@ -279,7 +281,7 @@ namespace HASS.Agent.Forms
 			LblSyncfusion.AutoSize = true;
 			LblSyncfusion.Cursor = Cursors.Hand;
 			LblSyncfusion.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblSyncfusion.Location = new Point(176, 276);
+			LblSyncfusion.Location = new Point(176, 352);
 			LblSyncfusion.Name = "LblSyncfusion";
 			LblSyncfusion.Size = new Size(74, 19);
 			LblSyncfusion.TabIndex = 14;
@@ -292,7 +294,7 @@ namespace HASS.Agent.Forms
 			LblInfo4.AccessibleName = "Components thanks";
 			LblInfo4.AccessibleRole = AccessibleRole.StaticText;
 			LblInfo4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			LblInfo4.Location = new Point(176, 377);
+			LblInfo4.Location = new Point(176, 453);
 			LblInfo4.Name = "LblInfo4";
 			LblInfo4.Size = new Size(536, 38);
 			LblInfo4.TabIndex = 16;
@@ -304,7 +306,7 @@ namespace HASS.Agent.Forms
 			LblInfo5.AccessibleName = "HA thanks";
 			LblInfo5.AccessibleRole = AccessibleRole.StaticText;
 			LblInfo5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			LblInfo5.Location = new Point(176, 431);
+			LblInfo5.Location = new Point(176, 507);
 			LblInfo5.Name = "LblInfo5";
 			LblInfo5.Size = new Size(536, 38);
 			LblInfo5.TabIndex = 18;
@@ -359,7 +361,7 @@ namespace HASS.Agent.Forms
 			LblOctokit.AutoSize = true;
 			LblOctokit.Cursor = Cursors.Hand;
 			LblOctokit.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblOctokit.Location = new Point(175, 306);
+			LblOctokit.Location = new Point(175, 382);
 			LblOctokit.Name = "LblOctokit";
 			LblOctokit.Size = new Size(54, 19);
 			LblOctokit.TabIndex = 26;
@@ -374,7 +376,7 @@ namespace HASS.Agent.Forms
 			LblCliWrap.AutoSize = true;
 			LblCliWrap.Cursor = Cursors.Hand;
 			LblCliWrap.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblCliWrap.Location = new Point(294, 306);
+			LblCliWrap.Location = new Point(294, 382);
 			LblCliWrap.Name = "LblCliWrap";
 			LblCliWrap.Size = new Size(57, 19);
 			LblCliWrap.TabIndex = 27;
@@ -387,7 +389,7 @@ namespace HASS.Agent.Forms
 			LblInfo6.AccessibleName = "Donating info";
 			LblInfo6.AccessibleRole = AccessibleRole.StaticText;
 			LblInfo6.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			LblInfo6.Location = new Point(173, 483);
+			LblInfo6.Location = new Point(173, 559);
 			LblInfo6.Name = "LblInfo6";
 			LblInfo6.Size = new Size(562, 42);
 			LblInfo6.TabIndex = 28;
@@ -401,7 +403,7 @@ namespace HASS.Agent.Forms
 			PbHassLogo.AccessibleRole = AccessibleRole.Graphic;
 			PbHassLogo.Cursor = Cursors.Hand;
 			PbHassLogo.Image = (Image)resources.GetObject("PbHassLogo.Image");
-			PbHassLogo.Location = new Point(12, 453);
+			PbHassLogo.Location = new Point(12, 529);
 			PbHassLogo.Name = "PbHassLogo";
 			PbHassLogo.Size = new Size(128, 128);
 			PbHassLogo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -432,7 +434,7 @@ namespace HASS.Agent.Forms
 			LblCassia.AutoSize = true;
 			LblCassia.Cursor = Cursors.Hand;
 			LblCassia.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblCassia.Location = new Point(176, 336);
+			LblCassia.Location = new Point(176, 412);
 			LblCassia.Name = "LblCassia";
 			LblCassia.Size = new Size(47, 19);
 			LblCassia.TabIndex = 30;
@@ -447,7 +449,7 @@ namespace HASS.Agent.Forms
 			LblGrpcDotNetNamedPipes.AutoSize = true;
 			LblGrpcDotNetNamedPipes.Cursor = Cursors.Hand;
 			LblGrpcDotNetNamedPipes.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblGrpcDotNetNamedPipes.Location = new Point(455, 216);
+			LblGrpcDotNetNamedPipes.Location = new Point(455, 292);
 			LblGrpcDotNetNamedPipes.Name = "LblGrpcDotNetNamedPipes";
 			LblGrpcDotNetNamedPipes.Size = new Size(159, 19);
 			LblGrpcDotNetNamedPipes.TabIndex = 31;
@@ -462,7 +464,7 @@ namespace HASS.Agent.Forms
 			LblGrpc.AutoSize = true;
 			LblGrpc.Cursor = Cursors.Hand;
 			LblGrpc.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblGrpc.Location = new Point(455, 246);
+			LblGrpc.Location = new Point(455, 322);
 			LblGrpc.Name = "LblGrpc";
 			LblGrpc.Size = new Size(42, 19);
 			LblGrpc.TabIndex = 34;
@@ -477,7 +479,7 @@ namespace HASS.Agent.Forms
 			LblByteSize.AutoSize = true;
 			LblByteSize.Cursor = Cursors.Hand;
 			LblByteSize.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
-			LblByteSize.Location = new Point(455, 276);
+			LblByteSize.Location = new Point(455, 352);
 			LblByteSize.Name = "LblByteSize";
 			LblByteSize.Size = new Size(59, 19);
 			LblByteSize.TabIndex = 35;
@@ -491,7 +493,7 @@ namespace HASS.Agent.Forms
 			PbPayPal.AccessibleRole = AccessibleRole.PushButton;
 			PbPayPal.Cursor = Cursors.Hand;
 			PbPayPal.Image = (Image)resources.GetObject("PbPayPal.Image");
-			PbPayPal.Location = new Point(359, 538);
+			PbPayPal.Location = new Point(359, 614);
 			PbPayPal.Name = "PbPayPal";
 			PbPayPal.Size = new Size(152, 43);
 			PbPayPal.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -506,7 +508,7 @@ namespace HASS.Agent.Forms
 			PbKoFi.AccessibleRole = AccessibleRole.PushButton;
 			PbKoFi.Cursor = Cursors.Hand;
 			PbKoFi.Image = (Image)resources.GetObject("PbKoFi.Image");
-			PbKoFi.Location = new Point(541, 538);
+			PbKoFi.Location = new Point(541, 614);
 			PbKoFi.Name = "PbKoFi";
 			PbKoFi.Size = new Size(171, 43);
 			PbKoFi.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -521,7 +523,7 @@ namespace HASS.Agent.Forms
 			PbGithubSponsor.AccessibleRole = AccessibleRole.PushButton;
 			PbGithubSponsor.Cursor = Cursors.Hand;
 			PbGithubSponsor.Image = (Image)resources.GetObject("PbGithubSponsor.Image");
-			PbGithubSponsor.Location = new Point(176, 602);
+			PbGithubSponsor.Location = new Point(176, 678);
 			PbGithubSponsor.Name = "PbGithubSponsor";
 			PbGithubSponsor.Size = new Size(235, 43);
 			PbGithubSponsor.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -536,13 +538,40 @@ namespace HASS.Agent.Forms
 			PbBMAC.AccessibleRole = AccessibleRole.PushButton;
 			PbBMAC.Cursor = Cursors.Hand;
 			PbBMAC.Image = (Image)resources.GetObject("PbBMAC.Image");
-			PbBMAC.Location = new Point(176, 538);
+			PbBMAC.Location = new Point(176, 614);
 			PbBMAC.Name = "PbBMAC";
 			PbBMAC.Size = new Size(153, 43);
 			PbBMAC.SizeMode = PictureBoxSizeMode.AutoSize;
 			PbBMAC.TabIndex = 40;
 			PbBMAC.TabStop = false;
 			PbBMAC.Click += PbBMAC_Click;
+			// 
+			// label1
+			// 
+			label1.AccessibleDescription = "Used components information.";
+			label1.AccessibleName = "Components info";
+			label1.AccessibleRole = AccessibleRole.StaticText;
+			label1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			label1.Location = new Point(176, 139);
+			label1.Name = "label1";
+			label1.Size = new Size(536, 58);
+			label1.TabIndex = 44;
+			label1.Text = "This is unofficial version of the application, please navigate to following URL for assistance with issues and/or requests:";
+			// 
+			// label2
+			// 
+			label2.AccessibleDescription = "Created by link. Opens the unofficial github webpage.";
+			label2.AccessibleName = "Created by";
+			label2.AccessibleRole = AccessibleRole.Link;
+			label2.AutoSize = true;
+			label2.Cursor = Cursors.Hand;
+			label2.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
+			label2.Location = new Point(176, 178);
+			label2.Name = "label2";
+			label2.Size = new Size(284, 19);
+			label2.TabIndex = 45;
+			label2.Text = "https://github.com/amadeo-alex/HASS.Agent";
+			label2.Click += label2_Click;
 			// 
 			// About
 			// 
@@ -555,7 +584,9 @@ namespace HASS.Agent.Forms
 			CaptionBarColor = Color.FromArgb(63, 63, 70);
 			CaptionFont = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
 			CaptionForeColor = Color.FromArgb(241, 241, 241);
-			ClientSize = new Size(747, 703);
+			ClientSize = new Size(747, 780);
+			Controls.Add(label2);
+			Controls.Add(label1);
 			Controls.Add(PbPayPal);
 			Controls.Add(PbKoFi);
 			Controls.Add(PbGithubSponsor);
@@ -645,6 +676,8 @@ namespace HASS.Agent.Forms
 		private PictureBox PbKoFi;
 		private PictureBox PbGithubSponsor;
 		private PictureBox PbBMAC;
+		private Label label1;
+		private Label label2;
 	}
 }
 
