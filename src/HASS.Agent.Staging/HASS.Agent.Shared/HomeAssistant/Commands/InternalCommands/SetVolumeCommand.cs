@@ -18,7 +18,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
     public class SetVolumeCommand : InternalCommand
     {
         private const string DefaultName = "setvolume";
-        private static float _volume = -1f;
+        private readonly float _volume = -1f;
 
         public SetVolumeCommand(string name = DefaultName, string friendlyName = DefaultName, string volume = "", CommandEntityType entityType = CommandEntityType.Button, string id = default) : base(name ?? DefaultName, friendlyName ?? null, volume, entityType, id)
         {
@@ -43,10 +43,10 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             try
             {
-                // do we have a value to work with?
                 if (_volume == -1f)
                 {
                     Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, it's configured as action-only", Name);
+                    
                     return;
                 }
 
@@ -55,10 +55,10 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
                     Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, no default audio endpoint found", Name);
+                    
                     return;
                 }
 
-                // all good, set the volume
                 audioDevice.AudioEndpointVolume.MasterVolumeLevelScalar = _volume;
             }
             catch (Exception ex)
@@ -77,11 +77,11 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             try
             {
-                // check if we got a valid number
                 var parsed = int.TryParse(action, out var volumeInt);
                 if (!parsed)
                 {
                     Log.Error("[SETVOLUME] [{name}] Unable to trigger command, the provided action value can't be parsed: {val}", Name, action);
+                    
                     return;
                 }
 
@@ -90,10 +90,10 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
                     Log.Warning("[SETVOLUME] [{name}] Unable to trigger action for command, no default audio endpoint found", Name);
+                    
                     return;
                 }
 
-                // allg ood, set the volume
                 audioDevice.AudioEndpointVolume.MasterVolumeLevelScalar = volumeInt / 100.0f; ;
             }
             catch (Exception ex)
