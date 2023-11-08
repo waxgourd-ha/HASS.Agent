@@ -125,17 +125,20 @@ namespace HASS.Agent.Forms
                 // initialize managers
                 var initTask = Task.Run(async () =>
                 {
-                    await Task.Run(ApiManager.Initialize);
-                    await Task.Run(HassApiManager.InitializeAsync);
-                    await Task.Run(Variables.MqttManager.Initialize);
-                    await Task.Run(SensorsManager.Initialize);
-                    await Task.Run(CommandsManager.Initialize);
-                    await Task.Run(ServiceManager.Initialize);
-                    await Task.Run(UpdateManager.Initialize);
-                    await Task.Run(SystemStateManager.Initialize);
-                    await Task.Run(CacheManager.Initialize);
-                    await Task.Run(NotificationManager.Initialize);
-                    await Task.Run(MediaManager.InitializeAsync);
+                    _ = Task.Run(ApiManager.Initialize);
+                    var hassApiTask = Task.Run(HassApiManager.InitializeAsync);
+                    var mqttTask = Task.Run(Variables.MqttManager.Initialize);
+                    var sensorTask = Task.Run(SensorsManager.Initialize);
+                    var commandsTask = Task.Run(CommandsManager.Initialize);
+                    var serviceTask = Task.Run(ServiceManager.Initialize);
+                    var upateTask = Task.Run(UpdateManager.Initialize);
+                    var systemStateTask = Task.Run(SystemStateManager.Initialize);
+                    var cacheTask = Task.Run(CacheManager.Initialize);
+                    var notificationTask = Task.Run(NotificationManager.Initialize);
+                    var mediaTask = Task.Run(MediaManager.InitializeAsync);
+
+                    await Task.WhenAll(hassApiTask, mqttTask, sensorTask, commandsTask, serviceTask,
+                            upateTask, systemStateTask, cacheTask, notificationTask, mediaTask);
                 });
 
                 // handle activation from a previously generated notification
