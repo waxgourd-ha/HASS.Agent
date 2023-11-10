@@ -37,10 +37,10 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
         private MMDevice GetAudioDeviceOrDefault(string playbackDeviceName)
         {
-            var devices = Variables.AudioDeviceEnumerator.EnumerateAudioEndPoints(DataFlow.eRender, DeviceState.Active);
+            var devices = Variables.AudioDeviceEnumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
             var playbackDevice = devices.Where(d => d.DeviceFriendlyName == playbackDeviceName).FirstOrDefault();
 
-            return playbackDevice ?? Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia);
+            return playbackDevice ?? Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
         }
 
         public override void TurnOnWithAction(string action)
@@ -50,7 +50,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
             try
             {
                 var outputDevice = GetAudioDeviceOrDefault(action);
-                if (outputDevice == Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia))
+                if (outputDevice == Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia))
                     return;
 
                 outputDevice.Selected = true;

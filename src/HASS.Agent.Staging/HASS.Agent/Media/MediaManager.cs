@@ -50,7 +50,7 @@ namespace HASS.Agent.Media
             try
             {
                 // create the objects
-                Variables.AudioDeviceEnumerator = new MMDeviceEnumerator();
+                Variables.AudioDeviceEnumerator = new MMDeviceEnumerator(Guid.NewGuid());
                 Variables.MediaPlayer = new MediaPlayer();
 
                 _sessionManager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();

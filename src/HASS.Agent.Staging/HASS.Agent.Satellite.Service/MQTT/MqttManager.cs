@@ -12,13 +12,10 @@ using HASS.Agent.Satellite.Service.Settings;
 using MQTTnet;
 using MQTTnet.Adapter;
 using MQTTnet.Client;
-using MQTTnet.Client.Disconnecting;
-using MQTTnet.Client.Options;
 using MQTTnet.Exceptions;
 using MQTTnet.Extensions.ManagedClient;
 using Serilog;
 using JsonSerializer = System.Text.Json.JsonSerializer;
-using MQTTnet.Client.Publishing;
 
 namespace HASS.Agent.Satellite.Service.MQTT
 {
@@ -78,18 +75,10 @@ namespace HASS.Agent.Satellite.Service.MQTT
                     CreateDeviceConfigModel();
 
                 _mqttClient = Variables.MqttFactory.CreateManagedMqttClient();
-                _mqttClient.UseConnectedHandler(_ =>
-                {
-                    _status = MqttStatus.Connected;
-                    Log.Information("[MQTT] Connected");
-
-                    // reset error notifications 
-                    _disconnectionNotified = false;
-                    _connectingFailureNotified = false;
-                });
-                _mqttClient.ConnectingFailedHandler = new ConnectingFailedHandlerDelegate(ConnectingFailedHandler);
-                _mqttClient.UseApplicationMessageReceivedHandler(e => HandleMessageReceived(e.ApplicationMessage));
-                _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(DisconnectedHandler);
+                _mqttClient.ConnectedAsync += OnMqttConnected;
+                _mqttClient.ConnectingFailedAsync += OnMqttConnectionFailed;
+                _mqttClient.ApplicationMessageReceivedAsync += e => HandleMessageReceived(e.ApplicationMessage);
+                _mqttClient.DisconnectedAsync += OnMqttDisconnected;
 
                 var options = GetOptions();
                 if (options == null)
@@ -108,6 +97,87 @@ namespace HASS.Agent.Satellite.Service.MQTT
                 Log.Fatal(ex, "[MQTT] Error while initializing: {err}", ex.Message);
                 _status = MqttStatus.Error;
             }
+        }
+
+        /// <summary>
+        /// Fires when the client gets disconnected from the broker
+        /// </summary>
+        /// <param name="arg"></param>
+        private async Task OnMqttDisconnected(MqttClientDisconnectedEventArgs arg)
+        {
+            try
+            {
+                // give the connection the grace period to recover
+                var runningTimer = Stopwatch.StartNew();
+                while (runningTimer.Elapsed.TotalSeconds < Variables.ServiceSettings?.DisconnectedGracePeriodSeconds)
+                {
+                    if (IsConnected())
+                        return;
+
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                }
+
+                // nope, call it
+                _status = MqttStatus.Disconnected;
+
+                // log if we're not shutting down, but only once
+                if (Variables.ShuttingDown || _disconnectionNotified)
+                    return;
+
+                _disconnectionNotified = true;
+                Log.Warning("[MQTT] Disconnected: {reason}", arg.Reason.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.Error("[MQTT] Error while trying to handle disconnection: {msg}", ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Fires when connecting to the broker failed
+        /// </summary>
+        private async Task OnMqttConnectionFailed(ConnectingFailedEventArgs arg)
+        {
+            try
+            {
+                // give the connection the grace period to recover
+                var runningTimer = Stopwatch.StartNew();
+                while (runningTimer.Elapsed.TotalSeconds < Variables.ServiceSettings?.DisconnectedGracePeriodSeconds)
+                {
+                    // recovered
+                    if (IsConnected())
+                        return;
+
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                }
+
+                // nope, call it
+                _status = MqttStatus.Error;
+
+                // log only once
+                if (_connectingFailureNotified)
+                    return;
+
+                _connectingFailureNotified = true;
+
+                Log.Fatal(arg.Exception, "[MQTT] Error while connecting: {err}", arg.Exception.Message);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("[MQTT] Error while trying to handle failed connection: {msg}", exc.ToString());
+            }
+        }
+
+        private Task OnMqttConnected(MqttClientConnectedEventArgs arg)
+        {
+            _status = MqttStatus.Connected;
+            Log.Information("[MQTT] Connected");
+
+            // reset error notifications 
+            _disconnectionNotified = false;
+            _connectingFailureNotified = false;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -149,7 +219,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
         /// Start and register a MQTT client with the provided options
         /// </summary>
         /// <param name="options"></param>
-        private async void StartClient(IManagedMqttClientOptions options)
+        private async void StartClient(ManagedMqttClientOptions options)
         {
             if (_mqttClient == null)
                 return;
@@ -173,74 +243,6 @@ namespace HASS.Agent.Satellite.Service.MQTT
             }
         }
 
-        /// <summary>
-        /// Fires when connecting to the broker failed
-        /// </summary>
-        private async void ConnectingFailedHandler(ManagedProcessFailedEventArgs ex)
-        {
-            try
-            {
-                // give the connection the grace period to recover
-                var runningTimer = Stopwatch.StartNew();
-                while (runningTimer.Elapsed.TotalSeconds < Variables.ServiceSettings?.DisconnectedGracePeriodSeconds)
-                {
-                    // recovered
-                    if (IsConnected())
-                        return;
-
-                    await Task.Delay(TimeSpan.FromSeconds(5));
-                }
-
-                // nope, call it
-                _status = MqttStatus.Error;
-
-                // log only once
-                if (_connectingFailureNotified)
-                    return;
-
-                _connectingFailureNotified = true;
-
-                Log.Fatal(ex.Exception, "[MQTT] Error while connecting: {err}", ex.Exception.Message);
-            }
-            catch (Exception exc)
-            {
-                Log.Error("[MQTT] Error while trying to handle failed connection: {msg}", exc.ToString());
-            }
-        }
-
-        /// <summary>
-        /// Fires when the client gets disconnected from the broker
-        /// </summary>
-        /// <param name="e"></param>
-        private async void DisconnectedHandler(MqttClientDisconnectedEventArgs e)
-        {
-            try
-            {
-                // give the connection the grace period to recover
-                var runningTimer = Stopwatch.StartNew();
-                while (runningTimer.Elapsed.TotalSeconds < Variables.ServiceSettings?.DisconnectedGracePeriodSeconds)
-                {
-                    if (IsConnected())
-                        return;
-
-                    await Task.Delay(TimeSpan.FromSeconds(5));
-                }
-
-                // nope, call it
-                _status = MqttStatus.Disconnected;
-
-                // log if we're not shutting down, but only once
-                if (Variables.ShuttingDown || _disconnectionNotified)
-                    return;
-
-                _disconnectionNotified = true;
-                Log.Warning("[MQTT] Disconnected: {reason}", e.Reason.ToString());
-            }
-            catch (Exception ex)
-            {
-                Log.Error("[MQTT] Error while trying to handle disconnection: {msg}", ex.ToString());
-            }
-        }
 
         /// <summary>
         /// Announce our availability
@@ -301,7 +303,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
                     return false;
                 }
 
-                var published = await _mqttClient.PublishAsync(message);
+                var published = await _mqttClient.InternalClient.PublishAsync(message);
                 if (published.ReasonCode == MqttClientPublishReasonCode.Success)
                     return true;
 
@@ -429,7 +431,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
                         .WithPayload(offline ? "offline" : "online")
                         .WithRetainFlag(Variables.ServiceMqttSettings.MqttUseRetainFlag);
 
-                    await _mqttClient.PublishAsync(messageBuilder.Build());
+                    await _mqttClient.InternalClient.PublishAsync(messageBuilder.Build());
                 }
                 else
                 {
@@ -476,7 +478,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
                         .WithPayload(Array.Empty<byte>())
                         .WithRetainFlag(Variables.ServiceMqttSettings.MqttUseRetainFlag);
 
-                    await _mqttClient.PublishAsync(messageBuilder.Build());
+                    await _mqttClient.InternalClient.PublishAsync(messageBuilder.Build());
                 }
                 else
                 {
@@ -579,29 +581,17 @@ namespace HASS.Agent.Satellite.Service.MQTT
                 SettingsManager.StoreServiceSettings();
             }
 
-            var lastWillMessageBuilder = new MqttApplicationMessageBuilder()
-                .WithTopic($"{Variables.ServiceMqttSettings.MqttDiscoveryPrefix}/sensor/{Variables.DeviceConfig.Name}/availability")
-                .WithPayload("offline")
-                .WithRetainFlag(Variables.ServiceMqttSettings.MqttUseRetainFlag);
-
-            var lastWillMessage = lastWillMessageBuilder.Build();
-
             var clientOptionsBuilder = new MqttClientOptionsBuilder()
                 .WithClientId(Variables.ServiceMqttSettings.MqttClientId)
                 .WithTcpServer(Variables.ServiceMqttSettings.MqttAddress, Variables.ServiceMqttSettings.MqttPort)
                 .WithCleanSession()
-                .WithWillMessage(lastWillMessage)
+                .WithWillTopic($"{Variables.ServiceMqttSettings.MqttDiscoveryPrefix}/sensor/{Variables.DeviceConfig.Name}/availability")
+                .WithWillPayload("offline")
+                .WithWillRetain(Variables.ServiceMqttSettings.MqttUseRetainFlag)
                 .WithKeepAlivePeriod(TimeSpan.FromSeconds(15));
 
             if (!string.IsNullOrEmpty(Variables.ServiceMqttSettings.MqttUsername))
                 clientOptionsBuilder.WithCredentials(Variables.ServiceMqttSettings.MqttUsername, Variables.ServiceMqttSettings.MqttPassword);
-
-            var tlsParameters = new MqttClientOptionsBuilderTlsParameters()
-            {
-                UseTls = Variables.ServiceMqttSettings.MqttUseTls,
-                AllowUntrustedCertificates = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates,
-                SslProtocol = Variables.ServiceMqttSettings.MqttUseTls ? SslProtocols.Tls12 : SslProtocols.None
-            };
 
             var certificates = new List<X509Certificate>();
             if (!string.IsNullOrEmpty(Variables.ServiceMqttSettings.MqttRootCertificate))
@@ -620,17 +610,25 @@ namespace HASS.Agent.Satellite.Service.MQTT
                     certificates.Add(new X509Certificate2(Variables.ServiceMqttSettings.MqttClientCertificate));
             }
 
+            var clientTlsOptions = new MqttClientTlsOptions()
+            {
+                UseTls = Variables.ServiceMqttSettings.MqttUseTls,
+                AllowUntrustedCertificates = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates,
+                SslProtocol = Variables.ServiceMqttSettings.MqttUseTls ? SslProtocols.Tls12 : SslProtocols.None,
+            };
+
+            //TODO(Amadeo): add more granular control to the UI
             if (Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates)
             {
-                tlsParameters.IgnoreCertificateChainErrors = true;
-                tlsParameters.IgnoreCertificateRevocationErrors = true;
-                tlsParameters.CertificateValidationHandler += _ => true;
+                clientTlsOptions.IgnoreCertificateChainErrors = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates;
+                clientTlsOptions.IgnoreCertificateRevocationErrors = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates;
+                clientTlsOptions.CertificateValidationHandler = delegate (MqttClientCertificateValidationEventArgs _) { return true; };
             }
 
             if (certificates.Count > 0)
-                tlsParameters.Certificates = certificates;
+                clientTlsOptions.ClientCertificatesProvider = new DefaultMqttCertificatesProvider(certificates);
 
-            clientOptionsBuilder.WithTls(tlsParameters);
+            clientOptionsBuilder.WithTlsOptions(clientTlsOptions);
             clientOptionsBuilder.Build();
 
             return new ManagedMqttClientOptionsBuilder()
@@ -642,12 +640,12 @@ namespace HASS.Agent.Satellite.Service.MQTT
         /// Handle incoming messages
         /// </summary>
         /// <param name="applicationMessage"></param>
-        private static void HandleMessageReceived(MqttApplicationMessage applicationMessage)
+        private Task HandleMessageReceived(MqttApplicationMessage applicationMessage)
         {
             try
             {
                 if (!Variables.Commands.Any())
-                    return;
+                    return Task.CompletedTask;
 
                 foreach (var command in Variables.Commands)
                 {
@@ -663,6 +661,8 @@ namespace HASS.Agent.Satellite.Service.MQTT
             {
                 Log.Fatal(ex, "[MQTT] Error while handling received message: {err}", ex.Message);
             }
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -674,7 +674,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
         {
             try
             {
-                var payload = Encoding.UTF8.GetString(applicationMessage.Payload).ToLower();
+                var payload = Encoding.UTF8.GetString(applicationMessage.PayloadSegment).ToLower();
                 if (string.IsNullOrWhiteSpace(payload))
                     return;
 
@@ -712,7 +712,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
         {
             try
             {
-                var payload = Encoding.UTF8.GetString(applicationMessage.Payload);
+                var payload = Encoding.UTF8.GetString(applicationMessage.PayloadSegment);
                 if (string.IsNullOrWhiteSpace(payload))
                     return;
 
