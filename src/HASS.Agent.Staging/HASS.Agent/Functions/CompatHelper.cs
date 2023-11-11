@@ -9,31 +9,57 @@ namespace HASS.Agent.Functions
 {
     internal static class CompatHelper
     {
-        internal static (int, int, int) SplitHAVerion(string haVersion)
+        private static (int, int, int) SplitHAVerion(string haVersion)
         {
             var splitVersion = haVersion.Split('.');
 
-            _ = int.TryParse(splitVersion[0], out int major);
-            _ = int.TryParse(splitVersion[1], out int minor);
+            var major = 0;
+            if (splitVersion.Length > 0)
+            {
+                _ = int.TryParse(splitVersion[0], out major);
+            }
 
-            int patch = 0;
+            var minor = 0;
+            if (splitVersion.Length > 1)
+            {
+                _ = int.TryParse(splitVersion[1], out minor);
+            }
+
+            var patch = 0;
             if (splitVersion.Length > 2)
+            {
                 _ = int.TryParse(splitVersion[2], out patch);
+            }
 
             return (major, minor, patch);
         }
 
+        /// <summary>
+        /// Function checks if the Home Assistant connected to HASS.Agent is greater or equal to <paramref name="haVersion"/>.
+        /// </summary>
+        /// <param name="haVersion"></param>
+        /// <returns>
+        /// True if version is greater or equal from <paramref name="haVersion"/>.
+        /// False if version is lower of there is no connection to Home Assistant instance or it's version cannot be determined.
+        /// </returns>
         internal static bool HassVersionEqualOrOver(string haVersion)
         {
-            if (haVersion == null)
+            if (string.IsNullOrWhiteSpace(haVersion) || string.IsNullOrWhiteSpace(HassApiManager.HaVersion))
+            {
                 return false;
+            }
 
             var (targetMajor, targetMinor, targetPatch) = SplitHAVerion(haVersion);
             var (major, minor, patch) = SplitHAVerion(HassApiManager.HaVersion);
 
+            if(major == 0)
+            {
+                return false;
+            }
+
             return major > targetMajor
                 || major == targetMajor && minor > targetMinor
-                || major == targetMajor && minor == targetMinor && patch > targetPatch;
+                || major == targetMajor && minor == targetMinor && patch >= targetPatch;
         }
     }
 }
