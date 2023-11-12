@@ -24,15 +24,15 @@ There are two options to approach this:
 
 Currently the recommended option is the "patch it over". HASS.Agent is capable of functioning without the installer but the installer takes care of some dependencies that might need to be installed manually otherwise.
 <br>
-1. Download and install HASS.Agent from [the official release](https://github.com/LAB02-Research/HASS.Agent/releases) (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
+1. Download and install HASS.Agent from [the official release](https://github.com/LAB02-Research/HASS.Agent/releases) (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"** and **"C:\Program Files (x86)\LAB02 Research\HASS.Agent Satellite Service"**)
 2. Download and install WindowsAppSDK ([explanation why](https://github.com/LAB02-Research/HASS.Agent.Staging/pull/18))
-for HASS.Agent 2023.10.0 - https://aka.ms/windowsappsdk/1.3/1.3.230724000/windowsappruntimeinstall-x64.exe
+<br/>for HASS.Agent 2023.10.0, 2023.11.0 and 2023.11.1 - https://aka.ms/windowsappsdk/1.3/1.3.230724000/windowsappruntimeinstall-x64.exe
 3. Make sure the HASS.Agent service is stopped
 <br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38590ab0-7d42-4790-9629-73596725d75e" height="350px" />
 4. Close/Exit out of the HASS.Agent
 <br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38939e3d-6dff-447c-a497-78def5fa41ff" height="350px" />
-5. Download the release package from this repository
-6. Copy/Replace the downloaded files over the installed ones (again, usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"**)
+5. Download the release package (HASS.Agent & HASS.Agent.Service) from this repository
+6. Copy/Replace the downloaded files over the installed ones (again, usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"** and **"C:\Program Files (x86)\LAB02 Research\HASS.Agent Satellite Service\"**)
 7. Launch HASS.Agent and verify that you're using the unofficial beta version by navigating to help window - "u" in the version postfix
 <img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/19edc4f6-e674-4238-8d11-d50c16feb8a9" height="350px" />
 <img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/05df8795-b8f6-4a9e-b666-a55b89196a3e" height="350px" />
@@ -77,7 +77,7 @@ This project contains the latest code of all three parts of the HASS.Agent platf
 <br/>
 
 
-Note: it's best to have `enable extended logging` enabled, which will also reflect on the satellite service (as long as it's started in console mode instead of service mode). But that'll also generate false positives, so primarily focus on the issue at hand.
+Note: when reporting issues it's best to have `enable extended logging` enabled.
 
 ----
 
