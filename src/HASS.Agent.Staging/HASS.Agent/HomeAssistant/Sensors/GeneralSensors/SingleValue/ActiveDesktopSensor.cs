@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using HASS.Agent.Managers;
 using HASS.Agent.Resources.Localization;
 using HASS.Agent.Shared.Models.HomeAssistant;
 using Microsoft.Win32;
@@ -20,8 +21,9 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
     public class ActiveDesktopSensor : AbstractSingleValueSensor
     {
         private const string _defaultName = "activedesktop";
- 
+
         private string _desktopId = string.Empty;
+        private string _desktopName = string.Empty;
         private string _attributes = string.Empty;
 
         public ActiveDesktopSensor(int? updateInterval = null, string name = _defaultName, string friendlyName = _defaultName, string id = default) : base(name ?? _defaultName, friendlyName ?? null, updateInterval ?? 15, id)
@@ -31,10 +33,16 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
         public override DiscoveryConfigModel GetAutoDiscoveryConfig()
         {
-            if (Variables.MqttManager == null) return null;
+            if (Variables.MqttManager == null)
+            {
+                return null;
+            }
 
             var deviceConfig = Variables.MqttManager.GetDeviceConfigModel();
-            if (deviceConfig == null) return null;
+            if (deviceConfig == null)
+            {
+                return null;
+            }
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
@@ -51,31 +59,19 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
         public override string GetState()
         {
-            var currentDesktop = VirtualDesktop.Current;
-            _desktopId = currentDesktop.Id.ToString();
-
-            var desktops = new Dictionary<string, string>();
-            foreach (var desktop in VirtualDesktop.GetDesktops())
-            {
-                var id = desktop.Id.ToString();
-                desktops[id] = string.IsNullOrWhiteSpace(desktop.Name) ? GetDesktopNameFromRegistry(id) : desktop.Name;
-            }
+            var currentDesktop = VirtualDesktopManager.GetCurrentDesktop();
+            _desktopId = currentDesktop == null ? string.Empty : currentDesktop.Id.ToString();
+            _desktopName = currentDesktop == null ? string.Empty : currentDesktop.Name;
 
             _attributes = JsonConvert.SerializeObject(new
             {
-                desktopName = currentDesktop.Name,
-                availableDesktops = desktops
+                desktopName = _desktopName,
+                availableDesktops = VirtualDesktopManager.GetAllDesktopsInfo()
             }, Formatting.Indented);
 
             return _desktopId;
         }
 
         public override string GetAttributes() => _attributes;
-
-        private string GetDesktopNameFromRegistry(string id)
-        {
-            var registryPath = $"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VirtualDesktops\\Desktops\\{{{id}}}";
-            return (Registry.GetValue(registryPath, "Name", string.Empty) as string) ?? string.Empty;
-        }
     }
 }
