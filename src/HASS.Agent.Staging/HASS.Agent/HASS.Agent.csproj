@@ -12,7 +12,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>AnyCPU;x64</Platforms>
     <DebugType>full</DebugType>
-    <Version>2023.11.1-ubeta1</Version>
+    <Version>2023.11.1-ubeta</Version>
     <Company>LAB02 Research</Company>
     <Authors>LAB02 Research</Authors>
     <Description>Windows-based client for Home Assistant. Provides notifications, quick actions, commands, sensors and more. </Description>
