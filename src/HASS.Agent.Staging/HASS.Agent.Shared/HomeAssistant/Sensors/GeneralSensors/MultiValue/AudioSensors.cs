@@ -54,12 +54,12 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
             return audioDevices;
         }
 
-        private List<string> GetAudioOutputDevices() => GetAudioDevices(DataFlow.eRender);
-        private List<string> GetAudioInputDevices() => GetAudioDevices(DataFlow.eCapture);
+        private List<string> GetAudioOutputDevices() => GetAudioDevices(DataFlow.Render);
+        private List<string> GetAudioInputDevices() => GetAudioDevices(DataFlow.Capture);
 
         private void HandleAudioOutputSensors(string parentSensorSafeName)
         {
-            using var audioDevice = Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia);
+            using var audioDevice = Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
 
             var defaultDeviceId = $"{parentSensorSafeName}_default_device";
             var defaultDeviceSensor = new DataTypeStringSensor(_updateInterval, $"Default Device", defaultDeviceId, string.Empty, "mdi:speaker", string.Empty, Name);
@@ -117,7 +117,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         private void HandleAudioInputSensors(string parentSensorSafeName)
         {
-            using var inputDevice = Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.eCapture, Role.Communications);
+            using var inputDevice = Variables.AudioDeviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
 
             var defaultInputDeviceId = $"{parentSensorSafeName}_default_input_device";
             var defaultInputDeviceSensor = new DataTypeStringSensor(_updateInterval, $"Default Input Device", defaultInputDeviceId, string.Empty, "mdi:microphone", string.Empty, Name);
@@ -203,7 +203,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
             {
                 var errors = false;
 
-                foreach (var device in Variables.AudioDeviceEnumerator.EnumerateAudioEndPoints(DataFlow.eRender, DeviceState.Active))
+                foreach (var device in Variables.AudioDeviceEnumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active))
                 {
                     using (device)
                     {

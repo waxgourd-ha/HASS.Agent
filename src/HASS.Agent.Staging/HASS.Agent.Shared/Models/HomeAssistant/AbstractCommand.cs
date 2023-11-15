@@ -57,7 +57,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic(autoDiscoConfig.State_topic)
                     .WithPayload(state)
-                    .WithExactlyOnceQoS()
+                    .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce)
                     .WithRetainFlag(Variables.MqttManager.UseRetainFlag())
                     .Build();
 

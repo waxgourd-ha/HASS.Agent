@@ -51,7 +51,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 }
 
                 // get the current default endpoint
-                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia);
+                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
                     Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, no default audio endpoint found", Name);
@@ -86,7 +86,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 }
 
                 // get the current default endpoint
-                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia);
+                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
                     Log.Warning("[SETVOLUME] [{name}] Unable to trigger action for command, no default audio endpoint found", Name);

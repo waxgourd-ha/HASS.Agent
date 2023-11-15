@@ -73,7 +73,7 @@ namespace HASS.Agent.Media
                 var fVolume = volume / 100.0f;
 
                 // get the current default endpoint
-                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.eRender, Role.Multimedia);
+                using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
                     Log.Warning("[MEDIA] Unable to set volume, no default audio endpoint found");
