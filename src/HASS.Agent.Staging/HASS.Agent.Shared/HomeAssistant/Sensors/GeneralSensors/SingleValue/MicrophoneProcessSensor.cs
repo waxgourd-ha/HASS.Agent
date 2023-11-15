@@ -19,7 +19,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
             //
         }
 
-        private readonly Dictionary<string, string> _processes = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _processes = new();
 
         private string _attributes = string.Empty;
 
@@ -101,7 +101,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
                         if (endTime <= 0)
                         {
-                            _processes.Add(SharedHelperFunctions.ParseRegWebcamMicApplicationName(subKey.Name), "on");
+                            _processes[SharedHelperFunctions.ParseRegWebcamMicApplicationName(subKey.Name)] = "on";
                         }
                     }
                 }
@@ -113,7 +113,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
                     var endTime = subKey.GetValue("LastUsedTimeStop") is long ? (long)(subKey.GetValue("LastUsedTimeStop") ?? -1) : -1;
                     if (endTime <= 0)
                     {
-                        _processes.Add(SharedHelperFunctions.ParseRegWebcamMicApplicationName(subKey.Name), "on");
+                        _processes[SharedHelperFunctions.ParseRegWebcamMicApplicationName(subKey.Name)] = "on";
                     }
                 }
             }
