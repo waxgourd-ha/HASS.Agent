@@ -86,9 +86,11 @@ namespace HASS.Agent.Forms
                 // check for dpi scaling
                 CheckDpiScalingFactor();
 
+                // core components initialization - required for loading the entities
                 await RadioManager.Initialize();
                 await InternalDeviceSensorsManager.Initialize();
 				InitializeHardwareManager();
+				InitializeVirtualDesktopManager();
 
 				// load entities
 				var loaded = await SettingsManager.LoadEntitiesAsync();
@@ -115,7 +117,6 @@ namespace HASS.Agent.Forms
 
                 ProcessTrayIcon();
                 InitializeHotkeys();
-                InitializeVirtualDesktopManager();
 
                 var initTask = Task.Run(async () =>
                 {
