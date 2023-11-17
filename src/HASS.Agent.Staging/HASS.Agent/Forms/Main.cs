@@ -147,6 +147,9 @@ namespace HASS.Agent.Forms
                     _ = Task.Run(async () =>
                     {
                         await initTask;
+                        while (!Variables.MqttManager.IsReady())
+                            await Task.Delay(TimeSpan.FromSeconds(5));
+
                         NotificationManager.HandleNotificationLaunch();
                     });
                 }
@@ -429,7 +432,10 @@ namespace HASS.Agent.Forms
 
             // show a new window
             var form = new QuickActions.QuickActions(Variables.QuickActions);
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -474,7 +480,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new Configuration();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -487,7 +496,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new QuickActionsConfig();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -500,7 +512,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new SensorsConfig();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -513,7 +528,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new ServiceConfig();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -526,7 +544,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new CommandsConfig();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -736,7 +757,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new About();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -746,7 +770,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new Help();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -816,7 +843,10 @@ namespace HASS.Agent.Forms
                         return;
 
                     var form = new UpdatePending(pendingUpdate);
-                    form.FormClosed += delegate { form.Dispose(); };
+                    form.FormClosed += delegate
+                    {
+                        form.Dispose();
+                    };
                     form.Show(this);
                 }));
             }
@@ -851,7 +881,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new Help();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
@@ -912,7 +945,10 @@ namespace HASS.Agent.Forms
                 return;
 
             var form = new Donate();
-            form.FormClosed += delegate { form.Dispose(); };
+            form.FormClosed += delegate
+            {
+                form.Dispose();
+            };
             form.Show(this);
         }
 
