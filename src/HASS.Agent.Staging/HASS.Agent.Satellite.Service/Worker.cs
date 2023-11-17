@@ -6,6 +6,7 @@ using HASS.Agent.Satellite.Service.RPC;
 using HASS.Agent.Satellite.Service.Sensors;
 using HASS.Agent.Satellite.Service.Settings;
 using Serilog;
+using HASS.Agent.Shared.Managers;
 
 namespace HASS.Agent.Satellite.Service
 {
@@ -38,6 +39,8 @@ namespace HASS.Agent.Satellite.Service
             try
             {
                 _log.LogInformation("[WORKER] Startup completed, commencing execution ..");
+
+                HardwareManager.Initialize();
 
                 // load stored settings (if any)
                 var launched = await SettingsManager.LoadAsync();
@@ -96,6 +99,8 @@ namespace HASS.Agent.Satellite.Service
             }
             finally
             {
+                HardwareManager.Shutdown();
+
                 // stop the application
                 _hostApplicationLifetime.StopApplication();
 
