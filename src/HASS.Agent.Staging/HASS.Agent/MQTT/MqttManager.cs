@@ -42,6 +42,16 @@ namespace HASS.Agent.MQTT
         /// </summary>
         public bool IsConnected() => _mqttClient is { IsConnected: true };
 
+        private bool _isReady = false;
+        /// <summary>
+        /// Returns whether MqttManager is ready for operation
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReady()
+        {
+            return IsConnected() && _isReady;
+        }
+
         /// <summary>
         /// Returns whether the user wants the retain flag raised
         /// </summary>
@@ -116,6 +126,8 @@ namespace HASS.Agent.MQTT
         /// <param name="e"></param>
         private async Task OnMqttDisconnected(MqttClientDisconnectedEventArgs arg)
         {
+            _isReady = false;
+
             Variables.MainForm?.SetMqttStatus(ComponentStatus.Connecting);
 
             // give the connection the grace period to recover
@@ -124,7 +136,8 @@ namespace HASS.Agent.MQTT
             {
                 if (IsConnected())
                 {
-                    // recovered
+                    _isReady = true;
+
                     if (_status == MqttStatus.Connected)
                         return;
 
@@ -294,6 +307,8 @@ namespace HASS.Agent.MQTT
                 await Task.Delay(2000);
 
             await AnnounceAvailabilityAsync();
+            _isReady = true;
+
             Log.Information("[MQTT] Initial registration completed");
         }
 
@@ -680,7 +695,10 @@ namespace HASS.Agent.MQTT
             {
                 clientTlsOptions.IgnoreCertificateChainErrors = Variables.AppSettings.MqttAllowUntrustedCertificates;
                 clientTlsOptions.IgnoreCertificateRevocationErrors = Variables.AppSettings.MqttAllowUntrustedCertificates;
-                clientTlsOptions.CertificateValidationHandler = delegate (MqttClientCertificateValidationEventArgs _) { return true; };
+                clientTlsOptions.CertificateValidationHandler = delegate (MqttClientCertificateValidationEventArgs _)
+                {
+                    return true;
+                };
             }
 
             if (certificates.Count > 0)

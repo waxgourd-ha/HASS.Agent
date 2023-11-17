@@ -13,6 +13,7 @@ namespace HASS.Agent.Shared.Mqtt
     public interface IMqttManager
     {
         bool IsConnected();
+        bool IsReady();
         void Initialize();
         void CreateDeviceConfigModel();
         Task<bool> PublishAsync(MqttApplicationMessage message);
