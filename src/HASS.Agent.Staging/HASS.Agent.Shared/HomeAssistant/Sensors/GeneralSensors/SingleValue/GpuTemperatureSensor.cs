@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
+using HASS.Agent.Shared.Managers;
 using HASS.Agent.Shared.Models.HomeAssistant;
 using LibreHardwareMonitor.Hardware;
 
@@ -15,22 +16,11 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
         public GpuTemperatureSensor(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
         {
-            var computer = new Computer
-            {
-                IsCpuEnabled = false,
-                IsGpuEnabled = true,
-                IsMemoryEnabled = false,
-                IsMotherboardEnabled = false,
-                IsControllerEnabled = false,
-                IsNetworkEnabled = false,
-                IsStorageEnabled = false,
-            };
-
-            computer.Open();
-            _gpu = computer.Hardware.FirstOrDefault(h => h.HardwareType == HardwareType.GpuAmd || h.HardwareType == HardwareType.GpuNvidia);
-
-            computer.Close();
-        }
+			_gpu = HardwareManager.Hardware.FirstOrDefault(
+				h => h.HardwareType == HardwareType.GpuAmd ||
+				h.HardwareType == HardwareType.GpuNvidia
+			);
+		}
 
         public override DiscoveryConfigModel GetAutoDiscoveryConfig()
         {
