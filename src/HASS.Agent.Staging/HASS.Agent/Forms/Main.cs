@@ -19,6 +19,7 @@ using HASS.Agent.Shared;
 using HASS.Agent.Shared.Enums;
 using HASS.Agent.Shared.Extensions;
 using HASS.Agent.Shared.Functions;
+using HASS.Agent.Shared.Managers;
 using Serilog;
 using Syncfusion.Windows.Forms;
 using WindowsDesktop;
@@ -86,11 +87,11 @@ namespace HASS.Agent.Forms
                 CheckDpiScalingFactor();
 
                 await RadioManager.Initialize();
-
                 await InternalDeviceSensorsManager.Initialize();
+				InitializeHardwareManager();
 
-                // load entities
-                var loaded = await SettingsManager.LoadEntitiesAsync();
+				// load entities
+				var loaded = await SettingsManager.LoadEntitiesAsync();
                 if (!loaded)
                 {
                     MessageBoxAdv.Show(this, Languages.Main_Load_MessageBox1, Variables.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -106,23 +107,16 @@ namespace HASS.Agent.Forms
                 // initialize hass.agent's shared library
                 AgentSharedBase.Initialize(Variables.AppSettings.DeviceName, Variables.MqttManager, Variables.AppSettings.CustomExecutorBinary);
 
-                // process onboarding
                 ProcessOnboarding();
 
                 // if we're shutting down, no point continuing
                 if (Variables.ShuttingDown)
                     return;
 
-                // prepare the tray icon config
                 ProcessTrayIcon();
-
-                // initialize hotkeys
                 InitializeHotkeys();
-
-                // initialize Virtual Desktop library
                 InitializeVirtualDesktopManager();
 
-                // initialize managers
                 var initTask = Task.Run(async () =>
                 {
                     _ = Task.Run(ApiManager.Initialize);
@@ -168,6 +162,7 @@ namespace HASS.Agent.Forms
 
         private void OnProcessExit(object sender, EventArgs e)
         {
+            HardwareManager.Shutdown();
             NotificationManager.Exit();
         }
 
@@ -321,6 +316,14 @@ namespace HASS.Agent.Forms
         private void InitializeVirtualDesktopManager()
         {
             VirtualDesktopManager.Initialize();
+        }
+
+        /// <summary>
+        /// Initialized the Hardware Manager
+        /// </summary>
+        private void InitializeHardwareManager()
+        {
+            HardwareManager.Initialize();
         }
 
         /// <summary>
