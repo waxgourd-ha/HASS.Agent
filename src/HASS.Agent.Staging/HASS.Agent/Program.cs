@@ -89,8 +89,6 @@ namespace HASS.Agent
 
                 Variables.MainForm = new Main();
 
-                ActivationRegistrationManager.RegisterForStartupActivation("startupId", string.Empty);
-
                 // run (hidden)
                 Application.Run(new CustomApplicationContext(Variables.MainForm));
             }

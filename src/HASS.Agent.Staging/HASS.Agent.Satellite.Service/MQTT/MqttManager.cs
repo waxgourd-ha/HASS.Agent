@@ -36,6 +36,16 @@ namespace HASS.Agent.Satellite.Service.MQTT
         /// </summary>
         public bool IsConnected() => _mqttClient is { IsConnected: true };
 
+        private bool _isReady = false;
+        /// <summary>
+        /// Returns whether MqttManager is ready for operation
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReady()
+        {
+            return IsConnected() && _isReady;
+        }
+
         /// <summary>
         /// Returns whether the user wants the retain flag raised
         /// </summary>
@@ -107,12 +117,18 @@ namespace HASS.Agent.Satellite.Service.MQTT
         {
             try
             {
+                _isReady = false;
+
                 // give the connection the grace period to recover
                 var runningTimer = Stopwatch.StartNew();
                 while (runningTimer.Elapsed.TotalSeconds < Variables.ServiceSettings?.DisconnectedGracePeriodSeconds)
                 {
                     if (IsConnected())
+                    {
+                        _isReady = true;
+                        
                         return;
+                    }
 
                     await Task.Delay(TimeSpan.FromSeconds(5));
                 }
@@ -257,6 +273,8 @@ namespace HASS.Agent.Satellite.Service.MQTT
                 await Task.Delay(2000);
 
             await AnnounceAvailabilityAsync();
+            _isReady = true;
+
             Log.Information("[MQTT] Initial registration completed");
         }
 
@@ -622,7 +640,10 @@ namespace HASS.Agent.Satellite.Service.MQTT
             {
                 clientTlsOptions.IgnoreCertificateChainErrors = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates;
                 clientTlsOptions.IgnoreCertificateRevocationErrors = Variables.ServiceMqttSettings.MqttAllowUntrustedCertificates;
-                clientTlsOptions.CertificateValidationHandler = delegate (MqttClientCertificateValidationEventArgs _) { return true; };
+                clientTlsOptions.CertificateValidationHandler = delegate (MqttClientCertificateValidationEventArgs _)
+                {
+                    return true;
+                };
             }
 
             if (certificates.Count > 0)
