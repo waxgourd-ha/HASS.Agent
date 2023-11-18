@@ -18,7 +18,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
         {
 			_gpu = HardwareManager.Hardware.FirstOrDefault(
 				h => h.HardwareType == HardwareType.GpuAmd ||
-				h.HardwareType == HardwareType.GpuNvidia
+				h.HardwareType == HardwareType.GpuNvidia ||
+                h.HardwareType == HardwareType.GpuIntel
 			);
 		}
 
