@@ -28,8 +28,8 @@ namespace HASS.Agent.Satellite.Service
         /// <summary>
         /// Constants
         /// </summary>
-        internal const string RootMachineRegKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\LAB02Research\HASSAgent\SatelliteService";
-        internal const string RootHassAgentRegKey = @"HKEY_CURRENT_USER\SOFTWARE\LAB02Research\HASSAgent";
+        internal const string RootMachineRegKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\HASSAgent\SatelliteService";
+        internal const string RootHassAgentRegKey = @"HKEY_CURRENT_USER\SOFTWARE\HASSAgent\Client";
 
         /// <summary>
         /// Logging
