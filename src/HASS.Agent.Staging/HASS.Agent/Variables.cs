@@ -81,7 +81,7 @@ namespace HASS.Agent
         /// <summary>
         /// RPC (satellite service)
         /// </summary>
-        internal static string PipeName => "5aaac90b-d046-4db2-be76-af225e0d249f";
+        internal static string PipeName => "6aaac90b-d046-4db2-be76-af225e0d249f";
         internal static string SatelliteServiceName => "HASS.Agent Satellite Service";
         internal static string SatelliteMachineRootRegKey => @"HKEY_LOCAL_MACHINE\SOFTWARE\HASSAgent\SatelliteService";
         internal static string SatelliteServiceRootPath { get; set; } = string.Empty;
