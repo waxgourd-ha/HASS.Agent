@@ -256,7 +256,7 @@ namespace HASS.Agent.Managers
                 if (!result.Error)
                 {
                     // all good
-                    Log.Information("[SERVICE] Succesfully installed: {binary}", Variables.SatelliteServiceBinary);
+                    Log.Information("[SERVICE] Successfully installed: {binary}", Variables.SatelliteServiceBinary);
                     return true;
                 }
 
@@ -286,13 +286,13 @@ namespace HASS.Agent.Managers
             try
             {
                 if (!ServiceExists()) return true;
-                
+
                 // try to uninstall
                 var result = await CommandLineManager.ExecuteCommandAsync("sc.exe", $"delete \"{Variables.SatelliteServiceName}\"");
                 if (!result.Error)
                 {
                     // all good
-                    Log.Information("[SERVICE] Succesfully uninstalled: {binary}", Variables.SatelliteServiceBinary);
+                    Log.Information("[SERVICE] Successfully uninstalled: {binary}", Variables.SatelliteServiceBinary);
                     return true;
                 }
 
@@ -355,7 +355,7 @@ namespace HASS.Agent.Managers
                     return false;
                 }
 
-                // configure the descrption
+                // configure the description
                 result = await CommandLineManager.ExecuteCommandAsync("sc.exe", $"description \"{Variables.SatelliteServiceName}\" \"Satellite service for HASS.Agent: a Windows based Home Assistant client. This service processes commands and sensors without the requirement of a logged-in user.\"");
                 if (result.Error)
                 {
@@ -369,8 +369,22 @@ namespace HASS.Agent.Managers
                     return false;
                 }
 
+                // configure display name
+                result = await CommandLineManager.ExecuteCommandAsync("sc.exe", $"config \"{Variables.SatelliteServiceName}\" DisplayName= \"{Variables.SatelliteServiceDisplayName}\"");
+                if (result.Error)
+                {
+                    if (result.ExitCode == 5) Log.Error("[SERVICE] Configuration phase four failed, access denied - restart elevated");
+                    else
+                    {
+                        var errMsg = string.IsNullOrEmpty(result.ErrorOutput) ? result.Output : result.ErrorOutput;
+                        Log.Error("[SERVICE] Configuration phase four returned an error (code {code}):\r\n{err}", result.ExitCode, errMsg);
+                    }
+
+                    return false;
+                }
+
                 // done
-                Log.Information("[SERVICE] Succesfully configured");
+                Log.Information("[SERVICE] Successfully configured");
                 return true;
             }
             catch (Exception ex)
