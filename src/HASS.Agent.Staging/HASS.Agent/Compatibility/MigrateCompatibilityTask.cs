@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using HASS.Agent.Commands;
+using HASS.Agent.Functions;
 using HASS.Agent.MQTT;
 using HASS.Agent.Resources.Localization;
 using HASS.Agent.Service;
@@ -104,6 +105,8 @@ namespace HASS.Agent.Compatibility
                 MigrateServiceConfig();
                 MigrateClientConfig();
                 MigrateRegistryConfig();
+
+                HelperFunctions.Restart(true);
 
                 return string.IsNullOrWhiteSpace(errorMessage) ? (true, string.Empty) : (false, errorMessage);
             }
