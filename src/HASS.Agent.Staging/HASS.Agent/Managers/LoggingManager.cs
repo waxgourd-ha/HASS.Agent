@@ -27,6 +27,7 @@ namespace HASS.Agent.Managers
 
             Variables.LevelSwitch.MinimumLevel = LogEventLevel.Information;
 
+            //TODO(Amadeo): add additional name segment to indicate elevated launch
             var logName = $"[{DateTime.Now:yyyy-MM-dd}] {Variables.ApplicationName}_{logTag}.log";
 
             // prepare a serilog logger
