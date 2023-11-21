@@ -1,5 +1,8 @@
+// Ignore Spelling: Compat
+
 using System.Diagnostics;
 using System.Globalization;
+using System.Security.Principal;
 using System.Text;
 using HASS.Agent.Compatibility;
 using HASS.Agent.Enums;
@@ -9,6 +12,8 @@ using HASS.Agent.Functions;
 using HASS.Agent.Managers;
 using HASS.Agent.Settings;
 using HASS.Agent.Shared.Extensions;
+using HASS.Agent.Shared.Functions;
+using HASS.Agent.Shared.Managers;
 using Microsoft.Windows.AppLifecycle;
 using Serilog;
 using Serilog.Events;
@@ -26,6 +31,7 @@ namespace HASS.Agent
         public const string LaunchParamServiceStop = "service_stop";
         public const string LaunchParamServiceReinstall = "service_reinstall";
         public const string LaunchParamCompatNames = "compat_names";
+        public const string LaunchParamCompatMigrate = "compat_migrate";
 
         /// <summary>
         /// Main entry point
@@ -123,7 +129,8 @@ namespace HASS.Agent
                    || args.Any(x => x == LaunchParamServiceStart)
                    || args.Any(x => x == LaunchParamServiceStop)
                    || args.Any(x => x == LaunchParamServiceReinstall)
-                   || args.Any(x => x == LaunchParamCompatNames);
+                   || args.Any(x => x == LaunchParamCompatNames)
+                   || args.Any(x => x == LaunchParamCompatMigrate);
         }
 
         /// <summary>
@@ -225,12 +232,29 @@ namespace HASS.Agent
                     return true;
                 }
 
-                if(args.Any(x => x == LaunchParamCompatNames))
+                if (args.Any(x => x == LaunchParamCompatNames))
                 {
                     Log.Information("[SYSTEM] Rename entity names mode activated [HA 2023.8]");
                     Variables.ChildApplicationMode = true;
 
                     var compatibilityTask = new CompatibilityTask(new NameCompatibilityTask());
+                    Application.Run(compatibilityTask);
+
+                    return true;
+                }
+
+                if (args.Any(x => x == LaunchParamCompatMigrate))
+                {
+                    Log.Information("[SYSTEM] Migration mode activated");
+                    Variables.ChildApplicationMode = true;
+
+                    if (!SharedHelperFunctions.RunningElevated())
+                    {
+                        CommandLineManager.ExecuteElevated(Variables.ApplicationExecutable, LaunchParamCompatMigrate, TimeSpan.FromMinutes(5));
+                        return true;
+                    }
+
+                    var compatibilityTask = new CompatibilityTask(new MigrateCompatibilityTask());
                     Application.Run(compatibilityTask);
 
                     return true;

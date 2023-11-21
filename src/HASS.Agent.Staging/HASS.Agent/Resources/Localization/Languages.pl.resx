@@ -3433,4 +3433,8 @@ Dostępność czujnika zależy od urządzenia, w niektórych przypadkach czujnik
     <value>Zarządzanie pulpitem wirtualnym jest niedostępne na Twoim komputerze.
 Zwykle jest to spowodowane brakiem aktualizacji biblioteki zarządzania pulpitem wirtualnym do obsługi Twojej wersji systemu Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migracja konfiguracji HASS.Agent
+z oryginalnej wersji</value>
+  </data>
 </root>

@@ -274,5 +274,7 @@ namespace HASS.Agent.Shared.Functions
             // looks good
             return true;
         }
+
+        public static bool RunningElevated() => new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
     }
 }

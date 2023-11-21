@@ -3356,4 +3356,8 @@ La disponibilité du capteur dépend de l'appareil ; dans certains cas, aucun ca
     <value>La gestion des bureaux virtuels n'est pas disponible sur votre machine.
 Cela est généralement dû au fait que la bibliothèque de gestion des bureaux virtuels n'est pas mise à jour pour prendre en charge votre version de Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migration de la configuration
+HASS.Agent de la version originale</value>
+  </data>
 </root>

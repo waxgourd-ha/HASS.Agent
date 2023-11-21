@@ -3370,4 +3370,8 @@ A disponibilidade do sensor depende do dispositivo; em alguns casos, nenhum sens
     <value>O gerenciamento da área de trabalho virtual não está disponível em sua máquina.
 Geralmente, isso ocorre porque a biblioteca de gerenciamento de desktop virtual não está sendo atualizada para oferecer suporte à sua versão do Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrando a configuração do
+HASS.Agent da versão original</value>
+  </data>
 </root>

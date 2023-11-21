@@ -17,6 +17,9 @@ namespace HASS.Agent.Service
 {
     internal static class ServiceManager
     {
+        internal const string HASSAgentFolder = "HASS.Agent";
+        internal const string ServiceFolder = "Satellite Service";
+
         /// <summary>
         /// Initializes the satellite service manager
         /// </summary>
@@ -71,7 +74,8 @@ namespace HASS.Agent.Service
         {
             // get service binary & log path
             var installPath = GetInstallPath();
-            if (string.IsNullOrEmpty(installPath)) return false;
+            if (string.IsNullOrEmpty(installPath))
+                return false;
 
             // set local io
             Variables.SatelliteServiceRootPath = installPath;
@@ -86,7 +90,7 @@ namespace HASS.Agent.Service
         /// Gets the 'extended logging' setting from registry, or the default location
         /// </summary>
         /// <returns></returns>
-        internal static string GetInstallPath()
+        internal static string GetInstallPath(string path1 = HASSAgentFolder, string path2 = ServiceFolder)
         {
             try
             {
@@ -95,18 +99,22 @@ namespace HASS.Agent.Service
                 if (!string.IsNullOrEmpty(installPath))
                 {
                     Log.Information("[SERVICE] Local install path: {path}", installPath);
+                    
                     return installPath;
                 }
 
                 // not found, probably first launch, try defaults
-                var defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "LAB02 Research", "HASS.Agent Satellite Service");
-                if (Directory.Exists(defaultDir)) return defaultDir;
+                var defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), path1, path2);
+                if (Directory.Exists(defaultDir))
+                    return defaultDir;
 
-                defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "LAB02 Research", "HASS.Agent Satellite Service");
-                if (Directory.Exists(defaultDir)) return defaultDir;
+                defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), path1, path2);
+                if (Directory.Exists(defaultDir))
+                    return defaultDir;
 
-                defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "LAB02 Research", "HASS.Agent Satellite Service");
-                if (Directory.Exists(defaultDir)) return defaultDir;
+                defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), path1, path2);
+                if (Directory.Exists(defaultDir))
+                    return defaultDir;
 
                 // nothing
                 Log.Error("[SERVICE] Unable to retrieve install path from service, and default path not found");

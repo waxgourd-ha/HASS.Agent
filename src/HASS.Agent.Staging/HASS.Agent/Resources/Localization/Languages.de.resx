@@ -3448,4 +3448,8 @@ Die Verfügbarkeit des Sensors ist geräteabhängig, in manchen Fällen sind kei
     <value>Die Verwaltung virtueller Desktops ist auf Ihrem Computer nicht verfügbar.
 Normalerweise liegt dies daran, dass die virtuelle Desktop-Verwaltungsbibliothek nicht aktualisiert wird, um Ihre Windows-Version zu unterstützen.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrieren der HASS.Agent-Konfiguration
+aus der Originalversion</value>
+  </data>
 </root>

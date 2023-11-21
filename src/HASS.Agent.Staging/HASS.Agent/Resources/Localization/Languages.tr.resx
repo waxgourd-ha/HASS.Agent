@@ -2935,4 +2935,8 @@ Sensörün kullanılabilirliği cihaza bağlıdır; bazı durumlarda sensör bul
     <value>Makinenizde Sanal Masaüstü yönetimi mevcut değil.
 Bunun nedeni genellikle sanal masaüstü yönetim kitaplığının Windows sürümünüzü destekleyecek şekilde güncellenmemesidir.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>HASS.Agent yapılandırmasının
+taşınması orijinal versiyondan</value>
+  </data>
 </root>

@@ -3324,4 +3324,8 @@ If no "mute" is provided, HASS.Agent will unmute the provided application.</valu
     <value>Virtual Desktop management is unavailable on your machine.
 Usually this is due to the virtual desktop management library not being updated to support your version of Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrating HASS.Agent configuration
+from the original version</value>
+  </data>
 </root>

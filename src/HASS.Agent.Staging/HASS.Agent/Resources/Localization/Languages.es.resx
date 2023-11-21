@@ -3323,4 +3323,8 @@ La disponibilidad del sensor depende del dispositivo; en algunos casos, no habr�
     <value>La administración de escritorio virtual no está disponible en su máquina.
 Por lo general, esto se debe a que la biblioteca de administración de escritorio virtual no se actualiza para admitir su versión de Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrando la configuración de
+HASS.Agent de la versión original</value>
+  </data>
 </root>

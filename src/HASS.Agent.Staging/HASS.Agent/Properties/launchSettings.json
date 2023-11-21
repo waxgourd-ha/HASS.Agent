@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HASS.Agent": {
+      "commandName": "Project",
+      "commandLineArgs": "compat_migrate"
+    }
+  }
+}

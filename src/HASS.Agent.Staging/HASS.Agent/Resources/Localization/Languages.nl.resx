@@ -3344,4 +3344,8 @@ Beschikbaarheid van de sensor is afhankelijk van het apparaat, in sommige gevall
     <value>Beheer van virtuele desktops is niet beschikbaar op uw machine.
 Meestal komt dit doordat de virtuele desktopbeheerbibliotheek niet wordt bijgewerkt om uw versie van Windows te ondersteunen.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>HASS.Agent-configuratie migreren
+van de originele versie</value>
+  </data>
 </root>

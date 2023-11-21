@@ -3472,4 +3472,8 @@ Razpoložljivost senzorja je odvisna od naprave, v nekaterih primerih senzorji n
     <value>Upravljanje navideznega namizja na vašem računalniku ni na voljo.
 Običajno je to posledica tega, da knjižnica za upravljanje navideznega namizja ni posodobljena za podporo vaše različice sistema Windows.</value>
   </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Selitev konfiguracije HASS.Agent
+iz izvirne različice</value>
+  </data>
 </root>

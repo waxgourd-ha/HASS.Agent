@@ -1406,6 +1406,16 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Migrating HASS.Agent configuration
+        ///from the original version.
+        /// </summary>
+        internal static string Compat_MigrateTask_Name {
+            get {
+                return ResourceManager.GetString("Compat_MigrateTask_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error converting commands!.
         /// </summary>
         internal static string Compat_NameTask_Error_Commands {
