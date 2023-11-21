@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Runtime.ExceptionServices;
+using HASS.Agent.Shared.Functions;
 using MQTTnet.Exceptions;
 using Serilog;
 using Serilog.Events;
@@ -27,8 +28,8 @@ namespace HASS.Agent.Managers
 
             Variables.LevelSwitch.MinimumLevel = LogEventLevel.Information;
 
-            //TODO(Amadeo): add additional name segment to indicate elevated launch
-            var logName = $"[{DateTime.Now:yyyy-MM-dd}] {Variables.ApplicationName}_{logTag}.log";
+            var elevatedTag = SharedHelperFunctions.RunningElevated() ? "[E]" : "";
+            var logName = $"[{DateTime.Now:yyyy-MM-dd}]{elevatedTag} {Variables.ApplicationName}_{logTag}.log";
 
             // prepare a serilog logger
             Log.Logger = new LoggerConfiguration()
