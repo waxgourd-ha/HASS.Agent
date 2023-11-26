@@ -1790,7 +1790,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="LICENSE.rtf">
+    <None Update="LICENSE.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Images\logo_128.png">
