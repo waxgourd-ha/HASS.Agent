@@ -106,7 +106,7 @@ namespace HASS.Agent.Compatibility
                 MigrateClientConfig();
                 MigrateRegistryConfig();
 
-                HelperFunctions.Restart(true);
+                //HelperFunctions.Restart(true);
 
                 return string.IsNullOrWhiteSpace(errorMessage) ? (true, string.Empty) : (false, errorMessage);
             }
