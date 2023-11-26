@@ -1,1 +1,11 @@
-before install
+Welcome to HASS.Agent Installer!
+
+This version is maintained by the HASS.Agent Team and is a fork of the original version by LAB02-Research.
+Intention of this version is to provide bugfix and feature updated untill the development of original version is resumed.
+
+We've tried our best to maintain compatibility with the original version but some breaking changes are unavoidable.
+
+Installer has an option to migrate current instalation configuration for seamless transition, please remember that some settings (like MQTT configuration) may need to be changed if you'd like to run two instances of HASS.Agen - forked and original one.
+
+Hope you'll enjoy the experience,
+HASS.Agent Team.

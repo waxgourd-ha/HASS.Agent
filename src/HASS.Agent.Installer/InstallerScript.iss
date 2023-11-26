@@ -7,6 +7,10 @@
 #define MyAppPublisher "HASS.Agent Team"
 #define MyAppURL "https://hass-agent.io"
 #define MyAppExeName "HASS.Agent.exe"
+#define MyAppServiceExeName "HASS.Agent.Satellite.Service.exe"
+#define ServiceName "hass.agent.svc"
+#define ServiceDisplayName "HASS.Agent - Satellite Service" 
+#define ServiceDescription "Satellite service for HASS.Agent: a Windows based Home Assistant client. This service processes commands and sensors without the requirement of a logged-in user."
 
 [Setup]
 AppId={{7BBED458-609B-4D13-AD9E-4FF219DF8644}
@@ -30,6 +34,8 @@ SetupIconFile=..\HASS.Agent.Staging\HASS.Agent.Shared\hassagent.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+CloseApplications=force
+CloseApplicationsFilter=*.*
 UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName} {#MyAppVersion}
 
@@ -51,5 +57,20 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Parameters: "compat_migrate"; Description: "Try to migrate configuration"; Flags: postinstall skipifsilent 
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: postinstall skipifsilent nowait
 
+[Registry]
+Root: HKLM; Subkey: "SOFTWARE\HASSAgent\SatelliteService"; ValueType: string; ValueName: "InstallPath"; ValueData: "{commonpf64}\{#MyAppName}\Service"; Flags: createvalueifdoesntexist uninsdeletevalue
+
+; Service registration and removal
+[Run]
+Filename: "{sys}\sc.exe"; Parameters: "create {#ServiceName} binpath= ""{commonpf64}\{#MyAppName}\Service\{#MyAppServiceExeName}"""; Flags: runhidden 
+Filename: "{sys}\sc.exe"; Parameters: "failure {#ServiceName} reset= 86400 actions= restart/60000/restart/60000//1000"; Flags: runhidden 
+Filename: "{sys}\sc.exe"; Parameters: "description {#ServiceName} ""{#ServiceDescription}"""; Flags: runhidden 
+Filename: "{sys}\sc.exe"; Parameters: "config {#ServiceName} DisplayName= ""{#ServiceDisplayName}"""; Flags: runhidden
+[UninstallRun]
+Filename: "{sys}\sc.exe"; Parameters: "stop {#ServiceName}"; RunOnceId: StopService; Flags: runhidden
+Filename: "{sys}\sc.exe"; Parameters: "delete {#ServiceName}" ; RunOnceId: DeleteService; Flags: runhidden
+; Additional delay for the service to be uninstalled
+Filename: "{sys}\timeout.exe"; Parameters: "5"; Flags:runhidden
