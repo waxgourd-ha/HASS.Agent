@@ -24,8 +24,8 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={localappdata}\{#MyAppName}\Client
 DisableProgramGroupPage=yes
 LicenseFile=..\..\LICENSE.md
-InfoBeforeFile=.\BeforeInstallNotice.txt
-InfoAfterFile=.\AfterInstallNotice.txt
+InfoBeforeFile=.\BeforeInstallNotice.rtf
+InfoAfterFile=.\AfterInstallNotice.rtf
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=.\bin
