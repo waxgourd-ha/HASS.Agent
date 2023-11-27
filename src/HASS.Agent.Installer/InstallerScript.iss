@@ -74,3 +74,26 @@ Filename: "{sys}\sc.exe"; Parameters: "stop {#ServiceName}"; RunOnceId: StopServ
 Filename: "{sys}\sc.exe"; Parameters: "delete {#ServiceName}" ; RunOnceId: DeleteService; Flags: runhidden
 ; Additional delay for the service to be uninstalled
 Filename: "{sys}\timeout.exe"; Parameters: "5"; Flags:runhidden
+
+[Code]
+function NextButtonClick(CurPageID: Integer): Boolean;
+var
+  Msg: string;
+begin
+  if CurPageID = wpFinished then
+  begin
+    if WizardForm.RunList.Checked[0] then
+    begin;
+      Msg := 'Migration requires original HASS.Agent and Satellite Service to be stopped, do you wish to proceed?';
+      Result := (MsgBox(Msg, mbConfirmation, MB_YESNO) = IDYES)
+    end
+      else
+    begin
+      Result := True;  
+    end
+  end
+    else
+  begin
+    Result := True;
+  end
+end;
