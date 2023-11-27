@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using System.ServiceProcess;
 using HASS.Agent.Commands;
 using HASS.Agent.Functions;
 using HASS.Agent.MQTT;
@@ -16,6 +17,7 @@ namespace HASS.Agent.Compatibility
         internal const string OldHASSAgentFolder = "LAB02 Research";
         internal const string OldServiceFolder = "HASS.Agent Satellite Service";
         internal const string OldClientFolder = "HASS.Agent";
+        internal const string OldServiceName = "HASS.Agent Satellite Service";
 
         public string Name => Languages.Compat_MigrateTask_Name;
 
@@ -94,6 +96,25 @@ namespace HASS.Agent.Compatibility
             CopyRegistryKey(source, destination);
         }
 
+        private void StopOriginalInstances()
+        {
+            var hassAgentProcess = Process.GetProcessesByName("HASS.Agent")
+                .FirstOrDefault(p => p.MainModule.FileName.Contains("LAB02 Research"));
+            if(hassAgentProcess != null)
+            {
+                Log.Information("[COMPATTASK] Detected running instance of original HASS.Agent, stopping");
+                hassAgentProcess.Kill();
+            }
+
+            using var service = new ServiceController(OldServiceName);
+            if(service.Status == ServiceControllerStatus.Running)
+            {
+                Log.Information("[COMPATTASK] Detected running instance of HASS.Agent Satellite Service, stopping and setting startup type to manual");
+                service.Stop();
+                ServiceHelper.ChangeStartMode(service, ServiceStartMode.Manual, out var error);
+            }
+        }
+
         public async Task<(bool, string)> Perform()
         {
             try
@@ -101,6 +122,8 @@ namespace HASS.Agent.Compatibility
                 var errorMessage = string.Empty;
 
                 Log.Information("[COMPATTASK] Migration name compatibility task started");
+
+                StopOriginalInstances();
 
                 MigrateServiceConfig();
                 MigrateClientConfig();
