@@ -122,7 +122,7 @@ namespace HASS.Agent.Forms
                 {
                     _ = Task.Run(ApiManager.Initialize);
                     var hassApiTask = Task.Run(HassApiManager.InitializeAsync);
-                    var mqttTask = Task.Run(Variables.MqttManager.Initialize);
+                    await Task.Run(Variables.MqttManager.Initialize);
                     var sensorTask = Task.Run(SensorsManager.Initialize);
                     var commandsTask = Task.Run(CommandsManager.Initialize);
                     var serviceTask = Task.Run(ServiceManager.Initialize);
@@ -132,7 +132,7 @@ namespace HASS.Agent.Forms
                     var notificationTask = Task.Run(NotificationManager.Initialize);
                     var mediaTask = Task.Run(MediaManager.InitializeAsync);
 
-                    await Task.WhenAll(hassApiTask, mqttTask, sensorTask, commandsTask, serviceTask,
+                    await Task.WhenAll(hassApiTask, sensorTask, commandsTask, serviceTask,
                             upateTask, systemStateTask, cacheTask, notificationTask, mediaTask);
                 });
 
