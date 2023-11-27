@@ -33,6 +33,8 @@ namespace HASS.Agent
         public const string LaunchParamCompatNames = "compat_names";
         public const string LaunchParamCompatMigrate = "compat_migrate";
 
+        private static readonly Mutex ApplicationMutex = new(false, "HASS.Agent.App.Mutex");
+
         /// <summary>
         /// Main entry point
         /// </summary>

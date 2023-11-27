@@ -9,6 +9,8 @@ namespace HASS.Agent.Satellite.Service
 {
     public class Program
     {
+        private static readonly Mutex ServiceMutex = new(false, "HASS.Agent.Service.Mutex");
+
         public static void Main(string[] args)
         {
             // initialize serilog
@@ -66,7 +68,7 @@ namespace HASS.Agent.Satellite.Service
                         services.AddSingleton<IHostLifetime, ServiceLifetimeManager>();
                     }
                     else Log.Information("[MAIN] Not running as a service, skipping lifetime manager");
-                    
+
                 }).UseSerilog();
     }
 }
