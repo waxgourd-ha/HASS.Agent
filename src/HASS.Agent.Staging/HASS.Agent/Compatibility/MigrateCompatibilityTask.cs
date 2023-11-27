@@ -98,20 +98,27 @@ namespace HASS.Agent.Compatibility
 
         private void StopOriginalInstances()
         {
-            var hassAgentProcess = Process.GetProcessesByName("HASS.Agent")
-                .FirstOrDefault(p => p.MainModule.FileName.Contains("LAB02 Research"));
-            if(hassAgentProcess != null)
+            try
             {
-                Log.Information("[COMPATTASK] Detected running instance of original HASS.Agent, stopping");
-                hassAgentProcess.Kill();
-            }
+                var hassAgentProcess = Process.GetProcessesByName("HASS.Agent")
+                    .FirstOrDefault(p => p.MainModule.FileName.Contains("LAB02 Research"));
+                if (hassAgentProcess != null)
+                {
+                    Log.Information("[COMPATTASK] Detected running instance of original HASS.Agent, stopping");
+                    hassAgentProcess.Kill();
+                }
 
-            using var service = new ServiceController(OldServiceName);
-            if(service.Status == ServiceControllerStatus.Running)
+                using var service = new ServiceController(OldServiceName);
+                if (service.Status == ServiceControllerStatus.Running)
+                {
+                    Log.Information("[COMPATTASK] Detected running instance of HASS.Agent Satellite Service, stopping and setting startup type to manual");
+                    service.Stop();
+                    ServiceHelper.ChangeStartMode(service, ServiceStartMode.Manual, out var error);
+                }
+            }
+            catch (Exception ex)
             {
-                Log.Information("[COMPATTASK] Detected running instance of HASS.Agent Satellite Service, stopping and setting startup type to manual");
-                service.Stop();
-                ServiceHelper.ChangeStartMode(service, ServiceStartMode.Manual, out var error);
+                Log.Error("[COMPATTASK] There was an issue stopping original instances of HASS.Agent: {ex}", ex);
             }
         }
 
