@@ -9,10 +9,10 @@ namespace HASS.Agent.Satellite.Service
 {
     public class Program
     {
-        private static readonly Mutex ServiceMutex = new(false, "HASS.Agent.Service.Mutex");
-
         public static void Main(string[] args)
         {
+            using var serviceMutex = new Mutex(false, "Global\\HASS.Agent.Service.Mutex");
+
             // initialize serilog
             LoggingManager.PrepareLogging(args);
 

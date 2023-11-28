@@ -33,16 +33,17 @@ namespace HASS.Agent
         public const string LaunchParamCompatNames = "compat_names";
         public const string LaunchParamCompatMigrate = "compat_migrate";
 
-        private static readonly Mutex ApplicationMutex = new(false, "HASS.Agent.App.Mutex");
-
         /// <summary>
         /// Main entry point
         /// </summary>
         [STAThread]
         private static void Main(string[] args)
         {
+            using var appMutex = new Mutex(false, "HASS.Agent.App.Mutex");
+
             try
             {
+
                 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Variables.SyncfusionLicense);
 
                 LoggingManager.PrepareLogging(args);
