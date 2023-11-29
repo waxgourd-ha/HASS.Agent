@@ -32,7 +32,7 @@ namespace HASS.Agent.Compatibility
             var oldConfigDir = new DirectoryInfo(Path.Combine(source, "config"));
             if (!oldConfigDir.Exists)
             {
-                Log.Information("[COMPATTASK] No configuration folder found");
+                Log.Information("[COMPATTASK] No '{src}' configuration folder found", source);
                 return;
             }
 
@@ -55,7 +55,7 @@ namespace HASS.Agent.Compatibility
         {
             Log.Information("[COMPATTASK] Service configuration migration start");
 
-            var oldServiceInstallationPath = ServiceManager.GetInstallPath(OldHASSAgentFolder, OldServiceFolder);
+            var oldServiceInstallationPath = ServiceManager.GetInstallPath(OldHASSAgentFolder, OldServiceFolder, true);
             if (string.IsNullOrWhiteSpace(oldServiceInstallationPath))
             {
                 Log.Information("[COMPATTASK] No service installation folder found");

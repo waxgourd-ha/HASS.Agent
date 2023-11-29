@@ -86,21 +86,25 @@ namespace HASS.Agent.Service
             return true;
         }
 
+
         /// <summary>
         /// Gets the 'extended logging' setting from registry, or the default location
         /// </summary>
         /// <returns></returns>
-        internal static string GetInstallPath(string path1 = HASSAgentFolder, string path2 = ServiceFolder)
+        internal static string GetInstallPath(string path1 = HASSAgentFolder, string path2 = ServiceFolder, bool ignoreRegistry = false)
         {
             try
             {
-                // should be in reg
-                var installPath = (string)Registry.GetValue(Variables.SatelliteMachineRootRegKey, "InstallPath", string.Empty);
-                if (!string.IsNullOrEmpty(installPath))
+                if (!ignoreRegistry)
                 {
-                    Log.Information("[SERVICE] Local install path: {path}", installPath);
-                    
-                    return installPath;
+                    // should be in reg
+                    var installPath = (string)Registry.GetValue(Variables.SatelliteMachineRootRegKey, "InstallPath", string.Empty);
+                    if (!string.IsNullOrEmpty(installPath))
+                    {
+                        Log.Information("[SERVICE] Local install path: {path}", installPath);
+
+                        return installPath;
+                    }
                 }
 
                 // not found, probably first launch, try defaults
