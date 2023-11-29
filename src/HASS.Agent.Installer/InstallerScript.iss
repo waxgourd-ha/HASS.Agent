@@ -62,7 +62,8 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Parameters: "compat_migrate"; Description: "Try to migrate configuration"; Flags: postinstall skipifsilent 
+Filename: "{app}\{#MyAppExeName}"; Parameters: "compat_migrate"; Description: "Try to migrate configuration"; Flags: postinstall skipifsilent runascurrentuser
+Filename: "{sys}\sc.exe"; Parameters: "start {#ServiceName}"; Description: "Start Satellite Service"; Flags: postinstall runascurrentuser 
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: postinstall skipifsilent nowait
 
 [Registry]
@@ -74,6 +75,7 @@ Filename: "{sys}\sc.exe"; Parameters: "create {#ServiceName} binpath= ""{commonp
 Filename: "{sys}\sc.exe"; Parameters: "failure {#ServiceName} reset= 86400 actions= restart/60000/restart/60000//1000"; Flags: runhidden 
 Filename: "{sys}\sc.exe"; Parameters: "description {#ServiceName} ""{#ServiceDescription}"""; Flags: runhidden 
 Filename: "{sys}\sc.exe"; Parameters: "config {#ServiceName} DisplayName= ""{#ServiceDisplayName}"""; Flags: runhidden
+Filename: "{sys}\sc.exe"; Parameters: "config {#ServiceName} start= auto"; Flags: runhidden
 [UninstallRun]
 Filename: "{sys}\sc.exe"; Parameters: "stop {#ServiceName}"; RunOnceId: StopService; Flags: runhidden
 Filename: "{sys}\sc.exe"; Parameters: "delete {#ServiceName}" ; RunOnceId: DeleteService; Flags: runhidden
