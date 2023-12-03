@@ -19,6 +19,7 @@
 #define ServiceDescription "Satellite service for HASS.Agent: a Windows based Home Assistant client. This service processes commands and sensors without the requirement of a logged-in user."
 
 [Setup]
+ArchitecturesInstallIn64BitMode=x64
 SetupMutex=Global\HASS.Agent.Setup.Mutex,HASS.Agent.Setup.Mutex
 AppMutex=Global\HASS.Agent.App.Mutex,HASS.Agent.App.Mutex,Global\HASS.Agent.Service.Mutex,HASS.Agent.Service.Mutex
 AppId={{7BBED458-609B-4D13-AD9E-4FF219DF8644}
@@ -91,6 +92,7 @@ Filename: "{sys}\timeout.exe"; Parameters: "5"; Flags:runhidden
 [Code]
 function InitializeSetup: Boolean;
 begin
+  Dependency_ForceX86 := False;
   Dependency_AddDotNet60Desktop;
   Result := True;
 end;
