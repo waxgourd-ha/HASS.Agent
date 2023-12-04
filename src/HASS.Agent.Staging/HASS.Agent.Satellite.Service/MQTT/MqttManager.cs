@@ -290,7 +290,7 @@ namespace HASS.Agent.Satellite.Service.MQTT
             {
                 Name = name,
                 Identifiers = "hass.agent-" + name,
-                Manufacturer = "LAB02 Research",
+                Manufacturer = "HASS.Agent Team",
                 Model = Environment.OSVersion.ToString(),
                 Sw_version = Variables.Version
             };

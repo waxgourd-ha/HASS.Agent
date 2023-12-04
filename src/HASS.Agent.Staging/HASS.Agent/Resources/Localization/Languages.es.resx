@@ -1019,10 +1019,11 @@ su arduo trabajo con el resto de nosotros, meros mortales.</value>
 Creé y mantengo Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Creado con amor por</value>
+    <value>Original creado con aún más amor por</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>¿Te gusta esta herramienta? Apóyanos (léase: mantennos despiertos) comprando una taza de café:</value>
+    <value>HASS.Agent Team actualmente no acepta donaciones.
+Sin embargo, si te gusta esta herramienta, apoya a los desarrolladores originales (LAB02 Research) invitándoles una taza de café:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Acerca de</value>
@@ -3322,5 +3323,15 @@ La disponibilidad del sensor depende del dispositivo; en algunos casos, no habr�
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>La administración de escritorio virtual no está disponible en su máquina.
 Por lo general, esto se debe a que la biblioteca de administración de escritorio virtual no se actualiza para admitir su versión de Windows.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrando la configuración de
+HASS.Agent de la versión original</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Actualizado y mantenido con amor por</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Aún más agradecimiento a LAB02 Research y a Sam por desarrollar la versión original de HASS.Agent: ¡esto no existiría sin él!</value>
   </data>
 </root>

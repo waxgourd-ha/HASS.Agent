@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>x64;x86</Platforms>
     <AssemblyName>HASS.Agent.Shared</AssemblyName>
     <PackageId>HASS.Agent.Shared</PackageId>
-    <Authors>LAB02 Research</Authors>
-    <Company>LAB02 Research</Company>
+    <Authors>HASS.Agent Team</Authors>
+    <Company>HASS.Agent Team</Company>
     <Description>Shared functions and models for the HASS.Agent platform.</Description>
-    <PackageProjectUrl>https://github.com/LAB02-Research/HASS.Agent.Shared</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/LAB02-Research/HASS.Agent.Shared</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hass-agent/HASS.Agent</RepositoryUrl>
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <Version>2023.1.0</Version>

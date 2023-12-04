@@ -965,10 +965,11 @@ Lütfen aracınız için credentialları sağlayın, HA Mosquitto eklentisini ku
     <value>Ve tabi ki; Paulus Shoutsen ve Home Assistant :-) yaratan ve bakımını yapan tüm geliştirici ekibine teşekkürler</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>tarafından sevgiyle yaratıldı</value>
+    <value>Daha da fazla sevgiyle yaratılan orijinal</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Bu aracı beğendiniz mi? Bir fincan kahve alarak bizi destekleyin (okuyun: bizi uyanık tutun):</value>
+    <value>HASS.Agent Ekibi şu anda bağış kabul etmemektedir.
+Ancak bu aracı beğendiyseniz orijinal (LAB02 Araştırması) geliştiricilere bir fincan kahve satın alarak destekleyin:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Hakkında</value>
@@ -2934,5 +2935,15 @@ Sensörün kullanılabilirliği cihaza bağlıdır; bazı durumlarda sensör bul
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>Makinenizde Sanal Masaüstü yönetimi mevcut değil.
 Bunun nedeni genellikle sanal masaüstü yönetim kitaplığının Windows sürümünüzü destekleyecek şekilde güncellenmemesidir.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>HASS.Agent yapılandırmasının
+taşınması orijinal versiyondan</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Tarafından sevgiyle güncellendi ve sürdürüldü</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>HASS.Agent'ın orijinal versiyonunu geliştirdikleri için LAB02 Research ve Sam'e daha da büyük bir 'teşekkür ederim' - bu olmasaydı bu olmazdı!</value>
   </data>
 </root>

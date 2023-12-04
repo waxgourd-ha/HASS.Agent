@@ -23,6 +23,6 @@ namespace HASS.Agent.Controls.Onboarding
             return true;
         }
 
-        private void LblNotifierIntegration_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent-Integration");
+        private void LblNotifierIntegration_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent-Integration");
     }
 }

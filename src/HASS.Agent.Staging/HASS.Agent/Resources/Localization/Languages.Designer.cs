@@ -79,11 +79,20 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created with love by.
+        ///   Looks up a localized string similar to Original created with even more love by.
         /// </summary>
         internal static string About_LblInfo2 {
             get {
                 return ResourceManager.GetString("About_LblInfo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated and maintained with love by.
+        /// </summary>
+        internal static string About_LblInfo2_1 {
+            get {
+                return ResourceManager.GetString("About_LblInfo2_1", resourceCulture);
             }
         }
         
@@ -108,6 +117,15 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Even bigger &apos;thank you&apos; for LAB02 Research and Sam for developing the original version of HASS.Agent - this would wouldn&apos;t exist without it!.
+        /// </summary>
+        internal static string About_LblInfo4_1 {
+            get {
+                return ResourceManager.GetString("About_LblInfo4_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to And of course; thanks to Paulus Shoutsen and the entire team of developers that 
         ///created and maintain Home Assistant :-).
         /// </summary>
@@ -118,7 +136,8 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Like this tool? Support us (read: keep us awake) by buying a cup of coffee:.
+        ///   Looks up a localized string similar to HASS.Agent Team does not currently accept donations.
+        ///If you like this tool however, support original (LAB02 Research) developers by buying them a cup of coffee:.
         /// </summary>
         internal static string About_LblInfo6 {
             get {
@@ -1402,6 +1421,16 @@ namespace HASS.Agent.Resources.Localization {
         internal static string Compat_Error_CheckLogs {
             get {
                 return ResourceManager.GetString("Compat_Error_CheckLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migrating HASS.Agent configuration
+        ///from the original version.
+        /// </summary>
+        internal static string Compat_MigrateTask_Name {
+            get {
+                return ResourceManager.GetString("Compat_MigrateTask_Name", resourceCulture);
             }
         }
         

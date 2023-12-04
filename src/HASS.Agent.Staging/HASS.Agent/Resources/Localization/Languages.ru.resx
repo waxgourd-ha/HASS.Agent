@@ -1058,10 +1058,11 @@ HASS.Agent для прослушивания на указанном порту.
 создали и поддерживают Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Созданный с любовью</value>
+    <value>Оригинал, созданный с еще большей любовью</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Нравится этот инструмент? Поддержите нас (читай: не дайте нам уснуть), купив чашку кофе:</value>
+    <value>Команда HASS.Agent в настоящее время не принимает пожертвования.
+Однако, если вам нравится этот инструмент, поддержите разработчиков оригинальных (LAB02 Research), купив им чашку кофе:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>About</value>
@@ -3391,5 +3392,15 @@ Home Assistant.
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>Управление виртуальным рабочим столом на вашем компьютере недоступно.
 Обычно это происходит из-за того, что библиотека управления виртуальными рабочими столами не обновляется для поддержки вашей версии Windows.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Миграция конфигурации HASS.Agent
+из оригинальной версии</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Обновлено и поддерживается с любовью</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Еще большее «спасибо» LAB02 Research и Сэму за разработку оригинальной версии HASS.Agent — без нее его бы не существовало!</value>
   </data>
 </root>

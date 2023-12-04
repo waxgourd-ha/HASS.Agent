@@ -20,7 +20,7 @@ namespace HASS.Agent.Forms
             LblVersion.Text = $"{Variables.Version}{beta}";
         }
 
-        private void PbHassAgentLogo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void PbHassAgentLogo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
         private void BtnClose_Click(object sender, EventArgs e) => Close();
 
@@ -49,17 +49,17 @@ namespace HASS.Agent.Forms
             }
         }
 
-        private void PbGitHub_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void PbGitHub_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
-        private void LblGitHub_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void LblGitHub_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
-        private void LblGitHubInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void LblGitHubInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
-        private void PbDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.gg/nMvqzwrVBU");
+        private void PbDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
 
-        private void LblDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.gg/nMvqzwrVBU");
+        private void LblDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
 
-        private void LblDiscordInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.gg/nMvqzwrVBU");
+        private void LblDiscordInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
 
         private void PbHAForum_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://community.home-assistant.io/t/hass-agent-a-new-windows-based-client-to-receive-notifications-perform-quick-actions-and-much-more/369094");
 
@@ -67,11 +67,11 @@ namespace HASS.Agent.Forms
 
         private void LblHAInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://community.home-assistant.io/t/hass-agent-a-new-windows-based-client-to-receive-notifications-perform-quick-actions-and-much-more/369094");
 
-        private void PbDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void PbDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
-        private void LblDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void LblDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
-        private void LblDocumentationInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void LblDocumentationInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
         private void Help_KeyUp(object sender, KeyEventArgs e)
         {

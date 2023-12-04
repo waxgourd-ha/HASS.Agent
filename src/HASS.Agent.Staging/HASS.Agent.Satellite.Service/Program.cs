@@ -11,6 +11,8 @@ namespace HASS.Agent.Satellite.Service
     {
         public static void Main(string[] args)
         {
+            using var serviceMutex = new Mutex(false, "Global\\HASS.Agent.Service.Mutex");
+
             // initialize serilog
             LoggingManager.PrepareLogging(args);
 
@@ -66,7 +68,7 @@ namespace HASS.Agent.Satellite.Service
                         services.AddSingleton<IHostLifetime, ServiceLifetimeManager>();
                     }
                     else Log.Information("[MAIN] Not running as a service, skipping lifetime manager");
-                    
+
                 }).UseSerilog();
     }
 }

@@ -1020,10 +1020,11 @@ their hard work with the rest of us mere mortals. </value>
 created and maintain Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Created with love by</value>
+    <value>Original created with even more love by</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Like this tool? Support us (read: keep us awake) by buying a cup of coffee:</value>
+    <value>HASS.Agent Team does not currently accept donations.
+If you like this tool however, support original (LAB02 Research) developers by buying them a cup of coffee:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>About</value>
@@ -3323,5 +3324,15 @@ If no "mute" is provided, HASS.Agent will unmute the provided application.</valu
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>Virtual Desktop management is unavailable on your machine.
 Usually this is due to the virtual desktop management library not being updated to support your version of Windows.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrating HASS.Agent configuration
+from the original version</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Updated and maintained with love by</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Even bigger 'thank you' for LAB02 Research and Sam for developing the original version of HASS.Agent - this would wouldn't exist without it!</value>
   </data>
 </root>

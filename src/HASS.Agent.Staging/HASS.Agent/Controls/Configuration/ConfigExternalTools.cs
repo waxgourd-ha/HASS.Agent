@@ -122,7 +122,7 @@ namespace HASS.Agent.Controls.Configuration
                 var startupArgs = new ProcessStartInfo
                 {
                     FileName = browserBin,
-                    Arguments = !string.IsNullOrEmpty(incognitoArg) ? $"{incognitoArg} https://github.com/LAB02-Research/HASS.Agent" : "https://github.com/LAB02-Research/HASS.Agent"
+                    Arguments = !string.IsNullOrEmpty(incognitoArg) ? $"{incognitoArg} https://github.com/hass-agent/HASS.Agent" : "https://github.com/hass-agent/HASS.Agent"
                 };
 
                 testProc.StartInfo = startupArgs;

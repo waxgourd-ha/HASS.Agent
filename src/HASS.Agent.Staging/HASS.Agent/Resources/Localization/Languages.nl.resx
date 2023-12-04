@@ -1018,10 +1018,11 @@ Bedankt voor het gebruiken van HASS.Agent, hopelijk heb je er wat aan :-)</value
     <value>En natuurlijk; bedankt Paulus Shoutsen en het hele team van ontwikkelaars dat Home Assistant gebouwd hebben en onderhouden :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Gemaakt met liefde door</value>
+    <value>Origineel gemaakt met nog meer liefde door</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Bevalt dit programma? Ondersteun ons (lees: hou ons wakker) door een kopje koffie te doneren:</value>
+    <value>Het HASS.Agent-team accepteert momenteel geen donaties.
+Als je deze tool echter leuk vindt, steun dan de originele (LAB02 Research) ontwikkelaars door een kopje koffie voor ze te kopen:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Over</value>
@@ -3343,5 +3344,15 @@ Beschikbaarheid van de sensor is afhankelijk van het apparaat, in sommige gevall
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>Beheer van virtuele desktops is niet beschikbaar op uw machine.
 Meestal komt dit doordat de virtuele desktopbeheerbibliotheek niet wordt bijgewerkt om uw versie van Windows te ondersteunen.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>HASS.Agent-configuratie migreren
+van de originele versie</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Met liefde bijgewerkt en onderhouden door</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Nog groter dank aan LAB02 Research en Sam voor het ontwikkelen van de originele versie van HASS.Agent - zonder dit zou dit niet bestaan!</value>
   </data>
 </root>

@@ -1108,11 +1108,11 @@ Entwicklerteam, dass
 Home Assistant erstellte und pflegt :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Mit Liebe erstellt von</value>
+    <value>Original mit noch mehr Liebe erstellt von</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Du magst dieses Programm? Unterstütze uns mit dem Kauf
-einer Tasse Kaffee:</value>
+    <value>Das HASS.Agent-Team nimmt derzeit keine Spenden entgegen.
+Wenn Ihnen dieses Tool jedoch gefällt, unterstützen Sie die Originalentwickler (LAB02 Research), indem Sie ihnen eine Tasse Kaffee spendieren:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Über</value>
@@ -3447,5 +3447,15 @@ Die Verfügbarkeit des Sensors ist geräteabhängig, in manchen Fällen sind kei
   <data name="CommandsMod_BtnStore_VirtualDesktop_Unavailable" xml:space="preserve">
     <value>Die Verwaltung virtueller Desktops ist auf Ihrem Computer nicht verfügbar.
 Normalerweise liegt dies daran, dass die virtuelle Desktop-Verwaltungsbibliothek nicht aktualisiert wird, um Ihre Windows-Version zu unterstützen.</value>
+  </data>
+  <data name="Compat_MigrateTask_Name" xml:space="preserve">
+    <value>Migrieren der HASS.Agent-Konfiguration
+aus der Originalversion</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Mit Liebe aktualisiert und gepflegt von</value>
+  </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Ein noch größeres Dankeschön an LAB02 Research und Sam für die Entwicklung der Originalversion von HASS.Agent – ohne HASS.Agent gäbe es das nicht!</value>
   </data>
 </root>
