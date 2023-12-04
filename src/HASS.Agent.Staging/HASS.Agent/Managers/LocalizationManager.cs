@@ -47,7 +47,7 @@ namespace HASS.Agent.Managers
                 if (Variables.SupportedUILanguages.All(x => x.Name != culture.Name))
                 {
                     Log.Warning("[LOCALIZATION] The selected UI culture isn't yet supported, please help out by translating:");
-                    Log.Warning("[LOCALIZATION] https://www.hass-agent.io/latest/contributing/");
+                    Log.Warning("[LOCALIZATION] https://www.hass-agent.io/latest/contributing/translating/");
 
                     SetDefaultUILanguage();
                     return;
@@ -95,7 +95,7 @@ namespace HASS.Agent.Managers
                 if (Variables.SupportedUILanguages.All(x => x.Name != culture.Name))
                 {
                     Log.Warning("[LOCALIZATION] The new UI culture isn't yet supported, please help out by translating:");
-                    Log.Warning("[LOCALIZATION] https://www.hass-agent.io/latest/contributing/");
+                    Log.Warning("[LOCALIZATION] https://www.hass-agent.io/latest/contributing/translating/");
 
                     SetStoredUILanguage();
                     return;
