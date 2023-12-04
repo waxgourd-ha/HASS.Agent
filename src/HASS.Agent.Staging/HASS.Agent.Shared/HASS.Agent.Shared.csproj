@@ -8,8 +8,8 @@
     <Authors>LAB02 Research</Authors>
     <Company>LAB02 Research</Company>
     <Description>Shared functions and models for the HASS.Agent platform.</Description>
-    <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent.Shared</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/hass-agent/HASS.Agent.Shared</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hass-agent/HASS.Agent</RepositoryUrl>
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <Version>2023.1.0</Version>
