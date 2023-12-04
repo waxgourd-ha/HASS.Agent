@@ -91,5 +91,7 @@ namespace HASS.Agent.Forms
             Close();
         }
         private void label2_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
+
+        private void label4_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/Slion/VirtualDesktop");
     }
 }

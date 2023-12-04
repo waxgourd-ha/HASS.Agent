@@ -67,6 +67,7 @@ namespace HASS.Agent.Forms
             label2 = new Label();
             label1 = new Label();
             label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)PbHassLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PbHassAgentLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PbPayPal).BeginInit();
@@ -587,6 +588,21 @@ namespace HASS.Agent.Forms
             label3.TabIndex = 47;
             label3.Text = "Even bigger 'thank you' for LAB02 Research and Sam for developing the original version of HASS.Agent - this would wouldn't exist without it!";
             // 
+            // label4
+            // 
+            label4.AccessibleDescription = "Opens the 'ByteSize' website.";
+            label4.AccessibleName = "ByteSize";
+            label4.AccessibleRole = AccessibleRole.Link;
+            label4.AutoSize = true;
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point);
+            label4.Location = new Point(455, 347);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 19);
+            label4.TabIndex = 48;
+            label4.Text = "VirtualDesktop";
+            label4.Click += label4_Click;
+            // 
             // About
             // 
             AccessibleDescription = "General info about HASS.Agent.";
@@ -599,6 +615,7 @@ namespace HASS.Agent.Forms
             CaptionFont = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             CaptionForeColor = Color.FromArgb(241, 241, 241);
             ClientSize = new Size(747, 845);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(label2);
@@ -694,6 +711,7 @@ namespace HASS.Agent.Forms
         private Label label2;
         private Label label1;
         private Label label3;
+        private Label label4;
     }
 }
 
