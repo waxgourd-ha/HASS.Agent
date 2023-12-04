@@ -1032,9 +1032,9 @@ namespace HASS.Agent.Forms.Commands
 			form.Show(this);
 		}
 
-		private void LblActionInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io/en/latest/commands/actions-usage-and-examples/");
+		private void LblActionInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io/latest/commands/");
 
-		private void PbActionInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io/en/latest/commands/actions-usage-and-examples/");
+		private void PbActionInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io/latest/commands/");
 
 		private void BtnConfigureCommand_Click(object sender, EventArgs e)
 		{

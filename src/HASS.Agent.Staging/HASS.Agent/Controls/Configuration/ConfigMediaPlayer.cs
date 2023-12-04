@@ -15,7 +15,7 @@ namespace HASS.Agent.Controls.Configuration
             InitializeComponent();
         }
 
-        private void BtnNotificationsReadme_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io/en/latest/mediaplayer/mediaplayer-usage-and-examples/");
+        private void BtnNotificationsReadme_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io/latest/mediaplayer/");
         
         private void ConfigMediaPlayer_Load(object sender, EventArgs e)
         {

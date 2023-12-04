@@ -67,11 +67,11 @@ namespace HASS.Agent.Forms
 
         private void LblHAInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://community.home-assistant.io/t/hass-agent-a-new-windows-based-client-to-receive-notifications-perform-quick-actions-and-much-more/369094");
 
-        private void PbDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void PbDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
-        private void LblDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void LblDocumentation_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
-        private void LblDocumentationInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://hassagent.readthedocs.io");
+        private void LblDocumentationInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://www.hass-agent.io");
 
         private void Help_KeyUp(object sender, KeyEventArgs e)
         {
