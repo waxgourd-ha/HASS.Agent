@@ -965,10 +965,11 @@ Lütfen aracınız için credentialları sağlayın, HA Mosquitto eklentisini ku
     <value>Ve tabi ki; Paulus Shoutsen ve Home Assistant :-) yaratan ve bakımını yapan tüm geliştirici ekibine teşekkürler</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>tarafından sevgiyle yaratıldı</value>
+    <value>Daha da fazla sevgiyle yaratılan orijinal</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Bu aracı beğendiniz mi? Bir fincan kahve alarak bizi destekleyin (okuyun: bizi uyanık tutun):</value>
+    <value>HASS.Agent Ekibi şu anda bağış kabul etmemektedir.
+Ancak bu aracı beğendiyseniz orijinal (LAB02 Araştırması) geliştiricilere bir fincan kahve satın alarak destekleyin:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Hakkında</value>
@@ -2938,5 +2939,8 @@ Bunun nedeni genellikle sanal masaüstü yönetim kitaplığının Windows sür�
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>HASS.Agent yapılandırmasının
 taşınması orijinal versiyondan</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Tarafından sevgiyle güncellendi ve sürdürüldü</value>
   </data>
 </root>

@@ -124,7 +124,7 @@
     <value>Um cliente baseado em Windows para a plataforma Home Assistant.</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Criado com amor por</value>
+    <value>Original criado com ainda mais amor por</value>
   </data>
   <data name="About_LblInfo3" xml:space="preserve">
     <value>Este aplicativo é de código aberto e totalmente gratuito. Por favor, verifique o projeto
@@ -139,8 +139,8 @@ suficiente para compartilhar seu trabalho duro com o resto de nós, meros mortai
 que criaram e mantêm o Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Gostou deste programa? Apoie-nos (leia-se: mantenha-nos acordados) comprando
-uma xícara de café:</value>
+    <value>HASS.Agent Team atualmente não aceita doações.
+No entanto, se você gosta desta ferramenta, apoie os desenvolvedores originais (LAB02 Research) comprando-lhes uma xícara de café:</value>
   </data>
   <data name="About_LblOr" xml:space="preserve">
     <value>ou</value>
@@ -3373,5 +3373,8 @@ Geralmente, isso ocorre porque a biblioteca de gerenciamento de desktop virtual 
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>Migrando a configuração do
 HASS.Agent da versão original</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Atualizado e mantido com amor por</value>
   </data>
 </root>

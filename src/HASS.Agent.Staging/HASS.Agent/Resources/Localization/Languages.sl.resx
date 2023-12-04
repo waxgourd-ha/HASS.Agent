@@ -125,7 +125,7 @@
     <value>Odjemalec, ki temelji na sistemu Windows za platformo Home Assistant.</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Z ljubeznijo ustvaril</value>
+    <value>Original, ustvarjen s še več ljubezni</value>
   </data>
   <data name="About_LblInfo3" xml:space="preserve">
     <value>Ta aplikacija je odprtokodna in popolnoma brezplačna. Preverite strani projektov pri
@@ -140,7 +140,8 @@ njihovo trdo delo z nami, navadnimi smrtniki. </value>
 je ustvarila in vzdržujte Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Vam je všeč to orodje? Podprite nas (beri: pusti nas budne) z nakupom skodelice kave:</value>
+    <value>Ekipa HASS.Agent trenutno ne sprejema donacij.
+Če vam je to orodje všeč, podprite izvirne (LAB02 Research) razvijalce tako, da jim kupite skodelico kave:</value>
   </data>
   <data name="About_LblOr" xml:space="preserve">
     <value>ali</value>
@@ -3475,5 +3476,8 @@ Običajno je to posledica tega, da knjižnica za upravljanje navideznega namizja
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>Selitev konfiguracije HASS.Agent
 iz izvirne različice</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Z ljubeznijo posodablja in vzdržuje</value>
   </data>
 </root>

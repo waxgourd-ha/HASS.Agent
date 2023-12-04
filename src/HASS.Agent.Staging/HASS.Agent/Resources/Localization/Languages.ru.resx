@@ -1058,10 +1058,11 @@ HASS.Agent для прослушивания на указанном порту.
 создали и поддерживают Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Созданный с любовью</value>
+    <value>Оригинал, созданный с еще большей любовью</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Нравится этот инструмент? Поддержите нас (читай: не дайте нам уснуть), купив чашку кофе:</value>
+    <value>Команда HASS.Agent в настоящее время не принимает пожертвования.
+Однако, если вам нравится этот инструмент, поддержите разработчиков оригинальных (LAB02 Research), купив им чашку кофе:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>About</value>
@@ -3395,5 +3396,8 @@ Home Assistant.
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>Миграция конфигурации HASS.Agent
 из оригинальной версии</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Обновлено и поддерживается с любовью</value>
   </data>
 </root>

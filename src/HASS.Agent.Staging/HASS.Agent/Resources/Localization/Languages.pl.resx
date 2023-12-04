@@ -1086,10 +1086,11 @@ ich ciężką pracą z resztą z nas, zwykłych śmiertelników. </value>
 stworzyli i utrzymują Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Stworzono z miłością przez</value>
+    <value>Oryginał stworzony z jeszcze większą miłością przez</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>Podoba Ci się to narzędzie? Wesprzyj nas (czytaj: nie daj nam zasnąć) kupując filiżankę kawy:</value>
+    <value>Zespół HASS.Agent obecnie nie przyjmuje darowizn.
+Jeśli jednak podoba Ci się to narzędzie, wesprzyj oryginalnych programistów (LAB02 Research), kupując im filiżankę kawy:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>O</value>
@@ -3436,5 +3437,8 @@ Zwykle jest to spowodowane brakiem aktualizacji biblioteki zarządzania pulpitem
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>Migracja konfiguracji HASS.Agent
 z oryginalnej wersji</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Aktualizowany i utrzymywany z miłością przez</value>
   </data>
 </root>

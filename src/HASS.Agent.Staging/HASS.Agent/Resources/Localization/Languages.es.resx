@@ -1019,10 +1019,11 @@ su arduo trabajo con el resto de nosotros, meros mortales.</value>
 Creé y mantengo Home Assistant :-)</value>
   </data>
   <data name="About_LblInfo2" xml:space="preserve">
-    <value>Creado con amor por</value>
+    <value>Original creado con aún más amor por</value>
   </data>
   <data name="About_LblInfo6" xml:space="preserve">
-    <value>¿Te gusta esta herramienta? Apóyanos (léase: mantennos despiertos) comprando una taza de café:</value>
+    <value>HASS.Agent Team actualmente no acepta donaciones.
+Sin embargo, si te gusta esta herramienta, apoya a los desarrolladores originales (LAB02 Research) invitándoles una taza de café:</value>
   </data>
   <data name="About_Title" xml:space="preserve">
     <value>Acerca de</value>
@@ -3326,5 +3327,8 @@ Por lo general, esto se debe a que la biblioteca de administración de escritori
   <data name="Compat_MigrateTask_Name" xml:space="preserve">
     <value>Migrando la configuración de
 HASS.Agent de la versión original</value>
+  </data>
+  <data name="About_LblInfo2_1" xml:space="preserve">
+    <value>Actualizado y mantenido con amor por</value>
   </data>
 </root>
