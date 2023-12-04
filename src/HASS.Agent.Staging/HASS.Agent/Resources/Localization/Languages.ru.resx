@@ -3400,4 +3400,7 @@ Home Assistant.
   <data name="About_LblInfo2_1" xml:space="preserve">
     <value>Обновлено и поддерживается с любовью</value>
   </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Еще большее «спасибо» LAB02 Research и Сэму за разработку оригинальной версии HASS.Agent — без нее его бы не существовало!</value>
+  </data>
 </root>

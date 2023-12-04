@@ -2943,4 +2943,7 @@ taşınması orijinal versiyondan</value>
   <data name="About_LblInfo2_1" xml:space="preserve">
     <value>Tarafından sevgiyle güncellendi ve sürdürüldü</value>
   </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>HASS.Agent'ın orijinal versiyonunu geliştirdikleri için LAB02 Research ve Sam'e daha da büyük bir 'teşekkür ederim' - bu olmasaydı bu olmazdı!</value>
+  </data>
 </root>

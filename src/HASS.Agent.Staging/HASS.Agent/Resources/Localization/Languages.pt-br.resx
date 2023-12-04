@@ -3377,4 +3377,7 @@ HASS.Agent da versão original</value>
   <data name="About_LblInfo2_1" xml:space="preserve">
     <value>Atualizado e mantido com amor por</value>
   </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Um agradecimento ainda maior à LAB02 Research e ao Sam por desenvolverem a versão original do HASS.Agent - isto não existiria sem ele!</value>
+  </data>
 </root>

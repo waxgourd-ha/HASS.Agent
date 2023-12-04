@@ -3352,4 +3352,7 @@ van de originele versie</value>
   <data name="About_LblInfo2_1" xml:space="preserve">
     <value>Met liefde bijgewerkt en onderhouden door</value>
   </data>
+  <data name="About_LblInfo4_1" xml:space="preserve">
+    <value>Nog groter dank aan LAB02 Research en Sam voor het ontwikkelen van de originele versie van HASS.Agent - zonder dit zou dit niet bestaan!</value>
+  </data>
 </root>

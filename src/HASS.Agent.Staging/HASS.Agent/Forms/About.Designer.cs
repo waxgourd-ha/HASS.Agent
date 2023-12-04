@@ -126,7 +126,7 @@ namespace HASS.Agent.Forms
             LblInfo1.Name = "LblInfo1";
             LblInfo1.Size = new Size(360, 19);
             LblInfo1.TabIndex = 3;
-            LblInfo1.Text = "A Windows-based client for the Home Assistant platform.";
+            LblInfo1.Text = Resources.Localization.Languages.About_LblInfo1;
             // 
             // LblInfo3
             // 
@@ -138,7 +138,7 @@ namespace HASS.Agent.Forms
             LblInfo3.Name = "LblInfo3";
             LblInfo3.Size = new Size(536, 38);
             LblInfo3.TabIndex = 4;
-            LblInfo3.Text = "This application is open source and completely free, please check the project pages of \r\nthe used components for their individual licenses:";
+            LblInfo3.Text =  Resources.Localization.Languages.About_LblInfo3;
             // 
             // LblCoreAudio
             // 
@@ -300,7 +300,7 @@ namespace HASS.Agent.Forms
             LblInfo4.Name = "LblInfo4";
             LblInfo4.Size = new Size(536, 38);
             LblInfo4.TabIndex = 16;
-            LblInfo4.Text = "A big 'thank you' to the developers of these projects, who were kind enough to share\r\ntheir hard work with the rest of us mere mortals. ";
+            LblInfo4.Text = Resources.Localization.Languages.About_LblInfo4;
             // 
             // LblInfo5
             // 
@@ -312,7 +312,7 @@ namespace HASS.Agent.Forms
             LblInfo5.Name = "LblInfo5";
             LblInfo5.Size = new Size(536, 38);
             LblInfo5.TabIndex = 18;
-            LblInfo5.Text = "And of course; thanks to Paulus Shoutsen and the entire team of developers that \r\ncreated and maintain Home Assistant :-)";
+            LblInfo5.Text = Resources.Localization.Languages.About_LblInfo5;
             // 
             // LblInfo2
             // 
@@ -325,7 +325,7 @@ namespace HASS.Agent.Forms
             LblInfo2.Name = "LblInfo2";
             LblInfo2.Size = new Size(253, 19);
             LblInfo2.TabIndex = 21;
-            LblInfo2.Text = "Original created with even more love by";
+            LblInfo2.Text = Resources.Localization.Languages.About_LblInfo2;
             // 
             // LblLab02Research
             // 
@@ -395,7 +395,7 @@ namespace HASS.Agent.Forms
             LblInfo6.Name = "LblInfo6";
             LblInfo6.Size = new Size(562, 91);
             LblInfo6.TabIndex = 28;
-            LblInfo6.Text = "HASS.Agent Team does not currently accept donations.\r\nIf you like this tool however, support original (LAB02 Research) developers by buying them a cup of coffee:";
+            LblInfo6.Text = Resources.Localization.Languages.About_LblInfo6;
             LblInfo6.TextAlign = ContentAlignment.BottomLeft;
             // 
             // PbHassLogo
@@ -574,7 +574,7 @@ namespace HASS.Agent.Forms
             label1.Name = "label1";
             label1.Size = new Size(180, 19);
             label1.TabIndex = 46;
-            label1.Text = "Updated and maintained by";
+            label1.Text = Resources.Localization.Languages.About_LblInfo2_1;
             // 
             // label3
             // 
@@ -586,7 +586,7 @@ namespace HASS.Agent.Forms
             label3.Name = "label3";
             label3.Size = new Size(536, 38);
             label3.TabIndex = 47;
-            label3.Text = "Even bigger 'thank you' for LAB02 Research and Sam for developing the original version of HASS.Agent - this would wouldn't exist without it!";
+            label3.Text = Resources.Localization.Languages.About_LblInfo4_1;
             // 
             // label4
             // 

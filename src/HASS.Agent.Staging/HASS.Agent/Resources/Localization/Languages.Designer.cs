@@ -117,6 +117,15 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Even bigger &apos;thank you&apos; for LAB02 Research and Sam for developing the original version of HASS.Agent - this would wouldn&apos;t exist without it!.
+        /// </summary>
+        internal static string About_LblInfo4_1 {
+            get {
+                return ResourceManager.GetString("About_LblInfo4_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to And of course; thanks to Paulus Shoutsen and the entire team of developers that 
         ///created and maintain Home Assistant :-).
         /// </summary>
