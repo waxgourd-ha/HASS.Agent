@@ -21,7 +21,7 @@
 [Setup]
 ArchitecturesInstallIn64BitMode=x64
 SetupMutex=Global\HASS.Agent.Setup.Mutex,HASS.Agent.Setup.Mutex
-AppMutex=Global\HASS.Agent.App.Mutex,HASS.Agent.App.Mutex,Global\HASS.Agent.Service.Mutex,HASS.Agent.Service.Mutex
+AppMutex=Global\HASS.Agent.App.Mutex,HASS.Agent.App.Mutex
 AppId={{7BBED458-609B-4D13-AD9E-4FF219DF8644}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -70,7 +70,7 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Parameters: "compat_migrate"; Description: "Try to migrate configuration"; Flags: postinstall skipifsilent runascurrentuser
-Filename: "{sys}\sc.exe"; Parameters: "start {#ServiceName}"; Description: "Start Satellite Service"; Flags: postinstall runascurrentuser 
+Filename: "{sys}\sc.exe"; Parameters: "start {#ServiceName}"; Description: "Start Satellite Service"; Flags: postinstall runhidden runascurrentuser 
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: postinstall skipifsilent nowait
 
 [Registry]
