@@ -14,8 +14,8 @@
     <AssemblyName>HASS.Agent.Satellite.Service</AssemblyName>
     <Authors>LAB02 Research</Authors>
     <Description>Satellite service for HASS.Agent</Description>
-    <PackageProjectUrl>https://github.com/LAB02-Research/HASS.Agent.Satellite.Service</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/LAB02-Research/HASS.Agent.Satellite.Service</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent.Satellite.Service</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hass-agent/HASS.Agent.Satellite.Service</RepositoryUrl>
     <PackageIcon>hass.png</PackageIcon>
     <AssemblyVersion></AssemblyVersion>
     <ApplicationIcon>hass.ico</ApplicationIcon>

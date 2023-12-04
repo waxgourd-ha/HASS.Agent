@@ -20,9 +20,9 @@ namespace HASS.Agent.Forms
             CbHideDonateButton.CheckState = SettingsManager.GetHideDonateButton() ? CheckState.Checked : CheckState.Unchecked;
         }
         
-        private void LblHassAgentProject_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void LblHassAgentProject_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
-        private void PbHassAgentLogo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent");
+        private void PbHassAgentLogo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
         private void BtnClose_Click(object sender, EventArgs e)
         {

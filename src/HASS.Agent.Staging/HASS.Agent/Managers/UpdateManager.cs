@@ -270,7 +270,7 @@ namespace HASS.Agent.Managers
             if (string.IsNullOrEmpty(pendingUpdate.ReleaseUrl))
             {
                 // nope, weird
-                HelperFunctions.LaunchUrl("https://github.com/LAB02-Research/HASS.Agent/releases/latest");
+                HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent/releases/latest");
                 return;
             }
 
