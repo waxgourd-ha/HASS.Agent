@@ -13,8 +13,8 @@
     <Platforms>x64;x86</Platforms>
     <DebugType>full</DebugType>
     <Version>2023.11.1-ubeta</Version>
-    <Company>LAB02 Research</Company>
-    <Authors>LAB02 Research</Authors>
+    <Company>HASS.Agent Team</Company>
+    <Authors>HASS.Agent Team</Authors>
     <Description>Windows-based client for Home Assistant. Provides notifications, quick actions, commands, sensors and more. </Description>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent</PackageProjectUrl>

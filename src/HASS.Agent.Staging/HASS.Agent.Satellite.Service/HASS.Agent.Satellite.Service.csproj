@@ -9,10 +9,10 @@
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>x64;x86</Platforms>
     <Version>2023.1.0</Version>
-    <Company>LAB02 Research</Company>
+    <Company>HASS.Agent Team</Company>
     <Product>HASS.Agent Satellite Service</Product>
     <AssemblyName>HASS.Agent.Satellite.Service</AssemblyName>
-    <Authors>LAB02 Research</Authors>
+    <Authors>HASS.Agent Team</Authors>
     <Description>Satellite service for HASS.Agent</Description>
     <PackageProjectUrl>https://github.com/hass-agent/HASS.Agent</PackageProjectUrl>
     <RepositoryUrl>https://github.com/hass-agent/HASS.Agent</RepositoryUrl>

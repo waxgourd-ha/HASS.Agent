@@ -91,7 +91,7 @@ namespace HASS.Agent.Managers
                 var client = new GitHubClient(new ProductHeaderValue("HASS.Agent"));
 
                 // fetch the latest release
-                var latestRelease = await client.Repository.Release.GetLatest("LAB02-Research", "HASS.Agent");
+                var latestRelease = await client.Repository.Release.GetLatest("hass-agent", "HASS.Agent");
 
                 // ignore if it's a draft
                 if (latestRelease.Draft) return (false, pendingUpdate);
@@ -130,7 +130,7 @@ namespace HASS.Agent.Managers
                 var client = new GitHubClient(new ProductHeaderValue("HASS.Agent"));
 
                 // fetch the latest releases
-                var latestReleases = await client.Repository.Release.GetAll("LAB02-Research", "HASS.Agent");
+                var latestReleases = await client.Repository.Release.GetAll("hass-agent", "HASS.Agent");
                 Release latestRelease = null;
 
                 // iterate them, and see if there's a new one
