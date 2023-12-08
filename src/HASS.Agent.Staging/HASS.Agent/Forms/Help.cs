@@ -55,11 +55,11 @@ namespace HASS.Agent.Forms
 
         private void LblGitHubInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://github.com/hass-agent/HASS.Agent");
 
-        private void PbDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
+        private void PbDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/JfZj98xqJr");
 
-        private void LblDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
+        private void LblDiscord_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/JfZj98xqJr");
 
-        private void LblDiscordInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/nMvqzwrVBU");
+        private void LblDiscordInfo_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://discord.com/invite/JfZj98xqJr");
 
         private void PbHAForum_Click(object sender, EventArgs e) => HelperFunctions.LaunchUrl("https://community.home-assistant.io/t/hass-agent-a-new-windows-based-client-to-receive-notifications-perform-quick-actions-and-much-more/369094");
 
