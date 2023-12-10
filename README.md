@@ -5,7 +5,7 @@
 
 This project is a fork of the [original HASS.Agent](https://github.com/LAB02-Research/HASS.Agent) created by [Sam](https://github.com/LAB02-Research).
 
-The Purpose of this project is to provide updates/features/fixes until development on the original project resumes. For now, all released from this repository will be marked as beta.
+The Purpose of this project is to provide updates/features/fixes until development on the original project resumes.
 
 At first all PRs made by me will be merged, but in time, I'll approach authors of other PRs for permission to also include them in here.
 
@@ -13,29 +13,28 @@ At first all PRs made by me will be merged, but in time, I'll approach authors o
 
 ## Installation
 
-**I do hope to improve this process in the future**
+### Installer
 
-**Step 0:** I cannot stress this enough - ***backup the config folder of your current HASS.Agent installation before reading further***
-<br><br><br>
-The original HASS.Agent repository is not available as far as I'm informed.<br>
-There are two options to approach this:
-- creating a new installer
-- going with "patch it over" approach
+**Will be detailed and moved to the documentation soon :)**
 
-Currently the recommended option is the "patch it over". HASS.Agent is capable of functioning without the installer but the installer takes care of some dependencies that might need to be installed manually otherwise.
-<br>
-1. Download and install HASS.Agent from [the official release](https://github.com/LAB02-Research/HASS.Agent/releases) (usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"** and **"C:\Program Files (x86)\LAB02 Research\HASS.Agent Satellite Service"**)
-2. Download and install WindowsAppSDK ([explanation why](https://github.com/LAB02-Research/HASS.Agent.Staging/pull/18))
-<br/>for HASS.Agent 2023.10.0, 2023.11.0 and 2023.11.1 - https://aka.ms/windowsappsdk/1.3/1.3.230724000/windowsappruntimeinstall-x64.exe
-3. Make sure the HASS.Agent service is stopped
-<br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38590ab0-7d42-4790-9629-73596725d75e" height="350px" />
-4. Close/Exit out of the HASS.Agent
-<br><img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/38939e3d-6dff-447c-a497-78def5fa41ff" height="350px" />
-5. Download the release package (HASS.Agent & HASS.Agent.Service) from this repository
-6. Copy/Replace the downloaded files over the installed ones (again, usually in **"C:\Users\<username>\AppData\Roaming\LAB02 Research\HASS.Agent\"** and **"C:\Program Files (x86)\LAB02 Research\HASS.Agent Satellite Service\"**)
-7. Launch HASS.Agent and verify that you're using the unofficial beta version by navigating to help window - "u" in the version postfix
-<img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/19edc4f6-e674-4238-8d11-d50c16feb8a9" height="350px" />
-<img src="https://github.com/amadeo-alex/HASS.Agent/assets/68441479/05df8795-b8f6-4a9e-b666-a55b89196a3e" height="350px" />
+1. Download and run the installer exe from the releases page
+2. Launch HASS.Agent either manually or as a last step of installation
+
+The installer will also offer and install the required x64 .net runtime. 
+
+### Manual
+
+Note: Both Client and Satellite Service ***may*** function without installation as a portable applications.
+
+**The recommended and official way is to use the installer.**
+
+1. Download Client/Satellite Service ZIP files from the releases page
+2. Extract the files to separate folders (Client and Satellite Service)
+3. [Register](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create) the service in elevated cmd
+```
+sc.exe create hass.agent.svc binPath= "<absolute path to HASS.Agent.Satellite.Service.exe>"
+```
+4. Run "HASS.Agent.exe"
 
 ----
 
@@ -45,6 +44,8 @@ Currently the recommended option is the "patch it over". HASS.Agent is capable o
 3. The update functionality present in UI does not work with the unofficial version, yet
 
 ----
+
+**Will be moved to the documentation soon :)**
 
 Major feature changes compared to the original project:
 1. [Virtual desktop sensor and command](https://github.com/LAB02-Research/HASS.Agent.Staging/pull/12)
