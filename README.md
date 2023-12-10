@@ -29,12 +29,13 @@ Note: Both Client and Satellite Service ***may*** function without installation 
 **The recommended and official way is to use the installer.**
 
 1. Download Client/Satellite Service ZIP files from the releases page
-2. Extract the files to separate folders (Client and Satellite Service)
-3. [Register](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create) the service in elevated cmd
+3. Make sure [.net 6 (x64)](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.25-windows-x64-installer) and [Windows App SDK 1.4.2](https://aka.ms/windowsappsdk/1.4/1.4.231008000/windowsappruntimeinstall-x64.exe) is installed on your system
+4. Extract the files to separate folders (Client and Satellite Service)
+5. [Register](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create) the service in elevated cmd
 ```
 sc.exe create hass.agent.svc binPath= "<absolute path to HASS.Agent.Satellite.Service.exe>"
 ```
-4. Run "HASS.Agent.exe"
+6. Run "HASS.Agent.exe"
 
 ----
 
