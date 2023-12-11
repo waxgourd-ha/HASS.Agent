@@ -184,21 +184,30 @@ namespace HASS.Agent.Satellite.Service.Commands
                 {
                     foreach (var abstractCommand in toBeDeletedCommands.Select(StoredCommands.ConvertConfiguredToAbstract))
                     {
-                        if (abstractCommand == null) continue;
+                        if (abstractCommand == null)
+                            continue;
 
-                        // remove and unregister
-                        await abstractCommand.UnPublishAutoDiscoveryConfigAsync();
-                        await Variables.MqttManager.UnsubscribeAsync(abstractCommand);
-                        Variables.Commands.RemoveAt(Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id));
+                        var commandIndex = Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id);
+                        if (commandIndex == -1)
+                        {
+                            await abstractCommand.UnPublishAutoDiscoveryConfigAsync();
+                            await Variables.MqttManager.UnsubscribeAsync(abstractCommand);
+                            Variables.Commands.RemoveAt(commandIndex);
 
-                        Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.Name);
+                            Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.Name);
+                        }
+                        else
+                        {
+                            Log.Information("[COMMANDS] Command not removed, not activated: {command}", abstractCommand.Name);
+                        }
                     }
                 }
 
                 // copy our list to the main one
                 foreach (var abstractCommand in commands.Select(StoredCommands.ConvertConfiguredToAbstract))
                 {
-                    if (abstractCommand == null) continue;
+                    if (abstractCommand == null)
+                        continue;
 
                     if (Variables.Commands.All(x => x.Id != abstractCommand.Id))
                     {

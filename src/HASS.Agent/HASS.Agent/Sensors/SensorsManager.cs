@@ -5,6 +5,7 @@ using HASS.Agent.Settings;
 using HASS.Agent.Shared.Enums;
 using HASS.Agent.Shared.Extensions;
 using HASS.Agent.Shared.Models.Config;
+using HASS.Agent.Shared.Models.HomeAssistant;
 using Serilog;
 
 namespace HASS.Agent.Sensors
@@ -215,22 +216,34 @@ namespace HASS.Agent.Sensors
                         if (sensor.IsSingleValue())
                         {
                             var abstractSensor = StoredSensors.ConvertConfiguredToAbstractSingleValue(sensor);
+                            var sensorIndex = Variables.SingleValueSensors.FindIndex(x => x.Id == abstractSensor.Id);
+                            if (sensorIndex != -1)
+                            {
+                                await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
+                                Variables.SingleValueSensors.RemoveAt(sensorIndex);
 
-                            // remove and unregister
-                            await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
-                            Variables.SingleValueSensors.RemoveAt(Variables.SingleValueSensors.FindIndex(x => x.Id == abstractSensor.Id));
-
-                            Log.Information("[SENSORS] Removed single-value sensor: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Removed single-value sensor: {sensor}", abstractSensor.Name);
+                            }
+                            else
+                            {
+                                Log.Information("[SENSORS] Single-value sensor not removed, not activated: {sensor}", abstractSensor.Name);
+                            }
                         }
                         else
                         {
                             var abstractSensor = StoredSensors.ConvertConfiguredToAbstractMultiValue(sensor);
+                            var sensorIndex = Variables.MultiValueSensors.FindIndex(x => x.Id == abstractSensor.Id);
+                            if (sensorIndex != -1)
+                            {
+                                await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
+                                Variables.MultiValueSensors.RemoveAt(sensorIndex);
 
-                            // remove and unregister
-                            await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
-                            Variables.MultiValueSensors.RemoveAt(Variables.MultiValueSensors.FindIndex(x => x.Id == abstractSensor.Id));
-
-                            Log.Information("[SENSORS] Removed multi-value sensor: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Removed multi-value sensor: {sensor}", abstractSensor.Name);
+                            }
+                            else
+                            {
+                                Log.Information("[SENSORS] Multi-value sensor not removed, not activated: {sensor}", abstractSensor.Name);
+                            }
                         }
                     }
                 }
