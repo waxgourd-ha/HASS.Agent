@@ -266,7 +266,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(wmiSensor.Id), 
                         EntityName = wmiSensor.EntityName,
-                        Name = wmiSensor.EntityName,
+                        Name = wmiSensor.Name,
                         Type = type,
                         UpdateInterval = wmiSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = wmiSensor.IgnoreAvailability,
@@ -284,7 +284,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(namedWindowSensor.Id), 
                         EntityName = namedWindowSensor.EntityName,
-                        Name = namedWindowSensor.EntityName,
+                        Name = namedWindowSensor.Name,
                         Type = type,
                         UpdateInterval = namedWindowSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = namedWindowSensor.IgnoreAvailability,
@@ -299,7 +299,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(performanceCounterSensor.Id),
                         EntityName = performanceCounterSensor.EntityName,
-                        Name = performanceCounterSensor.EntityName,
+                        Name = performanceCounterSensor.Name,
                         Type = type,
                         UpdateInterval = performanceCounterSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = performanceCounterSensor.IgnoreAvailability,
@@ -318,7 +318,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(processActiveSensor.Id),
                         EntityName = processActiveSensor.EntityName,
-                        Name = processActiveSensor.EntityName,
+                        Name = processActiveSensor.Name,
                         Type = type,
                         UpdateInterval = processActiveSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = processActiveSensor.IgnoreAvailability,
@@ -333,7 +333,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(serviceStateSensor.Id),
                         EntityName = serviceStateSensor.EntityName,
-                        Name = serviceStateSensor.EntityName,
+                        Name = serviceStateSensor.Name,
                         Type = type,
                         UpdateInterval = serviceStateSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = serviceStateSensor.IgnoreAvailability,
@@ -348,7 +348,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(powershellSensor.Id),
                         EntityName = powershellSensor.EntityName,
-                        Name = powershellSensor.EntityName,
+                        Name = powershellSensor.Name,
                         Type = type,
                         UpdateInterval = powershellSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = powershellSensor.IgnoreAvailability,
@@ -365,7 +365,7 @@ namespace HASS.Agent.Settings
 						{
 							Id = Guid.Parse(lastActiveSensor.Id),
 							EntityName = lastActiveSensor.EntityName,
-							Name = lastActiveSensor.EntityName,
+							Name = lastActiveSensor.Name,
 							Type = type,
 							UpdateInterval = lastActiveSensor.UpdateIntervalSeconds,
 							IgnoreAvailability = lastActiveSensor.IgnoreAvailability,
@@ -381,7 +381,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(windowStateSensor.Id),
                         EntityName = windowStateSensor.EntityName,
-                        Name = windowStateSensor.EntityName,
+                        Name = windowStateSensor.Name,
                         Type = type,
                         UpdateInterval = windowStateSensor.UpdateIntervalSeconds,
                         IgnoreAvailability = windowStateSensor.IgnoreAvailability,
@@ -396,7 +396,7 @@ namespace HASS.Agent.Settings
                         {
                             Id = Guid.Parse(internalDeviceSensor.Id),
                             EntityName = internalDeviceSensor.EntityName,
-                            Name = internalDeviceSensor.EntityName,
+                            Name = internalDeviceSensor.Name,
                             Type = type,
                             UpdateInterval = internalDeviceSensor.UpdateIntervalSeconds,
 							IgnoreAvailability = internalDeviceSensor.IgnoreAvailability,
@@ -411,7 +411,7 @@ namespace HASS.Agent.Settings
                     {
                         Id = Guid.Parse(sensor.Id), 
                         EntityName = sensor.EntityName,
-                        Name = sensor.EntityName,
+                        Name = sensor.Name,
                         Type = type, 
                         UpdateInterval = sensor.UpdateIntervalSeconds,
                         IgnoreAvailability = sensor.IgnoreAvailability

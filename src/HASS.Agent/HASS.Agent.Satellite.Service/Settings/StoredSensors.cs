@@ -228,7 +228,7 @@ namespace HASS.Agent.Satellite.Service.Settings
                         {
                             Id = Guid.Parse(wmiSensor.Id),
                             EntityName = wmiSensor.EntityName,
-                            Name = wmiSensor.EntityName,
+                            Name = wmiSensor.Name,
                             Type = type,
                             UpdateInterval = wmiSensor.UpdateIntervalSeconds,
                             Scope = wmiSensor.Scope,

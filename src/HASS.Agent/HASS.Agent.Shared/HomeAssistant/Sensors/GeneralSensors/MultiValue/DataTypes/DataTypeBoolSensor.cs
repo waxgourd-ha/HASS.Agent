@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using HASS.Agent.Shared.Models.HomeAssistant;
 
 namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.DataTypes
@@ -21,9 +22,10 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
             _deviceClass = deviceClass;
             _icon = icon;
 
-            //ObjectId = id;
+            ObjectId = id;
         }
 
+        [Obsolete("Deprecated due to HA 2023.8 MQTT changes in favor of method specifying entityName")]
         public DataTypeBoolSensor(int? updateInterval, string name, string id, string deviceClass, string icon, string multiValueSensorName, bool useAttributes = false) : base(name, name, updateInterval ?? 30, id, useAttributes)
         {
             TopicName = multiValueSensorName;
@@ -31,7 +33,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
             _deviceClass = deviceClass;
             _icon = icon;
 
-            //ObjectId = id;
+            ObjectId = id;
         }
 
         public override DiscoveryConfigModel GetAutoDiscoveryConfig()
@@ -46,6 +48,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
             var model = new SensorDiscoveryConfigModel()
             {
                 EntityName = EntityName,
+                Name = Name,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{TopicName}/{ObjectId}/state",

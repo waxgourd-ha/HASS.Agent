@@ -85,7 +85,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                     var info = JsonConvert.SerializeObject(storageInfo, Formatting.Indented);
                     var driveInfoId = $"{parentSensorSafeName}_{driveNameLower}";
-                    var driveInfoSensor = new DataTypeStringSensor(_updateInterval, driveName, driveInfoId, string.Empty, "mdi:harddisk", string.Empty, EntityName, true);
+                    var driveInfoSensor = new DataTypeStringSensor(_updateInterval, driveInfoId, driveName, driveInfoId, string.Empty, "mdi:harddisk", string.Empty, EntityName, true);
 
                     driveInfoSensor.SetState(sensorValue);
                     driveInfoSensor.SetAttributes(info);
@@ -115,7 +115,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
             }
 
             var driveCountId = $"{parentSensorSafeName}_total_disk_count";
-            var driveCountSensor = new DataTypeIntSensor(_updateInterval, "Total Disk Count", driveCountId, string.Empty, "mdi:harddisk", string.Empty, EntityName);
+            var driveCountSensor = new DataTypeIntSensor(_updateInterval, driveCountId, "Total Disk Count", driveCountId, string.Empty, "mdi:harddisk", string.Empty, EntityName);
             driveCountSensor.SetState(driveCount);
 
             AddUpdateSensor(driveCountId, driveCountSensor);

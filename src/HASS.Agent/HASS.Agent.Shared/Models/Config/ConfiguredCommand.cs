@@ -13,7 +13,9 @@ namespace HASS.Agent.Shared.Models.Config
     public class ConfiguredCommand
     {
         public Guid Id { get; set; } = Guid.Empty;
+        [JsonProperty("FriendlyName")]
         public string Name { get; set; } = string.Empty;
+        [JsonProperty("Name")]
         public string EntityName { get; set; } = string.Empty;
 
         [JsonConverter(typeof(StringEnumConverter))]

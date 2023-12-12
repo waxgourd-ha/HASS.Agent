@@ -122,7 +122,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                     var info = JsonConvert.SerializeObject(networkInfo, Formatting.Indented);
                     var networkInfoId = $"{parentSensorSafeName}_{id}";
-                    var networkInfoSensor = new DataTypeStringSensor(_updateInterval, nic.Name, networkInfoId, string.Empty, "mdi:lan", string.Empty, EntityName, true);
+                    var networkInfoSensor = new DataTypeStringSensor(_updateInterval, networkInfoId, nic.Name, networkInfoId, string.Empty, "mdi:lan", string.Empty, EntityName, true);
 
                     networkInfoSensor.SetState(nic.OperationalStatus.ToString());
                     networkInfoSensor.SetAttributes(info);
@@ -137,7 +137,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
             }
 
             var nicCountId = $"{parentSensorSafeName}_total_network_card_count";
-            var nicCountSensor = new DataTypeIntSensor(_updateInterval, "Network Card Count", nicCountId, string.Empty, "mdi:lan", string.Empty, EntityName);
+            var nicCountSensor = new DataTypeIntSensor(_updateInterval, nicCountId, "Network Card Count", nicCountId, string.Empty, "mdi:lan", string.Empty, EntityName);
             nicCountSensor.SetState(nicCount);
             AddUpdateSensor(nicCountId, nicCountSensor);
         }

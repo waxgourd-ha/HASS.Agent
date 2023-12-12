@@ -44,7 +44,7 @@ public class MicrophoneProcessSensor : AbstractSingleValueSensor
         var model = new SensorDiscoveryConfigModel()
         {
             EntityName = EntityName,
-            Name = EntityName,
+            Name = Name,
             Unique_id = Id,
             Device = deviceConfig,
             State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

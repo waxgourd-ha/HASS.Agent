@@ -76,7 +76,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
             return new CommandDiscoveryConfigModel()
             {
                 EntityName = EntityName,
-                Name = EntityName,
+                Name = Name,
                 Unique_id = Id,
                 Availability_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/sensor/{deviceConfig.Name}/availability",
                 Command_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/set",

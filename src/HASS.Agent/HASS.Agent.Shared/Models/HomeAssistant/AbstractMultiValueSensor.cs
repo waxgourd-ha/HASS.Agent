@@ -20,7 +20,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
         {
             Id = id == null || id == Guid.Empty.ToString() ? Guid.NewGuid().ToString() : id;
             EntityName = entityName;
-            EntityName = name;
+            Name = name;
             UpdateIntervalSeconds = updateIntervalSeconds;
             Domain = "sensor";
         }
