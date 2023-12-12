@@ -20,7 +20,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
         private readonly bool _isScript = false;
         private readonly string _descriptor = "command";
 
-        public PowershellCommand(string command, string name = DefaultName, string friendlyName = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, entityType, id)
+        public PowershellCommand(string command, string entityName = DefaultName, string name = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, entityType, id)
         {
             Command = command;
             if (Command.ToLower().EndsWith(".ps1"))
@@ -38,7 +38,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
 
             if (string.IsNullOrWhiteSpace(Command))
             {
-                Log.Warning("[POWERSHELL] [{name}] Unable to execute, it's configured as action-only", Name);
+                Log.Warning("[POWERSHELL] [{name}] Unable to execute, it's configured as action-only", EntityName);
 
                 State = "OFF";
                 return;
@@ -48,7 +48,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
                 ? PowershellManager.ExecuteScriptHeadless(Command, string.Empty)
                 : PowershellManager.ExecuteCommandHeadless(Command);
 
-            if (!executed) Log.Error("[POWERSHELL] [{name}] Executing {descriptor} failed", Name, _descriptor, Name);
+            if (!executed) Log.Error("[POWERSHELL] [{name}] Executing {descriptor} failed", EntityName, _descriptor, EntityName);
             
             State = "OFF";
         }
@@ -61,7 +61,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
                 ? PowershellManager.ExecuteScriptHeadless(Command, action)
                 : PowershellManager.ExecuteCommandHeadless(Command);
 
-            if (!executed) Log.Error("[POWERSHELL] [{name}] Launching PS {descriptor} with action '{action}' failed", Name, _descriptor, action);
+            if (!executed) Log.Error("[POWERSHELL] [{name}] Launching PS {descriptor} with action '{action}' failed", EntityName, _descriptor, action);
             
             State = "OFF";
         }
@@ -75,8 +75,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
 
             return new CommandDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Availability_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/sensor/{deviceConfig.Name}/availability",
                 Command_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/set",

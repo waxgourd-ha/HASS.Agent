@@ -22,7 +22,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors
         public bool ApplyRounding { get; private set; }
         public int? Round { get; private set; }
 
-        public PerformanceCounterSensor(string categoryName, string counterName, string instanceName, bool applyRounding = false, int? round = null, int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 10, id)
+        public PerformanceCounterSensor(string categoryName, string counterName, string instanceName, bool applyRounding = false, int? round = null, int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 10, id)
         {
             CategoryName = categoryName;
             CounterName = counterName;
@@ -49,11 +49,11 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Device = deviceConfig,
-                State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{Name}/state",
+                State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{EntityName}/state",
                 Availability_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/availability"
             });
         }

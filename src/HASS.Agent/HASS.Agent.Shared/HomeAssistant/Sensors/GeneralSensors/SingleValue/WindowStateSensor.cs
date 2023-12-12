@@ -15,7 +15,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
         private const string DefaultName = "windowstate";
         public string ProcessName { get; protected set; }
 
-        public WindowStateSensor(string processName, string name = DefaultName, string friendlyName = DefaultName, int? updateInterval = 10, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public WindowStateSensor(string processName, string entityName = DefaultName, string name = DefaultName, int? updateInterval = 10, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             ProcessName = processName;
         }
@@ -29,8 +29,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

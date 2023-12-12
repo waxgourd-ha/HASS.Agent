@@ -17,7 +17,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.WmiSensors.SingleValue
         private protected DateTime LastFetched = DateTime.MinValue;
         private protected string LastValue = string.Empty;
 
-        public CurrentClockSpeedSensor(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default, bool applyRounding = false, int? round = null) : base(string.Empty, string.Empty, applyRounding, round, updateInterval ?? 300, name ?? DefaultName, friendlyName ?? null, id) 
+        public CurrentClockSpeedSensor(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default, bool applyRounding = false, int? round = null) : base(string.Empty, string.Empty, applyRounding, round, updateInterval ?? 300, entityName ?? DefaultName, name ?? null, id) 
             => _managementObject = new ManagementObject("Win32_Processor.DeviceID='CPU0'");
 
         public override DiscoveryConfigModel GetAutoDiscoveryConfig()
@@ -29,8 +29,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.WmiSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",
@@ -55,7 +55,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.WmiSensors.SingleValue
             }
             catch (Exception ex)
             {
-                Log.Error("[CURRENTCLOCKSPEED] [{name}] Error getting current clockspeed: {msg}", Name, ex.Message);
+                Log.Error("[CURRENTCLOCKSPEED] [{name}] Error getting current clockspeed: {msg}", EntityName, ex.Message);
                 return "0";
             }
         }

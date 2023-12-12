@@ -18,7 +18,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
         public bool RunAsLowIntegrity { get; protected set; }
         public Process Process { get; set; } = null;
 
-        public CustomCommand(string command, bool runAsLowIntegrity, string name = DefaultName, string friendlyName = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, entityType, id)
+        public CustomCommand(string command, bool runAsLowIntegrity, string entityName = DefaultName, string name = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, entityType, id)
         {
             Command = command;
             RunAsLowIntegrity = runAsLowIntegrity;
@@ -31,7 +31,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
 
             if (string.IsNullOrWhiteSpace(Command))
             {
-                Log.Warning("[CUSTOMCOMMAND] [{name}] Unable to launch command, it's configured as action-only", Name);
+                Log.Warning("[CUSTOMCOMMAND] [{name}] Unable to launch command, it's configured as action-only", EntityName);
                 State = "OFF";
                 return;
             }
@@ -41,7 +41,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
             {
                 var executed = CommandLineManager.ExecuteHeadless(Command);
 
-                if (!executed) Log.Error("[CUSTOMCOMMAND] [{name}] Launching command failed", Name);
+                if (!executed) Log.Error("[CUSTOMCOMMAND] [{name}] Launching command failed", EntityName);
             }
 
             State = "OFF";
@@ -61,7 +61,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
                     ? CommandLineManager.Execute(Command, action)
                     : CommandLineManager.ExecuteHeadless(action);
 
-                if (!executed) Log.Error("[CUSTOMCOMMAND] [{name}] Launching command with action '{action}' failed", Name, action);
+                if (!executed) Log.Error("[CUSTOMCOMMAND] [{name}] Launching command with action '{action}' failed", EntityName, action);
             }
 
             State = "OFF";
@@ -76,8 +76,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
 
             return new CommandDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Availability_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/sensor/{deviceConfig.Name}/availability",
                 Command_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/set",

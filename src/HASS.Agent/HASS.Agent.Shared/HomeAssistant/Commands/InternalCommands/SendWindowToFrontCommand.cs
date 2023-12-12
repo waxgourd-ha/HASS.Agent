@@ -14,7 +14,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
     {
         private const string DefaultName = "sendwindowtofront";
 
-        public SendWindowToFrontCommand(string name = DefaultName, string friendlyName = DefaultName, string process = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, process, entityType, id)
+        public SendWindowToFrontCommand(string entityName = DefaultName, string name = DefaultName, string process = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, process, entityType, id)
         {
             CommandConfig = process;
             State = "OFF";
@@ -26,7 +26,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             if (string.IsNullOrWhiteSpace(CommandConfig))
             {
-                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Unable to launch command, it's configured as action-only", Name);
+                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Unable to launch command, it's configured as action-only", EntityName);
 
                 State = "OFF";
                 return;
@@ -43,7 +43,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             if (string.IsNullOrWhiteSpace(action))
             {
-                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Unable to launch command, empty action provided", Name);
+                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Unable to launch command, empty action provided", EntityName);
 
                 State = "OFF";
                 return;
@@ -51,7 +51,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             if (!string.IsNullOrWhiteSpace(CommandConfig))
             {
-                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Command launched by action, command-provided process will be ignored", Name);
+                Log.Warning("[SENDWINDOWTOFRONT] [{name}] Command launched by action, command-provided process will be ignored", EntityName);
             }
 
             ProcessManager.BringMainWindowToFront(action);

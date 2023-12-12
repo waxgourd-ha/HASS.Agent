@@ -17,11 +17,11 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
         public string PreviousPublishedState { get; set; } = string.Empty;
         public CommandEntityType EntityType { get; set; }
 
-        protected AbstractCommand(string name, string friendlyName, CommandEntityType entityType = CommandEntityType.Switch, string id = default)
+        protected AbstractCommand(string entityName, string name, CommandEntityType entityType = CommandEntityType.Switch, string id = default)
         {
             Id = id == null || id == Guid.Empty.ToString() ? Guid.NewGuid().ToString() : id;
-            Name = name;
-            FriendlyName = friendlyName;
+            EntityName = entityName;
+            EntityName = name;
             Domain = entityType.GetEnumMemberValue();
             EntityType = entityType;
         }
@@ -73,7 +73,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
             }
             catch (Exception ex)
             {
-                Log.Fatal("[COMMAND] [{name}] Error publishing state: {err}", Name, ex.Message);
+                Log.Fatal("[COMMAND] [{name}] Error publishing state: {err}", EntityName, ex.Message);
             }
         }
 

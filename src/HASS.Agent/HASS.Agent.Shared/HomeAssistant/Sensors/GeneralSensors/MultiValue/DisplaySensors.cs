@@ -19,7 +19,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; } = new Dictionary<string, AbstractSingleValueSensor>();
 
-        public DisplaySensors(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public DisplaySensors(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             _updateInterval = updateInterval ?? 30;
 
@@ -36,7 +36,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override void UpdateSensorValues()
         {
-            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(Name);
+            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
 
             var displays = Screen.AllScreens;
 
@@ -47,7 +47,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
             var displayCount = displays.Length;
             var displayCountId = $"{parentSensorSafeName}_display_count";
-            var displayCountSensor = new DataTypeIntSensor(_updateInterval, "Display Count", displayCountId, string.Empty, "mdi:monitor", string.Empty, Name);
+            var displayCountSensor = new DataTypeIntSensor(_updateInterval, "Display Count", displayCountId, string.Empty, "mdi:monitor", string.Empty, EntityName);
             displayCountSensor.SetState(displayCount);
             AddUpdateSensor(displayCountId, displayCountSensor);
 
@@ -55,7 +55,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
                 return;
 
             var primaryDisplayId = $"{parentSensorSafeName}_primary_display";
-            var primaryDisplaySensor = new DataTypeStringSensor(_updateInterval, "Primary Display", primaryDisplayId, string.Empty, "mdi:monitor", string.Empty, Name);
+            var primaryDisplaySensor = new DataTypeStringSensor(_updateInterval, "Primary Display", primaryDisplayId, string.Empty, "mdi:monitor", string.Empty, EntityName);
             primaryDisplaySensor.SetState(primaryDisplayStr);
             AddUpdateSensor(primaryDisplayId, primaryDisplaySensor);
 
@@ -105,7 +105,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                 var info = JsonConvert.SerializeObject(displayInfo, Formatting.Indented);
                 var displayInfoId = $"{parentSensorSafeName}_{id}";
-                var displayInfoSensor = new DataTypeStringSensor(_updateInterval, name, displayInfoId, string.Empty, "mdi:monitor", string.Empty, Name, true);
+                var displayInfoSensor = new DataTypeStringSensor(_updateInterval, name, displayInfoId, string.Empty, "mdi:monitor", string.Empty, EntityName, true);
                 displayInfoSensor.SetState(name);
                 displayInfoSensor.SetAttributes(info);
                 AddUpdateSensor(displayInfoId, displayInfoSensor);

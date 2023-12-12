@@ -23,7 +23,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; } = new Dictionary<string, AbstractSingleValueSensor>();
 
-        public StorageSensors(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public StorageSensors(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             _updateInterval = updateInterval ?? 30;
 
@@ -42,7 +42,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
         {
             var driveCount = 0;
 
-            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(Name);
+            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
 
             foreach (var drive in DriveInfo.GetDrives())
             {
@@ -85,7 +85,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                     var info = JsonConvert.SerializeObject(storageInfo, Formatting.Indented);
                     var driveInfoId = $"{parentSensorSafeName}_{driveNameLower}";
-                    var driveInfoSensor = new DataTypeStringSensor(_updateInterval, driveName, driveInfoId, string.Empty, "mdi:harddisk", string.Empty, Name, true);
+                    var driveInfoSensor = new DataTypeStringSensor(_updateInterval, driveName, driveInfoId, string.Empty, "mdi:harddisk", string.Empty, EntityName, true);
 
                     driveInfoSensor.SetState(sensorValue);
                     driveInfoSensor.SetAttributes(info);
@@ -100,22 +100,22 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
                     {
                         case UnauthorizedAccessException _:
                         case SecurityException _:
-                            Log.Fatal(ex, "[STORAGE] [{name}] Disk access denied: {msg}", Name, ex.Message);
+                            Log.Fatal(ex, "[STORAGE] [{name}] Disk access denied: {msg}", EntityName, ex.Message);
                             continue;
                         case DriveNotFoundException _:
-                            Log.Fatal(ex, "[STORAGE] [{name}] Disk not found: {msg}", Name, ex.Message);
+                            Log.Fatal(ex, "[STORAGE] [{name}] Disk not found: {msg}", EntityName, ex.Message);
                             continue;
                         case IOException _:
-                            Log.Fatal(ex, "[STORAGE] [{name}] Disk IO error: {msg}", Name, ex.Message);
+                            Log.Fatal(ex, "[STORAGE] [{name}] Disk IO error: {msg}", EntityName, ex.Message);
                             continue;
                     }
 
-                    Log.Fatal(ex, "[STORAGE] [{name}] Error querying disk: {msg}", Name, ex.Message);
+                    Log.Fatal(ex, "[STORAGE] [{name}] Error querying disk: {msg}", EntityName, ex.Message);
                 }
             }
 
             var driveCountId = $"{parentSensorSafeName}_total_disk_count";
-            var driveCountSensor = new DataTypeIntSensor(_updateInterval, "Total Disk Count", driveCountId, string.Empty, "mdi:harddisk", string.Empty, Name);
+            var driveCountSensor = new DataTypeIntSensor(_updateInterval, "Total Disk Count", driveCountId, string.Empty, "mdi:harddisk", string.Empty, EntityName);
             driveCountSensor.SetState(driveCount);
 
             AddUpdateSensor(driveCountId, driveCountSensor);

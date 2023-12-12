@@ -24,7 +24,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; } = new Dictionary<string, AbstractSingleValueSensor>();
 
-        public NetworkSensors(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string networkCard = "*", string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public NetworkSensors(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string networkCard = "*", string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             _updateInterval = updateInterval ?? 30;
 
@@ -44,7 +44,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override void UpdateSensorValues()
         {
-            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(Name);
+            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
 
             var nicCount = 0;
             var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
@@ -122,7 +122,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                     var info = JsonConvert.SerializeObject(networkInfo, Formatting.Indented);
                     var networkInfoId = $"{parentSensorSafeName}_{id}";
-                    var networkInfoSensor = new DataTypeStringSensor(_updateInterval, nic.Name, networkInfoId, string.Empty, "mdi:lan", string.Empty, Name, true);
+                    var networkInfoSensor = new DataTypeStringSensor(_updateInterval, nic.Name, networkInfoId, string.Empty, "mdi:lan", string.Empty, EntityName, true);
 
                     networkInfoSensor.SetState(nic.OperationalStatus.ToString());
                     networkInfoSensor.SetAttributes(info);
@@ -132,12 +132,12 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
                 }
                 catch (Exception ex)
                 {
-                    Log.Fatal(ex, "[NETWORK] [{name}] Error querying NIC: {msg}", Name, ex.Message);
+                    Log.Fatal(ex, "[NETWORK] [{name}] Error querying NIC: {msg}", EntityName, ex.Message);
                 }
             }
 
             var nicCountId = $"{parentSensorSafeName}_total_network_card_count";
-            var nicCountSensor = new DataTypeIntSensor(_updateInterval, "Network Card Count", nicCountId, string.Empty, "mdi:lan", string.Empty, Name);
+            var nicCountSensor = new DataTypeIntSensor(_updateInterval, "Network Card Count", nicCountId, string.Empty, "mdi:lan", string.Empty, EntityName);
             nicCountSensor.SetState(nicCount);
             AddUpdateSensor(nicCountId, nicCountSensor);
         }

@@ -247,11 +247,11 @@ namespace HASS.Agent.Satellite.Service.Sensors
                                 await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
                                 Variables.SingleValueSensors.RemoveAt(sensorIndex);
 
-                                Log.Information("[SENSORS] Removed single-value sensor: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Removed single-value sensor: {sensor}", abstractSensor.EntityName);
                             }
                             else
                             {
-                                Log.Information("[SENSORS] Single-value sensor not removed, not activated: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Single-value sensor not removed, not activated: {sensor}", abstractSensor.EntityName);
                             }
                         }
                         else
@@ -267,11 +267,11 @@ namespace HASS.Agent.Satellite.Service.Sensors
                                 await abstractSensor.UnPublishAutoDiscoveryConfigAsync();
                                 Variables.MultiValueSensors.RemoveAt(sensorIndex);
 
-                                Log.Information("[SENSORS] Removed multi-value sensor: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Removed multi-value sensor: {sensor}", abstractSensor.EntityName);
                             }
                             else
                             {
-                                Log.Information("[SENSORS] Multi-value sensor not removed, not activated: {sensor}", abstractSensor.Name);
+                                Log.Information("[SENSORS] Multi-value sensor not removed, not activated: {sensor}", abstractSensor.EntityName);
                             }
                         }
                     }
@@ -292,16 +292,16 @@ namespace HASS.Agent.Satellite.Service.Sensors
                             await abstractSensor.PublishAutoDiscoveryConfigAsync();
                             await abstractSensor.PublishStateAsync(false);
 
-                            Log.Information("[SENSORS] Added single-value sensor: {sensor}", abstractSensor.Name);
+                            Log.Information("[SENSORS] Added single-value sensor: {sensor}", abstractSensor.EntityName);
                             continue;
                         }
 
                         // existing, update and re-register
                         var currentSensorIndex = Variables.SingleValueSensors.FindIndex(x => x.Id == abstractSensor.Id);
-                        if (Variables.SingleValueSensors[currentSensorIndex].Name != abstractSensor.Name)
+                        if (Variables.SingleValueSensors[currentSensorIndex].EntityName != abstractSensor.EntityName)
                         {
                             // name changed, unregister
-                            Log.Information("[SENSORS] Single-value sensor changed name, re-registering as new entity: {old} to {new}", Variables.SingleValueSensors[currentSensorIndex].Name, abstractSensor.Name);
+                            Log.Information("[SENSORS] Single-value sensor changed name, re-registering as new entity: {old} to {new}", Variables.SingleValueSensors[currentSensorIndex].EntityName, abstractSensor.EntityName);
 
                             await Variables.SingleValueSensors[currentSensorIndex].UnPublishAutoDiscoveryConfigAsync();
                         }
@@ -310,7 +310,7 @@ namespace HASS.Agent.Satellite.Service.Sensors
                         await abstractSensor.PublishAutoDiscoveryConfigAsync();
                         await abstractSensor.PublishStateAsync(false);
 
-                        Log.Information("[SENSORS] Modified single-value sensor: {sensor}", abstractSensor.Name);
+                        Log.Information("[SENSORS] Modified single-value sensor: {sensor}", abstractSensor.EntityName);
                     }
                     else
                     {
@@ -324,16 +324,16 @@ namespace HASS.Agent.Satellite.Service.Sensors
                             await abstractSensor.PublishAutoDiscoveryConfigAsync();
                             await abstractSensor.PublishStatesAsync(false);
 
-                            Log.Information("[SENSORS] Added multi-value sensor: {sensor}", abstractSensor.Name);
+                            Log.Information("[SENSORS] Added multi-value sensor: {sensor}", abstractSensor.EntityName);
                             continue;
                         }
 
                         // existing, update and re-register
                         var currentSensorIndex = Variables.MultiValueSensors.FindIndex(x => x.Id == abstractSensor.Id);
-                        if (Variables.MultiValueSensors[currentSensorIndex].Name != abstractSensor.Name)
+                        if (Variables.MultiValueSensors[currentSensorIndex].EntityName != abstractSensor.EntityName)
                         {
                             // name changed, unregister
-                            Log.Information("[SENSORS] Multi-value sensor changed name, re-registering as new entity: {old} to {new}", Variables.MultiValueSensors[currentSensorIndex].Name, abstractSensor.Name);
+                            Log.Information("[SENSORS] Multi-value sensor changed name, re-registering as new entity: {old} to {new}", Variables.MultiValueSensors[currentSensorIndex].EntityName, abstractSensor.EntityName);
 
                             await Variables.MultiValueSensors[currentSensorIndex].UnPublishAutoDiscoveryConfigAsync();
                         }
@@ -342,7 +342,7 @@ namespace HASS.Agent.Satellite.Service.Sensors
                         await abstractSensor.PublishAutoDiscoveryConfigAsync();
                         await abstractSensor.PublishStatesAsync(false);
 
-                        Log.Information("[SENSORS] Modified multi-value sensor: {sensor}", abstractSensor.Name);
+                        Log.Information("[SENSORS] Modified multi-value sensor: {sensor}", abstractSensor.EntityName);
                     }
                 }
 

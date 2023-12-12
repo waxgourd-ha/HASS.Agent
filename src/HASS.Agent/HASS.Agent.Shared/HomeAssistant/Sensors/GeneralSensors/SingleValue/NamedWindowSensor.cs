@@ -12,7 +12,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
         private const string DefaultName = "namedwindow";
         public string WindowName { get; protected set; }
 
-        public NamedWindowSensor(string windowName, string name = DefaultName, string friendlyName = DefaultName, int? updateInterval = 10, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public NamedWindowSensor(string windowName, string entityName = DefaultName, string name = DefaultName, int? updateInterval = 10, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             Domain = "binary_sensor";
             WindowName = windowName;
@@ -27,8 +27,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

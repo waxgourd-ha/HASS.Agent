@@ -16,11 +16,11 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
 
         public abstract Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; }
 
-        protected AbstractMultiValueSensor(string name, string friendlyName, int updateIntervalSeconds = 10, string id = default)
+        protected AbstractMultiValueSensor(string entityName, string name, int updateIntervalSeconds = 10, string id = default)
         {
             Id = id == null || id == Guid.Empty.ToString() ? Guid.NewGuid().ToString() : id;
-            Name = name;
-            FriendlyName = friendlyName;
+            EntityName = entityName;
+            EntityName = name;
             UpdateIntervalSeconds = updateIntervalSeconds;
             Domain = "sensor";
         }
@@ -59,7 +59,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
             }
             catch (Exception ex)
             {
-                Log.Fatal("[SENSOR] [{name}] Error publishing state: {err}", Name, ex.Message);
+                Log.Fatal("[SENSOR] [{name}] Error publishing state: {err}", EntityName, ex.Message);
             }
         }
 

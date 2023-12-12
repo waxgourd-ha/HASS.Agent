@@ -11,7 +11,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.WmiSensors.SingleValue
     {
         private const string DefaultName = "memoryusage";
 
-        public MemoryUsageSensor(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default, bool applyRounding = false, int? round = null) : base("SELECT FreePhysicalMemory,TotalVisibleMemorySize FROM Win32_OperatingSystem", string.Empty, applyRounding, round, updateInterval ?? 30, name ?? DefaultName, friendlyName ?? null, id) { }
+        public MemoryUsageSensor(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default, bool applyRounding = false, int? round = null) : base("SELECT FreePhysicalMemory,TotalVisibleMemorySize FROM Win32_OperatingSystem", string.Empty, applyRounding, round, updateInterval ?? 30, entityName ?? DefaultName, name ?? null, id) { }
 
         public override DiscoveryConfigModel GetAutoDiscoveryConfig()
         {
@@ -22,8 +22,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.WmiSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
-                Name = Name,
-                FriendlyName = FriendlyName,
+                EntityName = EntityName,
+                Name = EntityName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

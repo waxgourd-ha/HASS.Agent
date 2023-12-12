@@ -168,14 +168,14 @@ namespace HASS.Agent.Commands
                     return;
                 }
 
-                if (Variables.Commands.All(x => x.Name != name))
+                if (Variables.Commands.All(x => x.EntityName != name))
                 {
                     Log.Warning("[COMMANDSMANAGER] [{command}] Command not found, unable to execute", name);
 
                     return;
                 }
 
-                var command = Variables.Commands.First(x => x.Name == name);
+                var command = Variables.Commands.First(x => x.EntityName == name);
                 command.TurnOn();
             }
             catch (Exception ex)
@@ -211,11 +211,11 @@ namespace HASS.Agent.Commands
                             await Variables.MqttManager.UnsubscribeAsync(abstractCommand);
                             Variables.Commands.RemoveAt(commandIndex);
 
-                            Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.Name);
+                            Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.EntityName);
                         }
                         else
                         {
-                            Log.Information("[COMMANDS] Command not removed, not activated: {command}", abstractCommand.Name);
+                            Log.Information("[COMMANDS] Command not removed, not activated: {command}", abstractCommand.EntityName);
                         }
                     }
                 }
@@ -233,15 +233,15 @@ namespace HASS.Agent.Commands
                         await abstractCommand.PublishAutoDiscoveryConfigAsync();
                         await abstractCommand.PublishStateAsync(false);
 
-                        Log.Information("[COMMANDS] Added command: {command}", abstractCommand.Name);
+                        Log.Information("[COMMANDS] Added command: {command}", abstractCommand.EntityName);
                         continue;
                     }
 
                     // existing, update and re-register
                     var currentCommandIndex = Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id);
-                    if (Variables.Commands[currentCommandIndex].Name != abstractCommand.Name || Variables.Commands[currentCommandIndex].EntityType != abstractCommand.EntityType)
+                    if (Variables.Commands[currentCommandIndex].EntityName != abstractCommand.EntityName || Variables.Commands[currentCommandIndex].EntityType != abstractCommand.EntityType)
                     {
-                        Log.Information("[COMMANDS] Command changed, re-registering as new entity: {old} to {new}", Variables.Commands[currentCommandIndex].Name, abstractCommand.Name);
+                        Log.Information("[COMMANDS] Command changed, re-registering as new entity: {old} to {new}", Variables.Commands[currentCommandIndex].EntityName, abstractCommand.EntityName);
 
                         await Variables.Commands[currentCommandIndex].UnPublishAutoDiscoveryConfigAsync();
                         await Variables.MqttManager.UnsubscribeAsync(Variables.Commands[currentCommandIndex]);
@@ -252,7 +252,7 @@ namespace HASS.Agent.Commands
                     await abstractCommand.PublishAutoDiscoveryConfigAsync();
                     await abstractCommand.PublishStateAsync(false);
 
-                    Log.Information("[COMMANDS] Modified command: {command}", abstractCommand.Name);
+                    Log.Information("[COMMANDS] Modified command: {command}", abstractCommand.EntityName);
                 }
 
                 await Variables.MqttManager.AnnounceAvailabilityAsync();

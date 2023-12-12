@@ -15,7 +15,7 @@ namespace HASS.Agent.HomeAssistant.Commands.InternalCommands
 
         public string RadioName { get; set; }
 
-        internal RadioCommand(string radioName, string name = DefaultName, string friendlyName = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, radioName, entityType, id)
+        internal RadioCommand(string radioName, string entityName = DefaultName, string name = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, radioName, entityType, id)
         {
             RadioName = radioName;
             _radio = RadioManager.AvailableRadio.First(r => r.Name == radioName);
