@@ -156,10 +156,12 @@ namespace HASS.Agent.Service
                     Auth = Variables.AppSettings.ServiceAuthId
                 };
 
-                foreach (var configuredSensor in configuredSensors.ConvertToRpcConfiguredSensors()) setConfiguredSensorsRequest.ConfiguredServerSensors.Add(configuredSensor);
+                foreach (var configuredSensor in configuredSensors.ConvertToRpcConfiguredSensors())
+                    setConfiguredSensorsRequest.ConfiguredServerSensors.Add(configuredSensor);
 
                 var response = await _rpcClient.SetConfiguredSensorsAsync(setConfiguredSensorsRequest);
-                if (response.Ok) return (true, string.Empty);
+                if (response.Ok)
+                    return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetConfiguredSensors request failed: {err}", response.Error);
                 return (false, response.Error);

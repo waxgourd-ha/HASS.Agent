@@ -17,7 +17,9 @@ namespace HASS.Agent.Satellite.Service.Extensions
         /// <returns></returns>
         public static List<ConfiguredCommand> ConvertToConfiguredCommands(this RepeatedField<RpcConfiguredServerCommand> rpcConfiguredCommands)
         {
-            return rpcConfiguredCommands.Select(rpcConfiguredCommand => rpcConfiguredCommand.ConvertToConfiguredCommand()).ToList();
+            return rpcConfiguredCommands.Select(
+                rpcConfiguredCommand => rpcConfiguredCommand.ConvertToConfiguredCommand()
+            ).ToList();
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 RunAsLowIntegrity = rpcConfiguredCommand.RunAsLowIntegrity,
                 EntityType = (CommandEntityType)rpcConfiguredCommand.CommandEntityType
             };
+
             return configuredCommand;
         }
 
@@ -47,7 +50,9 @@ namespace HASS.Agent.Satellite.Service.Extensions
         public static RepeatedField<RpcConfiguredServerCommand> ConvertToRpcConfiguredCommands(this List<ConfiguredCommand> configuredCommands)
         {
             var rpcConfguredCommands = new RepeatedField<RpcConfiguredServerCommand>();
-            foreach (var configuredCommand in configuredCommands) rpcConfguredCommands.Add(configuredCommand.ConvertToRpcConfiguredCommand());
+            foreach (var configuredCommand in configuredCommands)
+                rpcConfguredCommands.Add(configuredCommand.ConvertToRpcConfiguredCommand());
+
             return rpcConfguredCommands;
         }
 
@@ -77,7 +82,9 @@ namespace HASS.Agent.Satellite.Service.Extensions
         /// <returns></returns>
         public static List<ConfiguredSensor> ConvertToConfiguredSensors(this RepeatedField<RpcConfiguredServerSensor> rpcConfiguredSensors)
         {
-            return rpcConfiguredSensors.Select(rpcConfiguredSensor => rpcConfiguredSensor.ConvertToConfiguredSensor()).ToList();
+            return rpcConfiguredSensors.Select(
+                rpcConfiguredSensor => rpcConfiguredSensor.ConvertToConfiguredSensor()
+            ).ToList();
         }
 
         /// <summary>
@@ -98,8 +105,10 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 Category = rpcConfiguredSensor.Category,
                 Counter = rpcConfiguredSensor.Counter,
                 Instance = rpcConfiguredSensor.Instance,
-                EntityName = rpcConfiguredSensor.Name
+                EntityName = rpcConfiguredSensor.EntityName,
+                Name = rpcConfiguredSensor.Name
             };
+
             return configuredSensor;
         }
 
@@ -111,7 +120,9 @@ namespace HASS.Agent.Satellite.Service.Extensions
         public static RepeatedField<RpcConfiguredServerSensor> ConvertToRpcConfiguredSensors(this List<ConfiguredSensor> configuredSensors)
         {
             var rpcConfguredSensors = new RepeatedField<RpcConfiguredServerSensor>();
-            foreach (var configuredSensor in configuredSensors) rpcConfguredSensors.Add(configuredSensor.ConvertToRpcConfiguredSensor());
+            foreach (var configuredSensor in configuredSensors)
+                rpcConfguredSensors.Add(configuredSensor.ConvertToRpcConfiguredSensor());
+            
             return rpcConfguredSensors;
         }
 
@@ -137,6 +148,7 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 Instance = configuredSensor.Instance ?? string.Empty,
                 Name = configuredSensor.EntityName
             };
+
             return configuredRpcSensor;
         }
 
@@ -161,6 +173,7 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 MqttClientCertificate = rpcServiceMqttSettings.MqttClientCertificate,
                 MqttClientId = rpcServiceMqttSettings.MqttClientId
             };
+
             return serviceMqttSettings;
         }
 
@@ -185,6 +198,7 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 MqttClientCertificate = serviceMqttSettings.MqttClientCertificate,
                 MqttClientId = serviceMqttSettings.MqttClientId
             };
+
             return rpcServiceMqttSettings;
         }
 

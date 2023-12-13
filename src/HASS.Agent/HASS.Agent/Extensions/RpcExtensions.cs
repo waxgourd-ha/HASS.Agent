@@ -135,7 +135,8 @@ namespace HASS.Agent.Extensions
                 Category = configuredSensor.Category ?? string.Empty,
                 Counter = configuredSensor.Counter ?? string.Empty,
                 Instance = configuredSensor.Instance ?? string.Empty,
-                Name = configuredSensor.EntityName
+                Name = configuredSensor.Name ?? string.Empty,
+                EntityName = configuredSensor.EntityName ?? string.Empty
             };
             return configuredRpcSensor;
         }
