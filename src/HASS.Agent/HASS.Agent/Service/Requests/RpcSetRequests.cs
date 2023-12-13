@@ -24,9 +24,11 @@ namespace HASS.Agent.Service
                 };
 
                 var response = await _rpcClient.SetDeviceNameAsync(setDeviceNameRequest);
-                if (response.Ok) return (true, string.Empty);
+                if (response.Ok)
+                    return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetDeviceName request failed: {err}", response.Error);
+                
                 return (false, response.Error);
             }
             catch (RpcException ex)
@@ -58,9 +60,11 @@ namespace HASS.Agent.Service
                 };
 
                 var response = await _rpcClient.SetServiceSettingsAsync(setServiceSettingsRequest);
-                if (response.Ok) return (true, string.Empty);
+                if (response.Ok)
+                    return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetServiceSettings request failed: {err}", response.Error);
+                
                 return (false, response.Error);
             }
             catch (RpcException ex)
@@ -91,9 +95,11 @@ namespace HASS.Agent.Service
                 };
 
                 var response = await _rpcClient.SetServiceMqttSettingsAsync(setServiceMqttSettingsRequest);
-                if (response.Ok) return (true, string.Empty);
+                if (response.Ok)
+                    return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetServiceMqttSettings request failed: {err}", response.Error);
+                
                 return (false, response.Error);
             }
             catch (RpcException ex)
@@ -122,12 +128,15 @@ namespace HASS.Agent.Service
                     Auth = Variables.AppSettings.ServiceAuthId
                 };
 
-                foreach (var configuredCommand in configuredCommands.ConvertToRpcConfiguredCommands()) setConfiguredCommandsRequest.ConfiguredServerCommands.Add(configuredCommand);
+                foreach (var configuredCommand in configuredCommands.ConvertToRpcConfiguredCommands())
+                    setConfiguredCommandsRequest.ConfiguredServerCommands.Add(configuredCommand);
 
                 var response = await _rpcClient.SetConfiguredCommandsAsync(setConfiguredCommandsRequest);
-                if (response.Ok) return (true, string.Empty);
+                if (response.Ok)
+                    return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetConfiguredCommands request failed: {err}", response.Error);
+                
                 return (false, response.Error);
             }
             catch (RpcException ex)
@@ -164,6 +173,7 @@ namespace HASS.Agent.Service
                     return (true, string.Empty);
 
                 Log.Error("[SERVICE] SetConfiguredSensors request failed: {err}", response.Error);
+                
                 return (false, response.Error);
             }
             catch (RpcException ex)
