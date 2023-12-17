@@ -2,11 +2,18 @@
 using System.IO;
 using System.ServiceProcess;
 using HASS.Agent.Commands;
+using HASS.Agent.Extensions;
 using HASS.Agent.Functions;
 using HASS.Agent.MQTT;
 using HASS.Agent.Resources.Localization;
 using HASS.Agent.Service;
+using HASS.Agent.Settings;
+using HASS.Agent.Shared.Enums;
+using HASS.Agent.Shared.Models.Config;
+using HASS.Agent.Shared.Models.Config.Old;
+using HASS.Agent.Shared.Models.HomeAssistant;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using Serilog;
 
 
@@ -62,7 +69,12 @@ namespace HASS.Agent.Compatibility
                 return;
             }
 
-            MigrateConfig(oldServiceInstallationPath, Path.Combine(ServiceManager.GetInstallPath(), "config"));
+            var configPath = Path.Combine(ServiceManager.GetInstallPath(), "config");
+
+            MigrateConfig(oldServiceInstallationPath, configPath);
+
+            MigrateSensors(Path.Combine(configPath, Variables.SensorsFile));
+            MigrateCommands(Path.Combine(configPath, Variables.CommandsFile));
 
             Log.Information("[COMPATTASK] Service configuration migration end");
         }
@@ -79,6 +91,9 @@ namespace HASS.Agent.Compatibility
             }
 
             MigrateConfig(oldClientInstallPath, Variables.ConfigPath);
+
+            MigrateSensors(Variables.SensorsFile);
+            MigrateCommands(Variables.CommandsFile);
 
             Log.Information("[COMPATTASK] Client configuration migration end");
         }
@@ -120,6 +135,118 @@ namespace HASS.Agent.Compatibility
             {
                 Log.Error("[COMPATTASK] There was an issue stopping original instances of HASS.Agent: {ex}", ex);
             }
+        }
+
+        private List<ConfiguredSensor> GetConfiguredSensors(string jsonData)
+        {
+            List<ConfiguredSensor> sensors = null;
+            if (ConfiguredSensorLAB02.InJsonData(jsonData))
+            {
+                Log.Warning("[COMPATTASK] Migrating sensors from LAB02 version");
+                var lab02Sensors = JsonConvert.DeserializeObject<List<ConfiguredSensorLAB02>>(jsonData);
+                sensors = lab02Sensors.Select(s => ConfiguredSensor.FromLAB02(s)).ToList();
+            }
+            else if (ConfiguredSensor2023Beta.InJsonData(jsonData))
+            {
+                Log.Warning("[COMPATTASK] Migrating sensors from 2023Beta version");
+                var beta2023Sensors = JsonConvert.DeserializeObject<List<ConfiguredSensor2023Beta>>(jsonData);
+                sensors = beta2023Sensors.Select(s => ConfiguredSensor.From2023Beta(s)).ToList();
+            }
+            else
+            {
+                Log.Warning("[COMPATTASK] Cannot identify sensors version");
+            }
+
+            return sensors;
+        }
+
+        private void MigrateSensors(string sensorsFile)
+        {
+            try
+            {
+                if (!File.Exists(sensorsFile))
+                {
+                    Log.Warning("[COMPATTASK] Sensors configuration file does not exit");
+                    return;
+                }
+
+                var sensorsRawIn = File.ReadAllText(sensorsFile);
+                if (string.IsNullOrWhiteSpace(sensorsRawIn))
+                {
+                    Log.Warning("[COMPATTASK] Sensors configuration file is empty");
+                    return;
+                }
+
+                var configuredSensors = GetConfiguredSensors(sensorsRawIn);
+                if (configuredSensors == null)
+                    return;
+
+                var sensorsRawOut = JsonConvert.SerializeObject(configuredSensors, Formatting.Indented);
+                File.WriteAllText(sensorsFile, sensorsRawOut);
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "[COMPATTASK] Error migrating sensors: {err}", ex.Message);
+                return;
+            }
+
+            Log.Information("[COMPATTASK] Sensors configuration migrated");
+        }
+
+        private List<ConfiguredCommand> GetConfiguredCommands(string jsonData)
+        {
+            List<ConfiguredCommand> commands = null;
+            if (ConfiguredCommandLAB02.InJsonData(jsonData))
+            {
+                Log.Warning("[COMPATTASK] Migrating sensors from LAB02 version");
+                var lab02Commands = JsonConvert.DeserializeObject<List<ConfiguredCommandLAB02>>(jsonData);
+                commands = lab02Commands.Select(c => ConfiguredCommand.FromLAB02(c)).ToList();
+            }
+            else if (ConfiguredCommand2023Beta.InJsonData(jsonData))
+            {
+                Log.Warning("[COMPATTASK] Migrating sensors from 2023Beta version");
+                var beta2023Commands = JsonConvert.DeserializeObject<List<ConfiguredCommand2023Beta>>(jsonData);
+                commands = beta2023Commands.Select(c => ConfiguredCommand.From2023Beta(c)).ToList();
+            }
+            else
+            {
+                Log.Warning("[COMPATTASK] Cannot identify sensors version");
+            }
+
+            return commands;
+        }
+
+        private void MigrateCommands(string commandsFile)
+        {
+            try
+            {
+                if (!File.Exists(commandsFile))
+                {
+                    Log.Warning("[COMPATTASK] Commands configuration file does not exit");
+                    return;
+                }
+
+                var commandsRawIn = File.ReadAllText(commandsFile);
+                if (string.IsNullOrWhiteSpace(commandsRawIn))
+                {
+                    Log.Warning("[COMPATTASK] Commands configuration file is empty");
+                    return;
+                }
+
+                var configuredCommands = GetConfiguredCommands(commandsRawIn);
+                if (configuredCommands == null)
+                    return;
+
+                var commandsRawOut = JsonConvert.SerializeObject(configuredCommands, Formatting.Indented);
+                File.WriteAllText(commandsFile, commandsRawOut);
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "[COMPATTASK] Error migrating commands: {err}", ex.Message);
+                return;
+            }
+
+            Log.Information("[COMPATTASK] Commands configuration migrated");
         }
 
         public async Task<(bool, string)> Perform()
