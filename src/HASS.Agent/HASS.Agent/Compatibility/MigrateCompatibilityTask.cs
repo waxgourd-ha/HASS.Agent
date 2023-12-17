@@ -53,7 +53,10 @@ namespace HASS.Agent.Compatibility
             Directory.CreateDirectory(destination);
 
             foreach (var file in oldConfigFiles)
+            {
+                Log.Information("[COMPATTASK] Migrating {fn}", file.FullName);
                 file.CopyTo(Path.Combine(destination, file.Name), true);
+            }
 
             Log.Information("[COMPATTASK] Configuration migrated");
         }
@@ -73,8 +76,8 @@ namespace HASS.Agent.Compatibility
 
             MigrateConfig(oldServiceInstallationPath, configPath);
 
-            MigrateSensors(Path.Combine(configPath, Variables.SensorsFile));
-            MigrateCommands(Path.Combine(configPath, Variables.CommandsFile));
+            MigrateSensors(Path.Combine(configPath, Path.GetFileName(Variables.SensorsFile)));
+            MigrateCommands(Path.Combine(configPath, Path.GetFileName(Variables.CommandsFile)));
 
             Log.Information("[COMPATTASK] Service configuration migration end");
         }
@@ -166,7 +169,7 @@ namespace HASS.Agent.Compatibility
             {
                 if (!File.Exists(sensorsFile))
                 {
-                    Log.Warning("[COMPATTASK] Sensors configuration file does not exit");
+                    Log.Warning("[COMPATTASK] Sensors configuration file '{sf}' does not exit", sensorsFile);
                     return;
                 }
 
@@ -222,7 +225,7 @@ namespace HASS.Agent.Compatibility
             {
                 if (!File.Exists(commandsFile))
                 {
-                    Log.Warning("[COMPATTASK] Commands configuration file does not exit");
+                    Log.Warning("[COMPATTASK] Commands configuration file '{cf}' does not exit", commandsFile);
                     return;
                 }
 

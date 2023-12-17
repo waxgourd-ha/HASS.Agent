@@ -33,13 +33,15 @@ namespace HASS.Agent.Compatibility
                     ? StoredSensors.ConvertAbstractSingleValueToConfigured(sensor as AbstractSingleValueSensor)
                     : StoredSensors.ConvertAbstractMultiValueToConfigured(sensor as AbstractMultiValueSensor);
 
-                if (!sensor.EntityName.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName()))
+                if (!sensor.EntityName.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName())
+                    && !sensor.Name.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName()))
                 {
                     configuredSensors.Add(currentConfiguredSensor);
                     continue;
                 }
 
-                var newName = sensor.EntityName.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
+                var newEntityName = sensor.EntityName.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
+                var newName = sensor.Name.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
                 var objectId = $"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_{newName}";
                 if (objectId == sensor.EntityName)
                 {
@@ -47,7 +49,8 @@ namespace HASS.Agent.Compatibility
                     ? StoredSensors.ConvertAbstractSingleValueToConfigured(sensor as AbstractSingleValueSensor)
                     : StoredSensors.ConvertAbstractMultiValueToConfigured(sensor as AbstractMultiValueSensor);
 
-                    newConfiguredSensor.EntityName = newName;
+                    newConfiguredSensor.EntityName = newEntityName;
+                    newConfiguredSensor.Name = newName;
                     configuredSensors.Add(newConfiguredSensor);
 
                     toBeDeletedSensors.Add(currentConfiguredSensor);
@@ -70,18 +73,21 @@ namespace HASS.Agent.Compatibility
             {
                 var currentConfiguredCommand = StoredCommands.ConvertAbstractToConfigured(command);
 
-                if (!command.EntityName.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName()))
+                if (!command.EntityName.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName())
+                    && !command.Name.Contains(SharedHelperFunctions.GetSafeConfiguredDeviceName()))
                 {
                     configuredCommands.Add(currentConfiguredCommand);
                     continue;
                 }
 
-                var newName = command.EntityName.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
-                var objectId = $"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_{newName}";
+                var newEntityName = command.EntityName.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
+                var newName = command.Name.Replace($"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_", "");
+                var objectId = $"{SharedHelperFunctions.GetSafeConfiguredDeviceName()}_{newEntityName}";
                 if (objectId == command.EntityName)
                 {
                     var newConfiguredCommand = StoredCommands.ConvertAbstractToConfigured(command);
-                    newConfiguredCommand.EntityName = newName;
+                    newConfiguredCommand.EntityName = newEntityName;
+                    newConfiguredCommand.Name = newName;
                     configuredCommands.Add(newConfiguredCommand);
 
                     toBeDeletedCommands.Add(currentConfiguredCommand);
