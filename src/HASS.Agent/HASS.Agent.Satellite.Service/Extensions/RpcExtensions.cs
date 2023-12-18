@@ -33,7 +33,8 @@ namespace HASS.Agent.Satellite.Service.Extensions
             {
                 Type = (CommandType)rpcConfiguredCommand.Type,
                 Id = Guid.Parse(rpcConfiguredCommand.Id),
-                EntityName = rpcConfiguredCommand.Name,
+                EntityName = rpcConfiguredCommand.EntityName,
+                Name = rpcConfiguredCommand.Name,
                 Command = rpcConfiguredCommand.Command,
                 RunAsLowIntegrity = rpcConfiguredCommand.RunAsLowIntegrity,
                 EntityType = (CommandEntityType)rpcConfiguredCommand.CommandEntityType
@@ -69,7 +70,8 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 Id = configuredCommand.Id.ToString(),
                 Command = configuredCommand.Command ?? string.Empty,
                 RunAsLowIntegrity = configuredCommand.RunAsLowIntegrity,
-                Name = configuredCommand.EntityName,
+                Name = configuredCommand.Name,
+                EntityName = configuredCommand.EntityName,
                 CommandEntityType = (int)configuredCommand.EntityType
             };
             return configuredRpcCommand;
@@ -146,7 +148,8 @@ namespace HASS.Agent.Satellite.Service.Extensions
                 Category = configuredSensor.Category ?? string.Empty,
                 Counter = configuredSensor.Counter ?? string.Empty,
                 Instance = configuredSensor.Instance ?? string.Empty,
-                Name = configuredSensor.EntityName
+                Name = configuredSensor.Name ?? string.Empty,
+                EntityName = configuredSensor?.EntityName ?? string.Empty
             };
 
             return configuredRpcSensor;

@@ -2946,4 +2946,10 @@ taşınması orijinal versiyondan</value>
   <data name="About_LblInfo4_1" xml:space="preserve">
     <value>HASS.Agent'ın orijinal versiyonunu geliştirdikleri için LAB02 Research ve Sam'e daha da büyük bir 'teşekkür ederim' - bu olmasaydı bu olmazdı!</value>
   </data>
+  <data name="Compat_NameTask_Error_ServiceCommunication" xml:space="preserve">
+    <value>Uydu servisiyle iletişimde hata!</value>
+  </data>
+  <data name="Compat_NameTask_Error_ServiceStart" xml:space="preserve">
+    <value>Uydu hizmeti başlatılırken hata oluştu!</value>
+  </data>
 </root>

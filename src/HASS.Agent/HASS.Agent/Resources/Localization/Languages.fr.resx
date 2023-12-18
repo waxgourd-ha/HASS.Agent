@@ -3367,4 +3367,10 @@ HASS.Agent de la version originale</value>
   <data name="About_LblInfo4_1" xml:space="preserve">
     <value>Un plus grand merci encore à LAB02 Research et à Sam pour avoir développé la version originale de HASS.Agent - cela n'existerait pas sans cela !</value>
   </data>
+  <data name="Compat_NameTask_Error_ServiceCommunication" xml:space="preserve">
+    <value>Erreur de communication avec le service satellite !</value>
+  </data>
+  <data name="Compat_NameTask_Error_ServiceStart" xml:space="preserve">
+    <value>Erreur lors du démarrage du service satellite !</value>
+  </data>
 </root>
