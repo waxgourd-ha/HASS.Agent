@@ -45,29 +45,34 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
             try
             {
                 var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
+                var deviceName = SharedHelperFunctions.GetSafeDeviceName();
 
                 var printerInfo = GetPrinterInfo();
 
-                var printersCountId = $"{parentSensorSafeName}_printers_count";
-                var printersCountSensor = new DataTypeIntSensor(_updateInterval, printersCountId, "Printers Count", printersCountId, string.Empty, "mdi:printer", string.Empty, EntityName);
+                var printersCountEntityName = $"{parentSensorSafeName}_printers_count";
+                var printersCountId = $"{Id}_printers_count";
+                var printersCountSensor = new DataTypeIntSensor(_updateInterval, printersCountEntityName, "Printers Count", printersCountId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 printersCountSensor.SetState(printerInfo.PrintQueues.Count);
                 AddUpdateSensor(printersCountId, printersCountSensor);
 
-                var defaultQueueId = $"{parentSensorSafeName}_default_queue";
-                var defaultQueueSensor = new DataTypeStringSensor(_updateInterval, defaultQueueId, "Default Queue", defaultQueueId, string.Empty, "mdi:printer", string.Empty, EntityName);
+                var defaultQueueEntityName = $"{parentSensorSafeName}_default_queue";
+                var defaultQueueId = $"{Id}_default_queue";
+                var defaultQueueSensor = new DataTypeStringSensor(_updateInterval, defaultQueueEntityName, "Default Queue", defaultQueueId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 defaultQueueSensor.SetState(printerInfo.DefaultQueue);
                 AddUpdateSensor(defaultQueueId, defaultQueueSensor);
 
-                var defaultQueueJobsId = $"{parentSensorSafeName}_default_queue_jobs";
-                var defaultQueueJobsSensor = new DataTypeIntSensor(_updateInterval, defaultQueueJobsId, "Default Queue Jobs", defaultQueueJobsId, string.Empty, "mdi:printer", string.Empty, EntityName);
+                var defaultQueueJobsEntityName = $"{parentSensorSafeName}_default_queue_jobs";
+                var defaultQueueJobsId = $"{Id}_default_queue_jobs";
+                var defaultQueueJobsSensor = new DataTypeIntSensor(_updateInterval, defaultQueueJobsEntityName, "Default Queue Jobs", defaultQueueJobsId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 defaultQueueJobsSensor.SetState(printerInfo.DefaultQueueJobs);
                 AddUpdateSensor(defaultQueueJobsId, defaultQueueJobsSensor);
 
                 foreach (var printer in printerInfo.PrintQueues)
                 {
                     var printerQueueInfo = JsonConvert.SerializeObject(printer, Formatting.Indented);
-                    var printerId = $"{parentSensorSafeName}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
-                    var printerSensor = new DataTypeIntSensor(_updateInterval, printerId, $"{printer.Name}", printerId, string.Empty, "mdi:printer", string.Empty, EntityName, true);
+                    var printerEntityName = $"{parentSensorSafeName}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
+                    var printerId = $"{Id}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
+                    var printerSensor = new DataTypeIntSensor(_updateInterval, printerEntityName, $"{printer.Name}", printerId, string.Empty, "mdi:printer", string.Empty, EntityName, true);
 
                     printerSensor.SetState(printer.Jobs);
                     printerSensor.SetAttributes(printerQueueInfo);
