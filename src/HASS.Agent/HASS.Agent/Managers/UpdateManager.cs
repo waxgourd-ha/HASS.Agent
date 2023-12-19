@@ -13,6 +13,8 @@ namespace HASS.Agent.Managers;
 
 internal static class UpdateManager
 {
+    private static readonly DateTimeOffset s_releaseCutoff = new(2023, 11, 30, 23, 59, 59, TimeSpan.Zero);
+
     private static readonly Version CurrentVersion = Version.Parse(Variables.Version.Split('-').First());
 
     /// <summary>
@@ -91,6 +93,10 @@ internal static class UpdateManager
             if (latestRelease == null || latestRelease.Draft || latestRelease.Prerelease)
                 return (false, pendingUpdate);
 
+            // we are interested only in releases created after 30.11.2023
+            if(latestRelease.CreatedAt.CompareTo(s_releaseCutoff) <= 0)
+                return (false, pendingUpdate);
+
             var isNewer = UpdateIsNewer(Variables.Version, latestRelease.TagName);
             if (!isNewer)
                 return (false, pendingUpdate);
@@ -123,6 +129,10 @@ internal static class UpdateManager
 
             foreach (var release in latestReleases)
             {
+                // we are interested only in releases created after 30.11.2023
+                if (release.CreatedAt.CompareTo(s_releaseCutoff) <= 0)
+                    continue;
+
                 if (release.Draft)
                     return (false, pendingUpdate);
 
@@ -261,7 +271,7 @@ internal static class UpdateManager
             var currentVersionIsBeta = currentVersion.Contains('b');
             var availableVersionIsBeta = availableVersion.Contains('b');
 
-            // backwards compatiblity
+            // backwards compatibility
             if (currentVersion.StartsWith('v') || currentVersion.StartsWith('b'))
                 currentVersion = currentVersion.Remove(0, 1);
             if (availableVersion.StartsWith('v') || availableVersion.StartsWith('b'))
