@@ -26,7 +26,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
         private string _desktopName = string.Empty;
         private string _attributes = string.Empty;
 
-        public ActiveDesktopSensor(int? updateInterval = null, string name = _defaultName, string friendlyName = _defaultName, string id = default) : base(name ?? _defaultName, friendlyName ?? null, updateInterval ?? 15, id)
+        public ActiveDesktopSensor(int? updateInterval = null, string entityName = _defaultName, string name = _defaultName, string id = default) : base(entityName ?? _defaultName, name ?? null, updateInterval ?? 15, id)
         {
             UseAttributes = true;
         }
@@ -46,8 +46,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
+                EntityName = EntityName,
                 Name = Name,
-                FriendlyName = FriendlyName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

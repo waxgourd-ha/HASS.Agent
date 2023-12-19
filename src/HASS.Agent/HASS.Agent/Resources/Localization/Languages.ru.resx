@@ -3403,4 +3403,10 @@ Home Assistant.
   <data name="About_LblInfo4_1" xml:space="preserve">
     <value>Еще большее «спасибо» LAB02 Research и Сэму за разработку оригинальной версии HASS.Agent — без нее его бы не существовало!</value>
   </data>
+  <data name="Compat_NameTask_Error_ServiceCommunication" xml:space="preserve">
+    <value>Ошибка связи со спутниковой службой!</value>
+  </data>
+  <data name="Compat_NameTask_Error_ServiceStart" xml:space="preserve">
+    <value>Ошибка при запуске спутниковой службы!</value>
+  </data>
 </root>

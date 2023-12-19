@@ -66,7 +66,7 @@ namespace HASS.Agent.Forms.Commands
                 var commandCard = CommandsManager.CommandInfoCards[command.Type];
 
                 var lviCommand = new ListViewItem(command.Id.ToString());
-                lviCommand.SubItems.Add(command.Name);
+                lviCommand.SubItems.Add(command.EntityName);
                 lviCommand.SubItems.Add(commandCard.Name);
                 lviCommand.SubItems.Add(command.RunAsLowIntegrity ? "√" : string.Empty);
                 lviCommand.SubItems.Add(commandCard.ActionCompatible ? "√" : string.Empty);

@@ -90,85 +90,85 @@ namespace HASS.Agent.Satellite.Service.Settings
             switch (sensor.Type)
             {
                 case SensorType.UserNotificationStateSensor:
-                    abstractSensor = new UserNotificationStateSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new UserNotificationStateSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.DummySensor:
-                    abstractSensor = new DummySensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new DummySensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.CurrentClockSpeedSensor:
-                    abstractSensor = new CurrentClockSpeedSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new CurrentClockSpeedSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.CpuLoadSensor:
-                    abstractSensor = new CpuLoadSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new CpuLoadSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.MemoryUsageSensor:
-                    abstractSensor = new MemoryUsageSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new MemoryUsageSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.ActiveWindowSensor:
-                    abstractSensor = new ActiveWindowSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new ActiveWindowSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.NamedWindowSensor:
-                    abstractSensor = new NamedWindowSensor(sensor.WindowName, sensor.Name, sensor.FriendlyName, sensor.UpdateInterval, sensor.Id.ToString());
+                    abstractSensor = new NamedWindowSensor(sensor.WindowName, sensor.EntityName, sensor.Name, sensor.UpdateInterval, sensor.Id.ToString());
                     break;
                 case SensorType.LastActiveSensor:
-                    abstractSensor = new LastActiveSensor(sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new LastActiveSensor(sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.LastSystemStateChangeSensor:
-                    abstractSensor = new LastSystemStateChangeSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new LastSystemStateChangeSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.LastBootSensor:
-                    abstractSensor = new LastBootSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new LastBootSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.WebcamActiveSensor:
-                    abstractSensor = new WebcamActiveSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new WebcamActiveSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.MicrophoneActiveSensor:
-                    abstractSensor = new MicrophoneActiveSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new MicrophoneActiveSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.SessionStateSensor:
-                    abstractSensor = new SessionStateSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new SessionStateSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.CurrentVolumeSensor:
-                    abstractSensor = new CurrentVolumeSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new CurrentVolumeSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.GpuLoadSensor:
-                    abstractSensor = new GpuLoadSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new GpuLoadSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.GpuTemperatureSensor:
-                    abstractSensor = new GpuTemperatureSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new GpuTemperatureSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.WmiQuerySensor:
-                    abstractSensor = new WmiQuerySensor(sensor.Query, sensor.Scope, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new WmiQuerySensor(sensor.Query, sensor.Scope, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.PerformanceCounterSensor:
-                    abstractSensor = new PerformanceCounterSensor(sensor.Category, sensor.Counter, sensor.Instance, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new PerformanceCounterSensor(sensor.Category, sensor.Counter, sensor.Instance, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.ProcessActiveSensor:
-                    abstractSensor = new ProcessActiveSensor(sensor.Query, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new ProcessActiveSensor(sensor.Query, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.ServiceStateSensor:
-                    abstractSensor = new ServiceStateSensor(sensor.Query, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new ServiceStateSensor(sensor.Query, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.LoggedUsersSensor:
-                    abstractSensor = new LoggedUsersSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new LoggedUsersSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.LoggedUserSensor:
-                    abstractSensor = new LoggedUserSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new LoggedUserSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.PowershellSensor:
-                    abstractSensor = new PowershellSensor(sensor.Query, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new PowershellSensor(sensor.Query, sensor.ApplyRounding, sensor.Round, sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.WindowStateSensor:
-                    abstractSensor = new WindowStateSensor(sensor.Query, sensor.Name, sensor.FriendlyName, sensor.UpdateInterval, sensor.Id.ToString());
+                    abstractSensor = new WindowStateSensor(sensor.Query, sensor.EntityName, sensor.Name, sensor.UpdateInterval, sensor.Id.ToString());
                     break;
                 case SensorType.MicrophoneProcessSensor:
-                    abstractSensor = new MicrophoneProcessSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new MicrophoneProcessSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.WebcamProcessSensor:
-                    abstractSensor = new WebcamProcessSensor(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new WebcamProcessSensor(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 default:
-                    Log.Error("[SETTINGS_SENSORS] [{name}] Unknown configured single-value sensor type: {type}", sensor.Name, sensor.Type.ToString());
+                    Log.Error("[SETTINGS_SENSORS] [{name}] Unknown configured single-value sensor type: {type}", sensor.EntityName, sensor.Type.ToString());
                     break;
             }
 
@@ -187,25 +187,25 @@ namespace HASS.Agent.Satellite.Service.Settings
             switch (sensor.Type)
             {
                 case SensorType.StorageSensors:
-                    abstractSensor = new StorageSensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new StorageSensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.NetworkSensors:
-                    abstractSensor = new NetworkSensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Query, sensor.Id.ToString());
+                    abstractSensor = new NetworkSensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Query, sensor.Id.ToString());
                     break;
                 case SensorType.WindowsUpdatesSensors:
-                    abstractSensor = new WindowsUpdatesSensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new WindowsUpdatesSensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.BatterySensors:
-                    abstractSensor = new BatterySensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new BatterySensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.DisplaySensors:
-                    abstractSensor = new DisplaySensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new DisplaySensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 case SensorType.AudioSensors:
-                    abstractSensor = new AudioSensors(sensor.UpdateInterval, sensor.Name, sensor.FriendlyName, sensor.Id.ToString());
+                    abstractSensor = new AudioSensors(sensor.UpdateInterval, sensor.EntityName, sensor.Name, sensor.Id.ToString());
                     break;
                 default:
-                    Log.Error("[SETTINGS_SENSORS] [{name}] Unknown configured multi-value sensor type: {type}", sensor.Name, sensor.Type.ToString());
+                    Log.Error("[SETTINGS_SENSORS] [{name}] Unknown configured multi-value sensor type: {type}", sensor.EntityName, sensor.Type.ToString());
                     break;
             }
 
@@ -227,8 +227,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(wmiSensor.Id),
+                            EntityName = wmiSensor.EntityName,
                             Name = wmiSensor.Name,
-                            FriendlyName = wmiSensor.FriendlyName,
                             Type = type,
                             UpdateInterval = wmiSensor.UpdateIntervalSeconds,
                             Scope = wmiSensor.Scope,
@@ -244,8 +244,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(namedWindowSensor.Id),
-                            Name = namedWindowSensor.Name,
-                            FriendlyName = namedWindowSensor.FriendlyName,
+                            EntityName = namedWindowSensor.EntityName,
+                            Name = namedWindowSensor.EntityName,
                             Type = type,
                             UpdateInterval = namedWindowSensor.UpdateIntervalSeconds,
                             WindowName = namedWindowSensor.WindowName
@@ -258,8 +258,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(performanceCounterSensor.Id),
-                            Name = performanceCounterSensor.Name,
-                            FriendlyName = performanceCounterSensor.FriendlyName,
+                            EntityName = performanceCounterSensor.EntityName,
+                            Name = performanceCounterSensor.EntityName,
                             Type = type,
                             UpdateInterval = performanceCounterSensor.UpdateIntervalSeconds,
                             Category = performanceCounterSensor.CategoryName,
@@ -276,8 +276,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(processActiveSensor.Id),
-                            Name = processActiveSensor.Name,
-                            FriendlyName = processActiveSensor.FriendlyName,
+                            EntityName = processActiveSensor.EntityName,
+                            Name = processActiveSensor.EntityName,
                             Type = type,
                             UpdateInterval = processActiveSensor.UpdateIntervalSeconds,
                             Query = processActiveSensor.ProcessName
@@ -290,8 +290,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(serviceStateSensor.Id),
-                            Name = serviceStateSensor.Name,
-                            FriendlyName = serviceStateSensor.FriendlyName,
+                            EntityName = serviceStateSensor.EntityName,
+                            Name = serviceStateSensor.EntityName,
                             Type = type,
                             UpdateInterval = serviceStateSensor.UpdateIntervalSeconds,
                             Query = serviceStateSensor.ServiceName
@@ -304,8 +304,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(powershellSensor.Id),
-                            Name = powershellSensor.Name,
-                            FriendlyName = powershellSensor.FriendlyName,
+                            EntityName = powershellSensor.EntityName,
+                            Name = powershellSensor.EntityName,
                             Type = type,
                             UpdateInterval = powershellSensor.UpdateIntervalSeconds,
                             Query = powershellSensor.Command,
@@ -320,8 +320,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(windowStateSensor.Id),
-                            Name = windowStateSensor.Name,
-                            FriendlyName = windowStateSensor.FriendlyName,
+                            EntityName = windowStateSensor.EntityName,
+                            Name = windowStateSensor.EntityName,
                             Type = type,
                             UpdateInterval = windowStateSensor.UpdateIntervalSeconds,
                             Query = windowStateSensor.ProcessName
@@ -334,8 +334,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = sensor.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = sensor.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };
@@ -358,8 +358,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = storageSensors.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = storageSensors.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };
@@ -371,8 +371,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = networkSensors.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = networkSensors.EntityName,
                             Query = networkSensors.NetworkCard,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
@@ -385,7 +385,7 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
+                            EntityName = sensor.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };
@@ -397,8 +397,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = sensor.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = sensor.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };
@@ -410,8 +410,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = sensor.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = sensor.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };
@@ -423,8 +423,8 @@ namespace HASS.Agent.Satellite.Service.Settings
                         return new ConfiguredSensor
                         {
                             Id = Guid.Parse(sensor.Id),
-                            Name = sensor.Name,
-                            FriendlyName = sensor.FriendlyName,
+                            EntityName = sensor.EntityName,
+                            Name = sensor.EntityName,
                             Type = type,
                             UpdateInterval = sensor.UpdateIntervalSeconds
                         };

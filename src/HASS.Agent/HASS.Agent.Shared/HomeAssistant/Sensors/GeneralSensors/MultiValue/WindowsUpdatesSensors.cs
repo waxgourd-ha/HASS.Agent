@@ -18,7 +18,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; } = new Dictionary<string, AbstractSingleValueSensor>();
 
-        public WindowsUpdatesSensors(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 900, id)
+        public WindowsUpdatesSensors(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 900, id)
         {
             _updateInterval = updateInterval ?? 900;
 
@@ -35,33 +35,33 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override void UpdateSensorValues()
         {
-            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(Name);
+            var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
 
             var (driverUpdates, softwareUpdates) = WindowsUpdatesManager.GetAvailableUpdates();
 
             var driverUpdateCount = driverUpdates.Count;
             var driverUpdateCountId = $"{parentSensorSafeName}_driver_updates_pending";
-            var driverUpdateCountSensor = new DataTypeIntSensor(_updateInterval, "Driver Updates Pending", driverUpdateCountId, string.Empty, "mdi:microsoft-windows", string.Empty, Name);
+            var driverUpdateCountSensor = new DataTypeIntSensor(_updateInterval, driverUpdateCountId, "Driver Updates Pending", driverUpdateCountId, string.Empty, "mdi:microsoft-windows", string.Empty, EntityName);
             driverUpdateCountSensor.SetState(driverUpdateCount);
             AddUpdateSensor(driverUpdateCountId, driverUpdateCountSensor);
 
             var softwareUpdateCount = softwareUpdates.Count;
             var softwareUpdateCountId = $"{parentSensorSafeName}_software_updates_pending";
-            var softwareUpdateCountSensor = new DataTypeIntSensor(_updateInterval, "Software Updates Pending", softwareUpdateCountId, string.Empty, "mdi:microsoft-windows", string.Empty, Name);
+            var softwareUpdateCountSensor = new DataTypeIntSensor(_updateInterval, softwareUpdateCountId, "Software Updates Pending", softwareUpdateCountId, string.Empty, "mdi:microsoft-windows", string.Empty, EntityName);
             softwareUpdateCountSensor.SetState(softwareUpdateCount);
             AddUpdateSensor(softwareUpdateCountId, softwareUpdateCountSensor);
 
             var driverUpdatesList = new WindowsUpdateInfoCollection(driverUpdates);
             var driverUpdatesStr = JsonConvert.SerializeObject(driverUpdatesList, Formatting.Indented);
             var driverUpdatesId = $"{parentSensorSafeName}_driver_updates";
-            var driverUpdatesSensor = new DataTypeIntSensor(_updateInterval, "Available Driver Updates", driverUpdatesId, string.Empty, "mdi:microsoft-windows", string.Empty, Name, true);
+            var driverUpdatesSensor = new DataTypeIntSensor(_updateInterval, driverUpdatesId, "Available Driver Updates", driverUpdatesId, string.Empty, "mdi:microsoft-windows", string.Empty, EntityName, true);
             driverUpdatesSensor.SetState(driverUpdates.Count);
             driverUpdatesSensor.SetAttributes(driverUpdatesStr);
             AddUpdateSensor(driverUpdatesId, driverUpdatesSensor);
 
             var softwareUpdatesStr = JsonConvert.SerializeObject(new WindowsUpdateInfoCollection(softwareUpdates), Formatting.Indented);
             var softwareUpdatesId = $"{parentSensorSafeName}_software_updates";
-            var softwareUpdatesSensor = new DataTypeIntSensor(_updateInterval, "Available Software Updates", softwareUpdatesId, string.Empty, "mdi:microsoft-windows", string.Empty, Name, true);
+            var softwareUpdatesSensor = new DataTypeIntSensor(_updateInterval, softwareUpdatesId, "Available Software Updates", softwareUpdatesId, string.Empty, "mdi:microsoft-windows", string.Empty, EntityName, true);
             softwareUpdatesSensor.SetState(softwareUpdates.Count);
             softwareUpdatesSensor.SetAttributes(softwareUpdatesStr);
             AddUpdateSensor(softwareUpdatesId, softwareUpdatesSensor);

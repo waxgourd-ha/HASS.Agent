@@ -17,7 +17,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
         private readonly IInternalDeviceSensor _internalDeviceSensor;
 
-        public InternalDeviceSensor(string sensorType, int? updateInterval = 10, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id)
+        public InternalDeviceSensor(string sensorType, int? updateInterval = 10, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id)
         {
             SensorType = Enum.Parse<InternalDeviceSensorType>(sensorType);
             _internalDeviceSensor = InternalDeviceSensorsManager.AvailableSensors.First(s => s.Type == SensorType);
@@ -36,8 +36,8 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
             var sensorDiscoveryConfigModel = new SensorDiscoveryConfigModel()
             {
+                EntityName = EntityName,
                 Name = Name,
-                FriendlyName = FriendlyName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

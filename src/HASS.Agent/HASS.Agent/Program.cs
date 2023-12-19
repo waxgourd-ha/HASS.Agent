@@ -240,6 +240,12 @@ namespace HASS.Agent
                     Log.Information("[SYSTEM] Rename entity names mode activated [HA 2023.8]");
                     Variables.ChildApplicationMode = true;
 
+                    if (!SharedHelperFunctions.RunningElevated())
+                    {
+                        CommandLineManager.ExecuteElevated(Variables.ApplicationExecutable, LaunchParamCompatNames, TimeSpan.FromMinutes(5));
+                        return true;
+                    }
+
                     var compatibilityTask = new CompatibilityTask(new NameCompatibilityTask());
                     Application.Run(compatibilityTask);
 

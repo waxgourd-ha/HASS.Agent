@@ -68,7 +68,7 @@ namespace HASS.Agent.Controls.Service
                 foreach (var sensor in _sensors)
                 {
                     var lviSensor = new ListViewItem(sensor.Id.ToString());
-                    lviSensor.SubItems.Add(sensor.Name);
+                    lviSensor.SubItems.Add(sensor.EntityName);
                     lviSensor.SubItems.Add(SensorsManager.SensorInfoCards[sensor.Type].Name);
                     lviSensor.SubItems.Add(sensor.UpdateInterval.ToString());
 

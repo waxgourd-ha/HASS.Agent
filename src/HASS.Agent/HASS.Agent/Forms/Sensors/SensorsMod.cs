@@ -162,11 +162,11 @@ namespace HASS.Agent.Forms.Sensors
 			if (!guiOk) return;
 
 			// set the name
-			TbName.Text = Sensor.Name;
+			TbName.Text = Sensor.EntityName;
 			if (!string.IsNullOrWhiteSpace(TbName.Text)) TbName.SelectionStart = TbName.Text.Length;
 
 			// set the friendly name
-			TbFriendlyName.Text = Sensor.FriendlyName;
+			TbFriendlyName.Text = Sensor.Name;
 
 			// set interval
 			NumInterval.Text = Sensor.UpdateInterval?.ToString() ?? "10";
@@ -612,7 +612,7 @@ namespace HASS.Agent.Forms.Sensors
 			}
 
 			// get friendly name
-			var friendlyName = string.IsNullOrEmpty(TbFriendlyName.Text.Trim()) ? null : TbFriendlyName.Text.Trim();
+			var friendlyName = string.IsNullOrEmpty(TbFriendlyName.Text.Trim()) ? name : TbFriendlyName.Text.Trim();
 
 			// name contains illegal chars?
 			var sanitized = SharedHelperFunctions.GetSafeValue(name);
@@ -630,7 +630,7 @@ namespace HASS.Agent.Forms.Sensors
 			}
 
 			// name already used?
-			if (!_serviceMode && Variables.SingleValueSensors.Any(x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Sensor.Id.ToString()))
+			if (!_serviceMode && Variables.SingleValueSensors.Any(x => string.Equals(x.EntityName, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Sensor.Id.ToString()))
 			{
 				var confirm = MessageBoxAdv.Show(this, Languages.SensorsMod_BtnStore_MessageBox4, Variables.MessageBoxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 				if (confirm != DialogResult.Yes)
@@ -640,7 +640,7 @@ namespace HASS.Agent.Forms.Sensors
 				}
 			}
 
-			if (!_serviceMode && Variables.MultiValueSensors.Any(x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Sensor.Id.ToString()))
+			if (!_serviceMode && Variables.MultiValueSensors.Any(x => string.Equals(x.EntityName, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Sensor.Id.ToString()))
 			{
 				var confirm = MessageBoxAdv.Show(this, Languages.SensorsMod_BtnStore_MessageBox5, Variables.MessageBoxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 				if (confirm != DialogResult.Yes)
@@ -803,8 +803,8 @@ namespace HASS.Agent.Forms.Sensors
 
 			// set values
 			Sensor.Type = sensorCard.SensorType;
-			Sensor.Name = name;
-			Sensor.FriendlyName = friendlyName;
+			Sensor.EntityName = name;
+			Sensor.Name = friendlyName;
 			Sensor.UpdateInterval = interval;
 			Sensor.IgnoreAvailability = CbIgnoreAvailability.Checked;
 			Sensor.ApplyRounding = applyRounding;

@@ -12,7 +12,7 @@ namespace HASS.Agent.HomeAssistant.Commands.InternalCommands
         private const string DefaultName = "webview";
         private readonly WebViewInfo _webViewInfo = new();
 
-        internal WebViewCommand(string name = DefaultName, string friendlyName = DefaultName, string webViewInfo = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, webViewInfo, entityType, id)
+        internal WebViewCommand(string entityName = DefaultName, string name = DefaultName, string webViewInfo = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, webViewInfo, entityType, id)
         {
             CommandConfig = webViewInfo;
             State = "OFF";
@@ -30,7 +30,7 @@ namespace HASS.Agent.HomeAssistant.Commands.InternalCommands
 
             if (string.IsNullOrWhiteSpace(_webViewInfo.Url))
             {
-                Log.Error("[WEBVIEW] [{name}] Unable to launch webview, it's configured as action-only", Name);
+                Log.Error("[WEBVIEW] [{name}] Unable to launch webview, it's configured as action-only", EntityName);
 
                 State = "OFF";
                 return;
@@ -47,7 +47,7 @@ namespace HASS.Agent.HomeAssistant.Commands.InternalCommands
 
             if (string.IsNullOrWhiteSpace(action) && string.IsNullOrWhiteSpace(_webViewInfo.Url))
             {
-                Log.Error("[WEBVIEW] [{name}] Unable to launch URL, it's configured as action-only but no URL is provided", Name);
+                Log.Error("[WEBVIEW] [{name}] Unable to launch URL, it's configured as action-only but no URL is provided", EntityName);
 
                 State = "OFF";
                 return;

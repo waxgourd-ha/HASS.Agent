@@ -39,7 +39,7 @@ InfoAfterFile=.\AfterInstallNotice.rtf
 ;PrivilegesRequired=lowest
 OutputDir=.\bin
 OutputBaseFilename=HASS.Agent.Installer
-SetupIconFile=..\HASS.Agent.Staging\HASS.Agent.Shared\hassagent.ico
+SetupIconFile=..\HASS.Agent\HASS.Agent.Shared\hassagent.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -57,12 +57,12 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 [Files]
 ; Client files
-;Source: "..\HASS.Agent.Staging\HASS.Agent\bin\Publish-x64\Release\*"; Excludes: "*.pdb"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "..\HASS.Agent\HASS.Agent\bin\Publish-x64\Release\*"; Excludes: "*.pdb"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Service files
-;Source: "..\HASS.Agent.Staging\HASS.Agent.Satellite.Service\bin\Publish-x64\Release\*"; Excludes: "*.pdb"; DestDir: "{commonpf64}\{#MyAppName}\Service"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\HASS.Agent.Staging\HASS.Agent\bin\Publish-x64\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "..\HASS.Agent\HASS.Agent.Satellite.Service\bin\Publish-x64\Release\*"; Excludes: "*.pdb"; DestDir: "{commonpf64}\{#MyAppName}\Service"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\HASS.Agent\HASS.Agent\bin\Publish-x64\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Service files
-Source: "..\HASS.Agent.Staging\HASS.Agent.Satellite.Service\bin\Publish-x64\Release\*"; DestDir: "{commonpf64}\{#MyAppName}\Service"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\HASS.Agent\HASS.Agent.Satellite.Service\bin\Publish-x64\Release\*"; DestDir: "{commonpf64}\{#MyAppName}\Service"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

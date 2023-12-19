@@ -1453,6 +1453,24 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error communicating with the satellite service!.
+        /// </summary>
+        internal static string Compat_NameTask_Error_ServiceCommunication {
+            get {
+                return ResourceManager.GetString("Compat_NameTask_Error_ServiceCommunication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error starting satellite service!.
+        /// </summary>
+        internal static string Compat_NameTask_Error_ServiceStart {
+            get {
+                return ResourceManager.GetString("Compat_NameTask_Error_ServiceStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error converting single value sensors!.
         /// </summary>
         internal static string Compat_NameTask_Error_SingleValueSensors {

@@ -22,7 +22,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
         
         public VirtualKeyShort KeyCode { get; set; }
 
-        public KeyCommand(VirtualKeyShort keyCode, string name = DefaultName, string friendlyName = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, entityType, id)
+        public KeyCommand(VirtualKeyShort keyCode, string entityName = DefaultName, string name = DefaultName, CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, entityType, id)
         {
             KeyCode = keyCode;
             State = "OFF";
@@ -37,8 +37,8 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands
 
             return new CommandDiscoveryConfigModel
             {
+                EntityName = EntityName,
                 Name = Name,
-                FriendlyName = FriendlyName,
                 Unique_id = Id,
                 Availability_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/sensor/{deviceConfig.Name}/availability",
                 Command_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/set",

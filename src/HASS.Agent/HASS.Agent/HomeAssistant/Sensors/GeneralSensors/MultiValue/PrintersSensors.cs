@@ -25,7 +25,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
         public sealed override Dictionary<string, AbstractSingleValueSensor> Sensors { get; protected set; } = new();
 
-        public PrintersSensors(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 20, id)
+        public PrintersSensors(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 20, id)
         {
             _updateInterval = updateInterval ?? 20;
 
@@ -44,30 +44,35 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
         {
             try
             {
-                var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(Name);
+                var parentSensorSafeName = SharedHelperFunctions.GetSafeValue(EntityName);
+                var deviceName = SharedHelperFunctions.GetSafeDeviceName();
 
                 var printerInfo = GetPrinterInfo();
 
-                var printersCountId = $"{parentSensorSafeName}_printers_count";
-                var printersCountSensor = new DataTypeIntSensor(_updateInterval, "Printers Count", printersCountId, string.Empty, "mdi:printer", string.Empty, Name);
+                var printersCountEntityName = $"{parentSensorSafeName}_printers_count";
+                var printersCountId = $"{Id}_printers_count";
+                var printersCountSensor = new DataTypeIntSensor(_updateInterval, printersCountEntityName, "Printers Count", printersCountId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 printersCountSensor.SetState(printerInfo.PrintQueues.Count);
                 AddUpdateSensor(printersCountId, printersCountSensor);
 
-                var defaultQueueId = $"{parentSensorSafeName}_default_queue";
-                var defaultQueueSensor = new DataTypeStringSensor(_updateInterval, "Default Queue", defaultQueueId, string.Empty, "mdi:printer", string.Empty, Name);
+                var defaultQueueEntityName = $"{parentSensorSafeName}_default_queue";
+                var defaultQueueId = $"{Id}_default_queue";
+                var defaultQueueSensor = new DataTypeStringSensor(_updateInterval, defaultQueueEntityName, "Default Queue", defaultQueueId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 defaultQueueSensor.SetState(printerInfo.DefaultQueue);
                 AddUpdateSensor(defaultQueueId, defaultQueueSensor);
 
-                var defaultQueueJobsId = $"{parentSensorSafeName}_default_queue_jobs";
-                var defaultQueueJobsSensor = new DataTypeIntSensor(_updateInterval, "Default Queue Jobs", defaultQueueJobsId, string.Empty, "mdi:printer", string.Empty, Name);
+                var defaultQueueJobsEntityName = $"{parentSensorSafeName}_default_queue_jobs";
+                var defaultQueueJobsId = $"{Id}_default_queue_jobs";
+                var defaultQueueJobsSensor = new DataTypeIntSensor(_updateInterval, defaultQueueJobsEntityName, "Default Queue Jobs", defaultQueueJobsId, string.Empty, "mdi:printer", string.Empty, EntityName);
                 defaultQueueJobsSensor.SetState(printerInfo.DefaultQueueJobs);
                 AddUpdateSensor(defaultQueueJobsId, defaultQueueJobsSensor);
 
                 foreach (var printer in printerInfo.PrintQueues)
                 {
                     var printerQueueInfo = JsonConvert.SerializeObject(printer, Formatting.Indented);
-                    var printerId = $"{parentSensorSafeName}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
-                    var printerSensor = new DataTypeIntSensor(_updateInterval, $"{printer.Name}", printerId, string.Empty, "mdi:printer", string.Empty, Name, true);
+                    var printerEntityName = $"{parentSensorSafeName}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
+                    var printerId = $"{Id}_{SharedHelperFunctions.GetSafeValue(printer.Name)}";
+                    var printerSensor = new DataTypeIntSensor(_updateInterval, printerEntityName, $"{printer.Name}", printerId, string.Empty, "mdi:printer", string.Empty, EntityName, true);
 
                     printerSensor.SetState(printer.Jobs);
                     printerSensor.SetAttributes(printerQueueInfo);
@@ -86,7 +91,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
 
                 _errorPrinted = true;
 
-                Log.Fatal(ex, "[PRINTERS] [{name}] Error while fetching audio info: {err}", Name, ex.Message);
+                Log.Fatal(ex, "[PRINTERS] [{name}] Error while fetching audio info: {err}", EntityName, ex.Message);
             }
         }
 
@@ -152,7 +157,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
                                 catch (Exception ex)
                                 {
                                     if (!_errorPrinted)
-                                        Log.Fatal(ex, "[PRINTERS] [{name}] [{queue}] Exception while retrieving job: {err}", Name, queue.Name ?? "-", ex.Message);
+                                        Log.Fatal(ex, "[PRINTERS] [{name}] [{queue}] Exception while retrieving job: {err}", EntityName, queue.Name ?? "-", ex.Message);
 
                                     errors = true;
                                 }
@@ -197,7 +202,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
                         catch (Exception ex)
                         {
                             if (!_errorPrinted)
-                                Log.Fatal(ex, "[PRINTERS] [{name}] [{queue}] Exception while retrieving queue: {err}", Name, queue.Name ?? "-", ex.Message);
+                                Log.Fatal(ex, "[PRINTERS] [{name}] [{queue}] Exception while retrieving queue: {err}", EntityName, queue.Name ?? "-", ex.Message);
 
                             errors = true;
                         }
@@ -210,7 +215,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
                 catch (Exception ex)
                 {
                     if (!_errorPrinted)
-                        Log.Fatal(ex, "[PRINTERS] [{name}] Exception while retrieving info: {err}", Name, ex.Message);
+                        Log.Fatal(ex, "[PRINTERS] [{name}] Exception while retrieving info: {err}", EntityName, ex.Message);
 
                     errors = true;
                 }
@@ -231,10 +236,10 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.MultiValue
                 // something went wrong, only print once
                 if (_errorPrinted)
                     return printerInfo;
-                
+
                 _errorPrinted = true;
 
-                Log.Fatal(ex, "[PRINTERS] [{name}] Fatal exception while getting info: {err}", Name, ex.Message);
+                Log.Fatal(ex, "[PRINTERS] [{name}] Fatal exception while getting info: {err}", EntityName, ex.Message);
             }
 
             return printerInfo;

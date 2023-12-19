@@ -8,8 +8,8 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
     public abstract class AbstractDiscoverable
     {
         public string Domain { get; set; } = "switch";
-        public string Name { get; set; } = string.Empty;
-        public string FriendlyName { get; set; } = null;
+        public string EntityName { get; set; } = string.Empty;
+        public string Name { get; set; } = null;
         public string TopicName { get; set; } = string.Empty;
 
         private string _objectId = string.Empty;
@@ -20,7 +20,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
             {
                 if (!string.IsNullOrEmpty(_objectId)) return _objectId;
 
-                _objectId = Regex.Replace(Name, "[^a-zA-Z0-9_-]", "_");
+                _objectId = Regex.Replace(EntityName, "[^a-zA-Z0-9_-]", "_");
                 return _objectId;
             }
 
