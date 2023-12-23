@@ -64,7 +64,7 @@ on:
 
 jobs:
   build:
-    environment: TestEnv
+    environment: ReleaseBuildEnv
     strategy:
       matrix:
         #configuration: [Debug, Release]
