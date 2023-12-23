@@ -106,11 +106,14 @@ namespace HASS.Agent.Compatibility
             //from HKEY_CURRENT_USER\SOFTWARE\LAB02Research\HASSAgent
             //to   HKEY_CURRENT_USER\SOFTWARE\HASSAgent\Client"
 
-            //from HKEY_LOCAL_MACHINE\SOFTWARE\LAB02Research\HASSAgent\SatelliteService"
-            //to   HKEY_LOCAL_MACHINE\SOFTWARE\HASSAgent\SatelliteService
-
             var source = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\LAB02Research\HASSAgent");
             var destination = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\HASSAgent\Client", true);
+            if(source == null)
+            {
+                Log.Information("[COMPATTASK] No source registry keys found");
+                return;
+            }
+
             CopyRegistryKey(source, destination);
         }
 
