@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using HASS.Agent.Shared.Models.HomeAssistant;
 
 namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.DataTypes
@@ -15,7 +16,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
         private double _value = 0d;
         private string _attributes = string.Empty;
 
-        public DataTypeDoubleSensor(int? updateInterval, string name, string friendlyName, string id, string deviceClass, string icon, string unitOfMeasurement, string multiValueSensorName, bool useAttributes = false) : base(name, friendlyName, updateInterval ?? 30, id, useAttributes)
+        public DataTypeDoubleSensor(int? updateInterval, string entityName, string name, string id, string deviceClass, string icon, string unitOfMeasurement, string multiValueSensorName, bool useAttributes = false) : base(entityName, name, updateInterval ?? 30, id, useAttributes)
         {
             TopicName = multiValueSensorName;
 
@@ -26,6 +27,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
             ObjectId = id;
         }
 
+        [Obsolete("Deprecated due to HA 2023.8 MQTT changes in favor of method specifying entityName")]
         public DataTypeDoubleSensor(int? updateInterval, string name, string id, string deviceClass, string icon, string unitOfMeasurement, string multiValueSensorName, bool useAttributes = false) : base(name, name, updateInterval ?? 30, id, useAttributes)
         {
             TopicName = multiValueSensorName;
@@ -48,6 +50,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Sensors.GeneralSensors.MultiValue.Data
 
             var model = new SensorDiscoveryConfigModel()
             {
+                EntityName = EntityName,
                 Name = Name,
                 Unique_id = Id,
                 Device = deviceConfig,

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace HASS.Agent.Shared.Models.HomeAssistant
 {
@@ -26,13 +27,14 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
         /// (Optional) The name of the MQTT entity. Defaults to its name.
         /// </summary>
         /// <value></value>
-        public string Name { get; set; }
+        [JsonIgnore]
+        public string EntityName { get; set; }
 
         /// <summary>
         /// (Optional) The friendly name of the MQTT entity. Defaults to its name.
         /// </summary>
         /// <value></value>
-        public string FriendlyName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// The MQTT topic subscribed to receive entity values.
@@ -120,10 +122,10 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
 
                 // backward compatibility with HASS.Agent and HA versions below 2023.8 where device name was part of the entity ID
                 // will not mess with the "Home Assistant entity ID" if user already has their own naming convention with device ID included
-                if (Name.Contains(Device.Name))
-                    return Name;
+                if (EntityName.Contains(Device.Name))
+                    return EntityName;
 
-                return $"{Device.Name}_{Name}";
+                return $"{Device.Name}_{EntityName}";
             }
             set { _objectId = value; }
         }
@@ -232,10 +234,10 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
 
                 // backward compatibility with HASS.Agent and HA versions below 2023.8 where device name was part of the entity ID
                 // will not mess with the "Home Assistant entity ID" if user already has their own naming convention with device ID included
-                if (Name.Contains(Device.Name))
-                    return Name;
+                if (EntityName.Contains(Device.Name))
+                    return EntityName;
 
-                return $"{Device.Name}_{Name}";
+                return $"{Device.Name}_{EntityName}";
             }
             set { _objectId = value; }
         }

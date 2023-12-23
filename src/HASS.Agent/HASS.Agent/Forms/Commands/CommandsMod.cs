@@ -141,11 +141,11 @@ namespace HASS.Agent.Forms.Commands
 			if (!guiOk)
 				return;
 
-			TbName.Text = Command.Name;
+			TbName.Text = Command.EntityName;
 			if (!string.IsNullOrWhiteSpace(TbName.Text))
 				TbName.SelectionStart = TbName.Text.Length;
 
-			TbFriendlyName.Text = Command.FriendlyName;
+			TbFriendlyName.Text = Command.Name;
 
 			var entityId = (int)Command.EntityType;
 			CbEntityType.SelectedItem = new KeyValuePair<int, string>(entityId, _commandEntityTypes[entityId]);
@@ -263,7 +263,7 @@ namespace HASS.Agent.Forms.Commands
                 MessageBoxAdv.Show(this, Languages.CommandsMod_BtnStore_DeviceNameInSensorName, Variables.MessageBoxTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-			var friendlyName = string.IsNullOrEmpty(TbName.Text.Trim()) ? null : TbName.Text.Trim();
+			var friendlyName = string.IsNullOrEmpty(TbName.Text.Trim()) ? name : TbName.Text.Trim();
 
 			var sanitized = SharedHelperFunctions.GetSafeValue(name);
 			if (sanitized != name)
@@ -280,7 +280,7 @@ namespace HASS.Agent.Forms.Commands
 				name = sanitized;
 			}
 
-			if (!_serviceMode && Variables.Commands.Any(x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Command.Id.ToString()))
+			if (!_serviceMode && Variables.Commands.Any(x => string.Equals(x.EntityName, name, StringComparison.InvariantCultureIgnoreCase) && x.Id != Command.Id.ToString()))
 			{
 				var confirm = MessageBoxAdv.Show(this, Languages.CommandsMod_BtnStore_MessageBox3, Variables.MessageBoxTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 				if (confirm != DialogResult.Yes)
@@ -503,8 +503,8 @@ namespace HASS.Agent.Forms.Commands
 
 			Command.Type = commandCard.CommandType;
 			Command.EntityType = entityType;
-			Command.Name = name;
-			Command.FriendlyName = friendlyName;
+			Command.EntityName = name;
+			Command.Name = friendlyName;
 
 			DialogResult = DialogResult.OK;
 		}

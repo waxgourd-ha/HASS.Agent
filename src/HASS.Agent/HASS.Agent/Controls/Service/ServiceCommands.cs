@@ -68,7 +68,7 @@ namespace HASS.Agent.Controls.Service
                 foreach (var command in _commands)
                 {
                     var lviCommand = new ListViewItem(command.Id.ToString());
-                    lviCommand.SubItems.Add(command.Name);
+                    lviCommand.SubItems.Add(command.EntityName);
                     lviCommand.SubItems.Add(CommandsManager.CommandInfoCards[command.Type].Name);
                     lviCommand.SubItems.Add(command.RunAsLowIntegrity ? "√" : string.Empty);
 

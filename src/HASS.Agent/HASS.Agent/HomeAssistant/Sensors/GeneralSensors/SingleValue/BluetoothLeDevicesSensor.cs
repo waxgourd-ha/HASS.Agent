@@ -14,7 +14,7 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.SingleValue
         private const string DefaultName = "bluetoothledevices";
         private string _attributes = "{}";
 
-        public BluetoothLeDevicesSensor(int? updateInterval = 30, string name = DefaultName, string friendlyName = DefaultName, string id = default) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 30, id) 
+        public BluetoothLeDevicesSensor(int? updateInterval = 30, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 30, id) 
         {
             UseAttributes = true;
 
@@ -31,8 +31,8 @@ namespace HASS.Agent.HomeAssistant.Sensors.GeneralSensors.SingleValue
 
             return AutoDiscoveryConfigModel ?? SetAutoDiscoveryConfigModel(new SensorDiscoveryConfigModel()
             {
+                EntityName = EntityName,
                 Name = Name,
-                FriendlyName = FriendlyName,
                 Unique_id = Id,
                 Device = deviceConfig,
                 State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

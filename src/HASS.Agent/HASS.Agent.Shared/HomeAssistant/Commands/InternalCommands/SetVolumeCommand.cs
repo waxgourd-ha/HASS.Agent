@@ -20,14 +20,14 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
         private const string DefaultName = "setvolume";
         private readonly float _volume = -1f;
 
-        public SetVolumeCommand(string name = DefaultName, string friendlyName = DefaultName, string volume = "", CommandEntityType entityType = CommandEntityType.Button, string id = default) : base(name ?? DefaultName, friendlyName ?? null, volume, entityType, id)
+        public SetVolumeCommand(string entityName = DefaultName, string name = DefaultName, string volume = "", CommandEntityType entityType = CommandEntityType.Button, string id = default) : base(entityName ?? DefaultName, name ?? null, volume, entityType, id)
         {
             if (!string.IsNullOrWhiteSpace(volume))
             {
                 var parsed = int.TryParse(volume, out var volumeInt);
                 if (!parsed)
                 {
-                    Log.Error("[SETVOLUME] [{name}] Unable to parse configured volume level, not an int: {val}", Name, volume);
+                    Log.Error("[SETVOLUME] [{name}] Unable to parse configured volume level, not an int: {val}", EntityName, volume);
                     _volume = -1f;
                 }
 
@@ -45,7 +45,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
             {
                 if (_volume == -1f)
                 {
-                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, it's configured as action-only", Name);
+                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, it's configured as action-only", EntityName);
                     
                     return;
                 }
@@ -54,7 +54,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
-                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, no default audio endpoint found", Name);
+                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger command, no default audio endpoint found", EntityName);
                     
                     return;
                 }
@@ -63,7 +63,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
             }
             catch (Exception ex)
             {
-                Log.Error("[SETVOLUME] [{name}] Error while processing: {err}", Name, ex.Message);
+                Log.Error("[SETVOLUME] [{name}] Error while processing: {err}", EntityName, ex.Message);
             }
             finally
             {
@@ -80,7 +80,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 var parsed = int.TryParse(action, out var volumeInt);
                 if (!parsed)
                 {
-                    Log.Error("[SETVOLUME] [{name}] Unable to trigger command, the provided action value can't be parsed: {val}", Name, action);
+                    Log.Error("[SETVOLUME] [{name}] Unable to trigger command, the provided action value can't be parsed: {val}", EntityName, action);
                     
                     return;
                 }
@@ -89,7 +89,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 using var audioDevice = Variables.AudioDeviceEnumerator?.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
                 if (audioDevice?.AudioEndpointVolume == null)
                 {
-                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger action for command, no default audio endpoint found", Name);
+                    Log.Warning("[SETVOLUME] [{name}] Unable to trigger action for command, no default audio endpoint found", EntityName);
                     
                     return;
                 }
@@ -98,7 +98,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
             }
             catch (Exception ex)
             {
-                Log.Error("[SETVOLUME] [{name}] Error while processing action: {err}", Name, ex.Message);
+                Log.Error("[SETVOLUME] [{name}] Error while processing action: {err}", EntityName, ex.Message);
             }
             finally
             {

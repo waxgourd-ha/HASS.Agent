@@ -384,8 +384,8 @@ namespace HASS.Agent.Forms.QuickActions
                 case HassDomain.HASSAgentCommands:
                     foreach (var item in Variables.Commands)
                     {
-                        CbEntity.AutoCompleteCustomSource.Add(item.Name);
-                        CbEntity.Items.Add(item.Name);
+                        CbEntity.AutoCompleteCustomSource.Add(item.EntityName);
+                        CbEntity.Items.Add(item.EntityName);
                     }
                     break;
             }

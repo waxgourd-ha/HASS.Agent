@@ -17,7 +17,9 @@ namespace HASS.Agent.Extensions
         /// <returns></returns>
         public static List<ConfiguredCommand> ConvertToConfiguredCommands(this RepeatedField<RpcConfiguredServerCommand> rpcConfiguredCommands)
         {
-            return rpcConfiguredCommands.Select(rpcConfiguredCommand => rpcConfiguredCommand.ConvertToConfiguredCommand()).ToList();
+            return rpcConfiguredCommands.Select(
+                rpcConfiguredCommand => rpcConfiguredCommand.ConvertToConfiguredCommand()
+            ).ToList();
         }
 
         /// <summary>
@@ -31,11 +33,13 @@ namespace HASS.Agent.Extensions
             {
                 Type = (CommandType)rpcConfiguredCommand.Type,
                 Id = Guid.Parse(rpcConfiguredCommand.Id),
+                EntityName = rpcConfiguredCommand.EntityName,
                 Name = rpcConfiguredCommand.Name,
                 Command = rpcConfiguredCommand.Command,
                 RunAsLowIntegrity = rpcConfiguredCommand.RunAsLowIntegrity,
                 EntityType = (CommandEntityType)rpcConfiguredCommand.CommandEntityType
             };
+
             return configuredCommand;
         }
 
@@ -47,7 +51,9 @@ namespace HASS.Agent.Extensions
         public static RepeatedField<RpcConfiguredServerCommand> ConvertToRpcConfiguredCommands(this List<ConfiguredCommand> configuredCommands)
         {
             var rpcConfguredCommands = new RepeatedField<RpcConfiguredServerCommand>();
-            foreach (var configuredCommand in configuredCommands) rpcConfguredCommands.Add(configuredCommand.ConvertToRpcConfiguredCommand());
+            foreach (var configuredCommand in configuredCommands)
+                rpcConfguredCommands.Add(configuredCommand.ConvertToRpcConfiguredCommand());
+            
             return rpcConfguredCommands;
         }
 
@@ -65,8 +71,10 @@ namespace HASS.Agent.Extensions
                 Command = configuredCommand.Command ?? string.Empty,
                 RunAsLowIntegrity = configuredCommand.RunAsLowIntegrity,
                 Name = configuredCommand.Name,
+                EntityName = configuredCommand.EntityName,
                 CommandEntityType = (int)configuredCommand.EntityType
             };
+
             return configuredRpcCommand;
         }
 
@@ -77,7 +85,9 @@ namespace HASS.Agent.Extensions
         /// <returns></returns>
         public static List<ConfiguredSensor> ConvertToConfiguredSensors(this RepeatedField<RpcConfiguredServerSensor> rpcConfiguredSensors)
         {
-            return rpcConfiguredSensors.Select(rpcConfiguredSensor => rpcConfiguredSensor.ConvertToConfiguredSensor()).ToList();
+            return rpcConfiguredSensors.Select(
+                rpcConfiguredSensor => rpcConfiguredSensor.ConvertToConfiguredSensor()
+            ).ToList();
         }
 
         /// <summary>
@@ -98,8 +108,10 @@ namespace HASS.Agent.Extensions
                 Category = rpcConfiguredSensor.Category,
                 Counter = rpcConfiguredSensor.Counter,
                 Instance = rpcConfiguredSensor.Instance,
+                EntityName = rpcConfiguredSensor.EntityName,
                 Name = rpcConfiguredSensor.Name
             };
+
             return configuredSensor;
         }
 
@@ -111,7 +123,9 @@ namespace HASS.Agent.Extensions
         public static RepeatedField<RpcConfiguredServerSensor> ConvertToRpcConfiguredSensors(this List<ConfiguredSensor> configuredSensors)
         {
             var rpcConfguredSensors = new RepeatedField<RpcConfiguredServerSensor>();
-            foreach (var configuredSensor in configuredSensors) rpcConfguredSensors.Add(configuredSensor.ConvertToRpcConfiguredSensor());
+            foreach (var configuredSensor in configuredSensors)
+                rpcConfguredSensors.Add(configuredSensor.ConvertToRpcConfiguredSensor());
+            
             return rpcConfguredSensors;
         }
 
@@ -135,8 +149,10 @@ namespace HASS.Agent.Extensions
                 Category = configuredSensor.Category ?? string.Empty,
                 Counter = configuredSensor.Counter ?? string.Empty,
                 Instance = configuredSensor.Instance ?? string.Empty,
-                Name = configuredSensor.Name
+                Name = configuredSensor.Name ?? string.Empty,
+                EntityName = configuredSensor.EntityName ?? string.Empty
             };
+
             return configuredRpcSensor;
         }
 
@@ -161,6 +177,7 @@ namespace HASS.Agent.Extensions
                 MqttClientCertificate = rpcServiceMqttSettings.MqttClientCertificate,
                 MqttClientId = rpcServiceMqttSettings.MqttClientId
             };
+
             return serviceMqttSettings;
         }
 
@@ -185,6 +202,7 @@ namespace HASS.Agent.Extensions
                 MqttClientCertificate = serviceMqttSettings.MqttClientCertificate,
                 MqttClientId = serviceMqttSettings.MqttClientId
             };
+
             return rpcServiceMqttSettings;
         }
 

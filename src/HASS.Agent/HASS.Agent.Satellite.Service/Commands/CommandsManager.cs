@@ -184,21 +184,30 @@ namespace HASS.Agent.Satellite.Service.Commands
                 {
                     foreach (var abstractCommand in toBeDeletedCommands.Select(StoredCommands.ConvertConfiguredToAbstract))
                     {
-                        if (abstractCommand == null) continue;
+                        if (abstractCommand == null)
+                            continue;
 
-                        // remove and unregister
-                        await abstractCommand.UnPublishAutoDiscoveryConfigAsync();
-                        await Variables.MqttManager.UnsubscribeAsync(abstractCommand);
-                        Variables.Commands.RemoveAt(Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id));
+                        var commandIndex = Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id);
+                        if (commandIndex == -1)
+                        {
+                            await abstractCommand.UnPublishAutoDiscoveryConfigAsync();
+                            await Variables.MqttManager.UnsubscribeAsync(abstractCommand);
+                            Variables.Commands.RemoveAt(commandIndex);
 
-                        Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.Name);
+                            Log.Information("[COMMANDS] Removed command: {command}", abstractCommand.EntityName);
+                        }
+                        else
+                        {
+                            Log.Information("[COMMANDS] Command not removed, not activated: {command}", abstractCommand.EntityName);
+                        }
                     }
                 }
 
                 // copy our list to the main one
                 foreach (var abstractCommand in commands.Select(StoredCommands.ConvertConfiguredToAbstract))
                 {
-                    if (abstractCommand == null) continue;
+                    if (abstractCommand == null)
+                        continue;
 
                     if (Variables.Commands.All(x => x.Id != abstractCommand.Id))
                     {
@@ -208,16 +217,16 @@ namespace HASS.Agent.Satellite.Service.Commands
                         await abstractCommand.PublishAutoDiscoveryConfigAsync();
                         await abstractCommand.PublishStateAsync(false);
 
-                        Log.Information("[COMMANDS] Added command: {command}", abstractCommand.Name);
+                        Log.Information("[COMMANDS] Added command: {command}", abstractCommand.EntityName);
                         continue;
                     }
 
                     // existing, update and re-register
                     var currentCommandIndex = Variables.Commands.FindIndex(x => x.Id == abstractCommand.Id);
-                    if (Variables.Commands[currentCommandIndex].Name != abstractCommand.Name || Variables.Commands[currentCommandIndex].EntityType != abstractCommand.EntityType)
+                    if (Variables.Commands[currentCommandIndex].EntityName != abstractCommand.EntityName || Variables.Commands[currentCommandIndex].EntityType != abstractCommand.EntityType)
                     {
                         // command changed, unregister and resubscribe on new mqtt channel
-                        Log.Information("[COMMANDS] Command changed, re-registering as new entity: {old} to {new}", Variables.Commands[currentCommandIndex].Name, abstractCommand.Name);
+                        Log.Information("[COMMANDS] Command changed, re-registering as new entity: {old} to {new}", Variables.Commands[currentCommandIndex].EntityName, abstractCommand.EntityName);
 
                         await Variables.Commands[currentCommandIndex].UnPublishAutoDiscoveryConfigAsync();
                         await Variables.MqttManager.UnsubscribeAsync(Variables.Commands[currentCommandIndex]);
@@ -228,7 +237,7 @@ namespace HASS.Agent.Satellite.Service.Commands
                     await abstractCommand.PublishAutoDiscoveryConfigAsync();
                     await abstractCommand.PublishStateAsync(false);
 
-                    Log.Information("[COMMANDS] Modified command: {command}", abstractCommand.Name);
+                    Log.Information("[COMMANDS] Modified command: {command}", abstractCommand.EntityName);
                 }
 
                 // annouce ourselves

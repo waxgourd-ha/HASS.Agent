@@ -16,7 +16,7 @@ public class SwitchDesktopCommand : InternalCommand
 {
     private const string DefaultName = "switchdesktop";
 
-    public SwitchDesktopCommand(string name = DefaultName, string friendlyName = DefaultName, string desktopId = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, desktopId, entityType, id)
+    public SwitchDesktopCommand(string entityName = DefaultName, string name = DefaultName, string desktopId = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, desktopId, entityType, id)
     {
         CommandConfig = desktopId;
         State = "OFF";
@@ -28,7 +28,7 @@ public class SwitchDesktopCommand : InternalCommand
 
         if (string.IsNullOrWhiteSpace(CommandConfig))
         {
-            Log.Warning("[SWITCHDESKTOP] [{name}] Unable to launch command, it's configured as action-only", Name);
+            Log.Warning("[SWITCHDESKTOP] [{name}] Unable to launch command, it's configured as action-only", EntityName);
 
             State = "OFF";
             return;
@@ -45,7 +45,7 @@ public class SwitchDesktopCommand : InternalCommand
 
         if (string.IsNullOrWhiteSpace(action))
         {
-            Log.Warning("[SWITCHDESKTOP] [{name}] Unable to launch command, empty action provided", Name);
+            Log.Warning("[SWITCHDESKTOP] [{name}] Unable to launch command, empty action provided", EntityName);
 
             State = "OFF";
             return;
@@ -53,7 +53,7 @@ public class SwitchDesktopCommand : InternalCommand
 
         if (!string.IsNullOrWhiteSpace(CommandConfig))
         {
-            Log.Warning("[SWITCHDESKTOP] [{name}] Command launched by action, command-provided process will be ignored", Name);
+            Log.Warning("[SWITCHDESKTOP] [{name}] Command launched by action, command-provided process will be ignored", EntityName);
 
             State = "OFF";
             return;

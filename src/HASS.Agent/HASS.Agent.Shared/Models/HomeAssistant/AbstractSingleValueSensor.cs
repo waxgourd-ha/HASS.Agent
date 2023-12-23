@@ -16,11 +16,11 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
         public string PreviousPublishedState { get; protected set; } = string.Empty;
         public string PreviousPublishedAttributes { get; protected set; } = string.Empty;
 
-        protected AbstractSingleValueSensor(string name, string friendlyName, int updateIntervalSeconds = 10, string id = default, bool useAttributes = false)
+        protected AbstractSingleValueSensor(string entityName, string name, int updateIntervalSeconds = 10, string id = default, bool useAttributes = false)
         {
             Id = id == null || id == Guid.Empty.ToString() ? Guid.NewGuid().ToString() : id;
+            EntityName = entityName;
             Name = name;
-            FriendlyName = friendlyName;
             UpdateIntervalSeconds = updateIntervalSeconds;
             Domain = "sensor";
             UseAttributes = useAttributes;
@@ -117,7 +117,7 @@ namespace HASS.Agent.Shared.Models.HomeAssistant
             }
             catch (Exception ex)
             {
-                Log.Fatal("[SENSOR] [{name}] Error publishing state: {err}", Name, ex.Message);
+                Log.Fatal("[SENSOR] [{name}] Error publishing state: {err}", EntityName, ex.Message);
             }
         }
 

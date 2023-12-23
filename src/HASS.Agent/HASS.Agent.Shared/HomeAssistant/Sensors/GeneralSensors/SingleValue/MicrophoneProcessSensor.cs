@@ -15,7 +15,7 @@ public class MicrophoneProcessSensor : AbstractSingleValueSensor
     private const string DefaultName = "microphoneprocess";
     
     private const string LastUsedTimeStop = "LastUsedTimeStop";
-    public MicrophoneProcessSensor(int? updateInterval = null, string name = DefaultName, string friendlyName = DefaultName, string id = default, bool useAttributes = true) : base(name ?? DefaultName, friendlyName ?? null, updateInterval ?? 10, id, useAttributes)
+    public MicrophoneProcessSensor(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default, bool useAttributes = true) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 10, id, useAttributes)
     {
         //
     }
@@ -43,8 +43,8 @@ public class MicrophoneProcessSensor : AbstractSingleValueSensor
 
         var model = new SensorDiscoveryConfigModel()
         {
+            EntityName = EntityName,
             Name = Name,
-            FriendlyName = FriendlyName,
             Unique_id = Id,
             Device = deviceConfig,
             State_topic = $"{Variables.MqttManager.MqttDiscoveryPrefix()}/{Domain}/{deviceConfig.Name}/{ObjectId}/state",

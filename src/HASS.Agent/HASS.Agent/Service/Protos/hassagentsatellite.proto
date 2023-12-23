@@ -133,6 +133,7 @@ message RpcConfiguredServerSensor {
   string counter = 8;
   string instance = 9;
   string name = 10;
+  string entityName = 11;
 }
 
 message RpcConfiguredServerCommand {
@@ -142,4 +143,5 @@ message RpcConfiguredServerCommand {
   bool runAsLowIntegrity = 4;
   string name = 5;
   int32 commandEntityType = 6;
+  string entityName = 7;
 }

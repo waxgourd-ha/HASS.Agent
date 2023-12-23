@@ -13,7 +13,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
     {
         private const string DefaultName = "customexecutor";
 
-        public CustomExecutorCommand(string name = DefaultName, string friendlyName = DefaultName, string command = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(name ?? DefaultName, friendlyName ?? null, command, entityType, id)
+        public CustomExecutorCommand(string entityName = DefaultName, string name = DefaultName, string command = "", CommandEntityType entityType = CommandEntityType.Switch, string id = default) : base(entityName ?? DefaultName, name ?? null, command, entityType, id)
         {
             CommandConfig = command;
             State = "OFF";
@@ -25,7 +25,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
 
             if (string.IsNullOrWhiteSpace(CommandConfig))
             {
-                Log.Warning("[CUSTOMEXECUTOR] [{name}] Unable to launch command, it's configured as action-only", Name, Name);
+                Log.Warning("[CUSTOMEXECUTOR] [{name}] Unable to launch command, it's configured as action-only", EntityName, EntityName);
 
                 State = "OFF";
                 return;
@@ -36,14 +36,14 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 // is there a custom executor provided?
                 if (string.IsNullOrEmpty(Variables.CustomExecutorBinary))
                 {
-                    Log.Warning("[CUSTOMEXECUTOR] [{name}] No custom executor provided, unable to execute", Name);
+                    Log.Warning("[CUSTOMEXECUTOR] [{name}] No custom executor provided, unable to execute", EntityName);
                     return;
                 }
 
                 // does the binary still exist?
                 if (!File.Exists(Variables.CustomExecutorBinary))
                 {
-                    Log.Error("[CUSTOMEXECUTOR] [{name}] Provided custom executor not found: {file}", Name, Variables.CustomExecutorBinary);
+                    Log.Error("[CUSTOMEXECUTOR] [{name}] Provided custom executor not found: {file}", EntityName, Variables.CustomExecutorBinary);
                     return;
                 }
 
@@ -61,13 +61,13 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 var start = process.Start();
 
                 // check if the start went ok
-                if (!start) Log.Error("[CUSTOMEXECUTOR] [{name}] Unable to start executing command: {command}", Name, CommandConfig);
+                if (!start) Log.Error("[CUSTOMEXECUTOR] [{name}] Unable to start executing command: {command}", EntityName, CommandConfig);
 
                 // yep, done
             }
             catch (Exception ex)
             {
-                Log.Error("[CUSTOMEXECUTOR] [{name}] Error while processing: {err}", Name, ex.Message);
+                Log.Error("[CUSTOMEXECUTOR] [{name}] Error while processing: {err}", EntityName, ex.Message);
             }
             finally
             {
@@ -84,14 +84,14 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
                 // is there a custom executor provided?
                 if (string.IsNullOrEmpty(Variables.CustomExecutorBinary))
                 {
-                    Log.Warning("[CUSTOMEXECUTOR] [{name}] No custom executor provided, unable to execute", Name);
+                    Log.Warning("[CUSTOMEXECUTOR] [{name}] No custom executor provided, unable to execute", EntityName);
                     return;
                 }
 
                 // does the binary still exist?
                 if (!File.Exists(Variables.CustomExecutorBinary))
                 {
-                    Log.Error("[CUSTOMEXECUTOR] [{name}] Provided custom executor not found: {file}", Name, Variables.CustomExecutorBinary);
+                    Log.Error("[CUSTOMEXECUTOR] [{name}] Provided custom executor not found: {file}", EntityName, Variables.CustomExecutorBinary);
                     return;
                 }
 
@@ -118,7 +118,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
             }
             catch (Exception ex)
             {
-                Log.Error("[CUSTOMEXECUTOR] [{name}] Error while processing custom executor: {err}", Name, ex.Message);
+                Log.Error("[CUSTOMEXECUTOR] [{name}] Error while processing custom executor: {err}", EntityName, ex.Message);
             }
             finally
             {

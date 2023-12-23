@@ -3483,4 +3483,10 @@ iz izvirne različice</value>
   <data name="About_LblInfo4_1" xml:space="preserve">
     <value>Še večji 'hvala' za LAB02 Research in Sama za razvoj izvirne različice HASS.Agenta - brez njega tega ne bi bilo!</value>
   </data>
+  <data name="Compat_NameTask_Error_ServiceCommunication" xml:space="preserve">
+    <value>Napaka pri komunikaciji s satelitsko storitvijo!</value>
+  </data>
+  <data name="Compat_NameTask_Error_ServiceStart" xml:space="preserve">
+    <value>Napaka pri zagonu satelitske storitve!</value>
+  </data>
 </root>

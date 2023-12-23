@@ -15,7 +15,7 @@ namespace HASS.Agent.Shared.HomeAssistant.Commands.InternalCommands
         private const string DefaultName = "setappvolume";
         private static readonly Dictionary<int, string> ApplicationNames = new Dictionary<int, string>();
 
-        public SetApplicationVolumeCommand(string name = DefaultName, string friendlyName = DefaultName, string commandConfig = "", CommandEntityType entityType = CommandEntityType.Button, string id = default) : base(name ?? DefaultName, friendlyName ?? null, commandConfig, entityType, id)
+        public SetApplicationVolumeCommand(string entityName = DefaultName, string name = DefaultName, string commandConfig = "", CommandEntityType entityType = CommandEntityType.Button, string id = default) : base(entityName ?? DefaultName, name ?? null, commandConfig, entityType, id)
         {
             State = "OFF";
         }
