@@ -87,4 +87,4 @@ Documentation for the original project is available here: [https://hassagent.rea
 
 ----
 
-Thanks! If you need more info, please join on [Discord](https://discord.gg/nMvqzwrVBU).
+Thanks! If you need more info, please join on [Discord](https://discord.com/invite/JfZj98xqJr).
