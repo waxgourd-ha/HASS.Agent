@@ -3353,4 +3353,17 @@ from the original version</value>
   <data name="Compat_NameTask_Error_ServiceCommunication" xml:space="preserve">
     <value>Error communicating with the satellite service!</value>
   </data>
+  <data name="CommandsManager_SetAudioOutputCommandDescription" xml:space="preserve">
+    <value>Sets the default audio output for the system.
+Requires audio device name as a payload.</value>
+  </data>
+  <data name="CommandsMod_LblSetting_AudioDeviceName" xml:space="preserve">
+    <value>Audio Device Name</value>
+  </data>
+  <data name="CommandsMod_LblSetting_JsonPayload" xml:space="preserve">
+    <value>JSON Command Payload</value>
+  </data>
+  <data name="CommandsMod_LblSetting_VolumeRange" xml:space="preserve">
+    <value>Volume (between 0 and 100)</value>
+  </data>
 </root>
