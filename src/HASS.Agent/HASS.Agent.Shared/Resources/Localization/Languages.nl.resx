@@ -3259,4 +3259,7 @@ Wil je de runtime installatie downloaden?</value>
   <data name="SensorType_ScreenshotSensor" xml:space="preserve">
     <value>Schermafbeelding</value>
   </data>
+  <data name="CommandType_SetAudioInputCommand" xml:space="preserve">
+    <value>Stel het audio-invoercommando in</value>
+  </data>
 </root>

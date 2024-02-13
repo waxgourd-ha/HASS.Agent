@@ -3429,4 +3429,8 @@ Home Assistant.
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Номер экрана</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Устанавливает аудиовход по умолчанию для системы (включая устройство связи по умолчанию).
+В качестве полезной нагрузки требуется имя аудиоустройства.</value>
+  </data>
 </root>

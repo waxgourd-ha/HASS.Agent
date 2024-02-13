@@ -3361,4 +3361,8 @@ Requires audio device name as a payload.</value>
     <value>Provides a screenshot sensor in form of a camera entity.
 Screen number depends on system configuration - starts at 0.</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Sets the default audio input for the system (including default communication device).
+Requires audio device name as a payload.</value>
+  </data>
 </root>

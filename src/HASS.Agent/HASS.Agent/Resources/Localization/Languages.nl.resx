@@ -3381,4 +3381,8 @@ Schermnummer is afhankelijk van de systeemconfiguratie - begint bij 0.</value>
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Schermnummer</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Stelt de standaardaudio-invoer in voor het systeem (inclusief het standaardcommunicatieapparaat).
+U hebt de naam van het audioapparaat nodig als payload.</value>
+  </data>
 </root>

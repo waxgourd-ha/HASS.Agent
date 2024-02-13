@@ -3347,4 +3347,7 @@ Czy chcesz pobrać plik instalacyjny?</value>
   <data name="SensorType_ScreenshotSensor" xml:space="preserve">
     <value>Zrzut ekranu</value>
   </data>
+  <data name="CommandType_SetAudioInputCommand" xml:space="preserve">
+    <value>Ustaw wejście audio</value>
+  </data>
 </root>

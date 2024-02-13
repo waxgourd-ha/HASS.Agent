@@ -3360,4 +3360,8 @@ El número de pantalla depende de la configuración del sistema: comienza en 0.<
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Número de pantalla</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Establece la entrada de audio predeterminada para el sistema (incluido el dispositivo de comunicación predeterminado).
+Necesita el nombre del dispositivo de audio como carga útil.</value>
+  </data>
 </root>

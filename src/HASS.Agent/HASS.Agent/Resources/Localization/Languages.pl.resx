@@ -3470,4 +3470,8 @@ Numer ekranu zależy od konfiguracji systemu – zaczyna się od 0.</value>
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Numer ekranu</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Ustawia domyślne wejście audio dla systemu (w tym domyślne urządzenie komunikacyjne).
+Wymaga nazwy urządzenia audio jako ładunku.</value>
+  </data>
 </root>

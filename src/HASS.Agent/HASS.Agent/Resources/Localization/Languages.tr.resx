@@ -2972,4 +2972,8 @@ Ekran numarası sistem konfigürasyonuna bağlıdır - 0'dan başlar.</value>
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Ekran numarası</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Sistem için varsayılan ses girişini ayarlar (varsayılan iletişim cihazı dahil).
+Yük olarak ses cihazı adına ihtiyacınız vardır.</value>
+  </data>
 </root>

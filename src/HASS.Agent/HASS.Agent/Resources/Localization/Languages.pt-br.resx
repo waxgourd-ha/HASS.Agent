@@ -3406,4 +3406,8 @@ O número da tela depende da configuração do sistema – começa em 0.</value>
   <data name="SensorsMod_LblSetting1_ScreenNumber" xml:space="preserve">
     <value>Número da tela</value>
   </data>
+  <data name="CommandsManager_SetAudioInputCommandDescription" xml:space="preserve">
+    <value>Define a entrada de áudio padrão para o sistema (incluindo o dispositivo de comunicação padrão).
+Você precisa do nome do dispositivo de áudio como carga útil.</value>
+  </data>
 </root>
