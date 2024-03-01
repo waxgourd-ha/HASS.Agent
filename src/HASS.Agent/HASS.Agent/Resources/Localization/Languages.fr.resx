@@ -3400,4 +3400,7 @@ Vous avez besoin du nom du périphérique audio comme charge utile.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Ignorer la période de grâce après la sortie de l'hibernation</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Utiliser l'icône de la barre d'état moderne</value>
+  </data>
 </root>

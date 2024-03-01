@@ -3436,4 +3436,7 @@ Home Assistant.
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Игнорировать льготный период после выхода из спящего режима</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Использовать современный значок в трее</value>
+  </data>
 </root>

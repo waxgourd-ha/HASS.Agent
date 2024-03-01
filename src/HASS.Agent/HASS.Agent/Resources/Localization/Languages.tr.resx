@@ -2979,4 +2979,7 @@ Yük olarak ses cihazı adına ihtiyacınız vardır.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Hazırda bekletme modundan uyandıktan sonra ek süreyi göz ardı et</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Modern tepsi simgesini kullan</value>
+  </data>
 </root>

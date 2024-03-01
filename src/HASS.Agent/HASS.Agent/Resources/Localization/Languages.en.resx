@@ -3368,4 +3368,7 @@ Requires audio device name as a payload.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Ignore grace period after waking up from hibernation</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Use modern tray icon</value>
+  </data>
 </root>

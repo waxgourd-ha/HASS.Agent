@@ -3477,4 +3477,7 @@ Wymaga nazwy urządzenia audio jako ładunku.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Ignoruj okres karencji po przebudzeniu ze stanu hibernacji</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Użyj nowoczesnej ikony w zasobniku</value>
+  </data>
 </root>

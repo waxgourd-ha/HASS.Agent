@@ -3516,4 +3516,7 @@ Ime zvočne naprave potrebujete kot obremenitev.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Po prebujanju iz mirovanja prezrite obdobje odloga</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Uporabi sodobno ikono pladnja</value>
+  </data>
 </root>

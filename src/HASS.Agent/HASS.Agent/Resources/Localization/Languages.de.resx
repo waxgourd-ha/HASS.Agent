@@ -3491,4 +3491,7 @@ Als Payload benötigen Sie den Namen des Audiogeräts.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Ignorieren Sie die Schonfrist nach dem Aufwachen aus dem Ruhezustand</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Verwenden Sie ein modernes Taskleistensymbol</value>
+  </data>
 </root>

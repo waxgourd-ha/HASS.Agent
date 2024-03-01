@@ -3367,4 +3367,7 @@ Necesita el nombre del dispositivo de audio como carga útil.</value>
   <data name="ConfigMqtt_CbIgnoreGracePeriod" xml:space="preserve">
     <value>Ignorar el período de gracia después de despertar de la hibernación</value>
   </data>
+  <data name="ConfigTrayIcon_CbUseModernIcon" xml:space="preserve">
+    <value>Utilice el icono de bandeja moderno</value>
+  </data>
 </root>
