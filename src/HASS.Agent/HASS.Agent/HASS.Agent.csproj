@@ -128,6 +128,9 @@
     <Compile Update="Forms\ChildApplications\ServiceReinstall.cs" />
     <Compile Update="Forms\Commands\CommandConfig\WebViewCommandConfig.cs" />
     <Compile Update="Forms\Commands\CommandConfig\CommandMqttTopic.cs" />
+    <Compile Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\WebView.cs" />
     <Compile Update="Forms\Service\ServiceConfig.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
@@ -1612,6 +1615,24 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Forms\QuickActions\QuickActionsMod.tr.resx">
       <DependentUpon>QuickActionsMod.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.de.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.es.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.fr.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.nl.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.ru.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Forms\Sensors\SensorConfig\AdvancedSensorSettings.tr.resx">
+      <DependentUpon>AdvancedSensorSettings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="Forms\Sensors\SensorsConfig.de.resx">
       <DependentUpon>SensorsConfig.resx</DependentUpon>

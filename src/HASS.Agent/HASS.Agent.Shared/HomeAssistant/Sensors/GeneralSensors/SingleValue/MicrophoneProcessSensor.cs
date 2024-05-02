@@ -16,8 +16,11 @@ public class MicrophoneProcessSensor : AbstractSingleValueSensor
 
     private const string _lastUsedTimeStop = "LastUsedTimeStop";
     private const string _regKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone";
-
-    public MicrophoneProcessSensor(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 10, id, true) { }
+    
+    public MicrophoneProcessSensor(int? updateInterval = null, string entityName = DefaultName, string name = DefaultName, string id = default, string advancedSettings = default) : base(entityName ?? DefaultName, name ?? null, updateInterval ?? 10, id, true, advancedSettings: advancedSettings)
+    {
+        //
+    }
 
     private readonly Dictionary<string, string> _processes = new();
 
