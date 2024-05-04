@@ -2,7 +2,6 @@
 using System.Text.Json;
 using Windows.Media.Control;
 using Windows.Media.Playback;
-using CoreAudio;
 using HASS.Agent.Enums;
 using HASS.Agent.Extensions;
 using HASS.Agent.Managers;
@@ -49,8 +48,7 @@ namespace HASS.Agent.Media
             // todo: optional, but add an OS check - not all OSs support this
             try
             {
-                // create the objects
-                Variables.AudioDeviceEnumerator = new MMDeviceEnumerator(Guid.NewGuid());
+                // create the object
                 Variables.MediaPlayer = new MediaPlayer();
 
                 _sessionManager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
