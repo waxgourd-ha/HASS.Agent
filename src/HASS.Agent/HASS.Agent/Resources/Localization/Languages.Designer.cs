@@ -716,6 +716,16 @@ namespace HASS.Agent.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows / hides the Tray Icon Web View.
+        ///Requires it to be configured in &quot;Configuration -&gt; Tray Icon&quot;.
+        /// </summary>
+        internal static string CommandsManager_TrayWebViewCommandDescription {
+            get {
+                return ResourceManager.GetString("CommandsManager_TrayWebViewCommandDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shows a window with the provided URL.
         ///
         ///This differs from the &apos;LaunchUrl&apos; command in that it doesn&apos;t load a full-fledged browser, just the provided URL in its own window.
